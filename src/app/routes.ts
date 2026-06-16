@@ -4,6 +4,8 @@ import { Home } from "./pages/Home";
 import { NokoPOS } from "./pages/NokoPOS";
 import { NokoAcademy } from "./pages/NokoAcademy";
 import { NokoSupply } from "./pages/NokoSupply";
+import { Blog } from "./pages/Blog";
+import { BlogPost } from "./pages/BlogPost";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +27,14 @@ export const router = createBrowserRouter([
       {
         path: "supply",
         Component: NokoSupply,
+      },
+      {
+        path: "blog",
+        Component: Blog,
+      },
+      {
+        path: "blog/:slug",
+        Component: BlogPost,
       },
     ],
   },

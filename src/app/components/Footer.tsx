@@ -10,7 +10,7 @@ const services = [
 
 const companyLinks = [
   { label: "Về chúng tôi", href: "#about" },
-  { label: "Blog", href: "#blog" },
+  { label: "Blog", href: "/blog" },
   { label: "Liên hệ", href: "#contact" },
 ];
 
@@ -86,9 +86,15 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-gray-500">
               {companyLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="hover:text-indigo-400 transition-colors">
-                    {l.label}
-                  </a>
+                  {l.href.startsWith("/") ? (
+                    <Link to={l.href} className="hover:text-indigo-400 transition-colors">
+                      {l.label}
+                    </Link>
+                  ) : (
+                    <a href={l.href} className="hover:text-indigo-400 transition-colors">
+                      {l.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

@@ -67,23 +67,47 @@ export function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {[
-            { label: "Trang chủ", href: "/" },
+            { label: "Trang chủ", href: "/", isRoute: true },
             { label: "Về chúng tôi", href: "#about" },
-            { label: "Blog", href: "#blog" },
+            { label: "Blog", href: "/blog", isRoute: true },
             { label: "Liên hệ", href: "#contact" },
-          ].map((item, index) => (
-            <motion.a
-              key={item.label}
-              href={item.href}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="text-sm font-medium text-gray-400 hover:text-white transition-all duration-300 relative group"
-            >
-              {item.label}
+          ].map((item, index) => {
+            const className =
+              "text-sm font-medium text-gray-400 hover:text-white transition-all duration-300 relative group";
+            const underline = (
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 group-hover:w-full transition-all duration-300" />
-            </motion.a>
-          ))}
+            );
+
+            if (item.isRoute) {
+              return (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Link to={item.href} className={className}>
+                    {item.label}
+                    {underline}
+                  </Link>
+                </motion.div>
+              );
+            }
+
+            return (
+              <motion.a
+                key={item.label}
+                href={item.href}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className={className}
+              >
+                {item.label}
+                {underline}
+              </motion.a>
+            );
+          })}
 
           {/* Services Dropdown */}
           <div ref={dropdownRef} className="relative">
@@ -168,20 +192,31 @@ export function Header() {
         >
           <nav className="container flex flex-col gap-4 py-6">
             {[
-              { label: "Trang chủ", href: "/" },
+              { label: "Trang chủ", href: "/", isRoute: true },
               { label: "Về chúng tôi", href: "#about" },
-              { label: "Blog", href: "#blog" },
+              { label: "Blog", href: "/blog", isRoute: true },
               { label: "Liên hệ", href: "#contact" },
-            ].map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
+            ].map((item) =>
+              item.isRoute ? (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              )
+            )}
             <div className="border-t border-white/10 pt-4">
               <p className="text-xs text-gray-600 mb-3 uppercase tracking-wider">Dịch vụ</p>
               {services.map((svc) => (
