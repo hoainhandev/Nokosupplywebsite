@@ -36,7 +36,7 @@ export function Footer() {
               <img
                 src="https://sdribtqccxzjpikspnnm.supabase.co/storage/v1/object/public/assets/logo-white.png"
                 alt="Noko"
-                className="h-9 w-auto max-w-full object-contain"
+                className="h-16 w-auto max-w-full object-contain"
               />
             </Link>
             <p className="text-sm text-[#A89880] mb-6 max-w-xs leading-relaxed">
