@@ -155,10 +155,6 @@ export function NokoAcademy() {
               Học đúng — Làm đúng
             </span>
             <br />
-            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
-              Lãi đúng
-            </span>
-            <br />
             <span className="bg-gradient-to-r from-white/80 to-gray-400 bg-clip-text text-transparent text-4xl md:text-5xl">
               ngay từ quán đầu tiên
             </span>
