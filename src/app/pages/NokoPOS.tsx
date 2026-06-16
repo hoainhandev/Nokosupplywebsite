@@ -1,6 +1,4 @@
 import { Link } from "react-router";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Input } from "../components/ui/input";
@@ -20,6 +18,7 @@ import {
   Shield,
   Star,
   ArrowRight,
+  CheckCircle2,
 } from "lucide-react";
 
 const containerVariants = {
@@ -78,7 +77,6 @@ export function NokoPOS() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-hidden">
       <ScrollProgress />
-      <Header />
 
       {/* Cursor Glow */}
       <motion.div
@@ -382,101 +380,75 @@ export function NokoPOS() {
         </section>
       </ParallaxSection>
 
-      {/* Noko Supply Integration */}
+      {/* ── KẾT NỐI NOKO SUPPLY ──────────────────────────────────────────────── */}
       <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-950/20 via-purple-950/20 to-pink-950/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-indigo-950/20 via-purple-950/20 to-indigo-950/15 pointer-events-none" />
         <motion.div
           animate={{ scale: [1, 1.15, 1], rotate: [0, 60, 0] }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-indigo-600/10 via-purple-600/10 to-pink-600/10 rounded-full blur-3xl pointer-events-none"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-indigo-600/12 via-purple-600/12 to-indigo-500/8 rounded-full blur-3xl pointer-events-none"
         />
 
         <div className="container relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left — text */}
+            {/* Features — trái */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-pink-600/20 to-purple-600/20 border border-pink-500/30 mb-6">
-                <div className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-pulse" />
-                <span className="text-sm text-pink-300 font-medium">Tích hợp hệ sinh thái</span>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
+                <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                  Tích hợp độc quyền
+                </span>
               </div>
 
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
                 <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  Kết nối trực tiếp với
+                  Kết nối Noko Supply
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
-                  Noko Supply
+                <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  Đặt hàng tự động — không cần làm thủ công
                 </span>
               </h2>
 
-              <p className="text-gray-400 text-lg leading-relaxed mb-10">
-                POS và Supply hoạt động như một — không cần chuyển tab, không cần gọi điện đặt hàng.
-              </p>
-
-              <div className="space-y-5 mb-10">
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                className="space-y-4 mb-8"
+              >
                 {[
-                  {
-                    step: "01",
-                    text: "POS theo dõi tồn kho realtime",
-                    sub: "Mọi đơn hàng tự động trừ nguyên liệu, cập nhật tức thì.",
-                    color: "from-indigo-600 to-purple-600",
-                  },
-                  {
-                    step: "02",
-                    text: "Tự tạo đơn khi xuống ngưỡng",
-                    sub: "Khi nguyên liệu dưới mức tối thiểu, hệ thống tự tạo đơn đặt hàng Supply.",
-                    color: "from-purple-600 to-pink-600",
-                  },
-                  {
-                    step: "03",
-                    text: "Chủ quán chỉ cần approve",
-                    sub: "Không cần gọi điện, không cần nhớ — một chạm là xong.",
-                    color: "from-pink-600 to-rose-600",
-                  },
-                  {
-                    step: "04",
-                    text: "Food cost tính tự động",
-                    sub: "Dựa theo giá Supply hiện tại — báo cáo lợi nhuận luôn chính xác.",
-                    color: "from-rose-600 to-orange-600",
-                  },
-                ].map((item, i) => (
-                  <motion.div
-                    key={item.step}
-                    initial={{ opacity: 0, x: -16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1, duration: 0.45 }}
-                    whileHover={{ x: 6 }}
-                    className="flex items-start gap-4"
-                  >
-                    <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center flex-shrink-0 shadow-lg text-xs font-bold text-white`}>
-                      {item.step}
-                    </div>
-                    <div>
-                      <p className="text-white font-medium mb-0.5">{item.text}</p>
-                      <p className="text-sm text-gray-500 leading-relaxed">{item.sub}</p>
-                    </div>
+                  "POS theo dõi tồn kho realtime",
+                  "Khi xuống ngưỡng → tự tạo đơn Supply",
+                  "Chủ quán chỉ approve trên app",
+                  "Giá Supply sync vào food cost báo cáo POS",
+                ].map((f) => (
+                  <motion.div key={f} variants={itemVariants} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" />
+                    <p className="text-gray-300 text-sm leading-relaxed">{f}</p>
                   </motion.div>
                 ))}
-              </div>
-
-              <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                <Link to="/supply">
-                  <Button size="lg" className="h-13 px-8 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 border-0 shadow-xl shadow-pink-500/30 group">
-                    Xem Noko Supply
-                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
               </motion.div>
+
+              <p className="text-sm text-gray-600 mb-6 italic">
+                Chưa cần Supply? POS vẫn hoạt động độc lập bình thường.
+              </p>
+
+              <Link
+                to="/supply"
+                className="inline-flex items-center text-sm font-medium text-indigo-300 hover:text-indigo-200 transition-colors group"
+              >
+                Xem Noko Supply
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </motion.div>
 
-            {/* Right — visual diagram */}
+            {/* Visual — phải */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -485,88 +457,51 @@ export function NokoPOS() {
               className="relative"
             >
               <motion.div
-                animate={{ scale: [1, 1.05, 1] }}
+                animate={{ scale: [1, 1.04, 1] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-600/20 blur-3xl rounded-3xl"
+                className="absolute inset-0 bg-gradient-to-br from-indigo-600/25 to-purple-600/25 blur-3xl rounded-3xl"
               />
               <div className="relative bg-card/50 backdrop-blur-xl border border-white/10 rounded-3xl p-7 space-y-4">
-                {/* POS node */}
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="flex items-center gap-4 p-4 rounded-2xl bg-indigo-600/10 border border-indigo-500/20"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center flex-shrink-0">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-2" /></svg>
+                {[
+                  { label: "Noko POS", sub: "Phở Bò: còn 2 kg ↓", status: "Thấp", statusColor: "text-orange-400 bg-orange-400/10", iconBg: "from-indigo-600 to-purple-600", icon: "💻", cardClass: "bg-indigo-600/10 border-indigo-500/20" },
+                  { label: "Đơn tự động tạo", sub: "Phở Bò · 10 kg · Noko Supply", status: "Chờ duyệt", statusColor: "text-purple-300 bg-purple-500/10", iconBg: "from-purple-600 to-pink-600", icon: "📋", cardClass: "bg-purple-600/10 border-purple-500/20" },
+                  { label: "Chủ quán approve", sub: "1 chạm trên app — xong", status: "✓ Approved", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-indigo-600 to-purple-600", icon: "✅", cardClass: "bg-indigo-600/10 border-indigo-500/20" },
+                  { label: "Giao hàng & cập nhật", sub: "Food cost POS cập nhật tự động", status: "Done", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-green-600 to-emerald-600", icon: "🚚", cardClass: "bg-green-600/10 border-green-500/20" },
+                ].map((step, i) => (
+                  <div key={step.label}>
+                    <motion.div
+                      variants={itemVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className={`flex items-center gap-4 p-4 rounded-2xl border ${step.cardClass}`}
+                    >
+                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${step.iconBg} flex items-center justify-center flex-shrink-0 text-lg`}>
+                        {step.icon}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm font-semibold text-white">{step.label}</div>
+                        <div className="text-xs text-gray-500 truncate">{step.sub}</div>
+                      </div>
+                      <div className={`text-xs font-medium px-2 py-1 rounded-lg flex-shrink-0 ${step.statusColor}`}>
+                        {step.status}
+                      </div>
+                    </motion.div>
+                    {i < 3 && (
+                      <div className="flex justify-center my-1">
+                        <motion.div
+                          animate={{ y: [0, 3, 0] }}
+                          transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }}
+                          className="flex flex-col items-center gap-0.5"
+                        >
+                          <div className="w-px h-4 bg-gradient-to-b from-indigo-500/50 to-purple-500/50" />
+                          <div className="w-0 h-0 border-l-[3px] border-r-[3px] border-t-[3px] border-l-transparent border-r-transparent border-t-purple-500/60" />
+                        </motion.div>
+                      </div>
+                    )}
                   </div>
-                  <div className="flex-1">
-                    <div className="text-sm font-semibold text-white">Noko POS</div>
-                    <div className="text-xs text-gray-500">Phở Bò: còn 2 kg ↓</div>
-                  </div>
-                  <div className="text-xs text-orange-400 font-medium bg-orange-400/10 px-2 py-1 rounded-lg">Thấp</div>
-                </motion.div>
-
-                {/* Arrow */}
-                <div className="flex justify-center">
-                  <motion.div
-                    animate={{ y: [0, 4, 0] }}
-                    transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-                    className="flex flex-col items-center gap-1"
-                  >
-                    <div className="w-px h-5 bg-gradient-to-b from-purple-500 to-pink-500" />
-                    <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-pink-500" />
-                  </motion.div>
-                </div>
-
-                {/* Auto order */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.35 }}
-                  className="flex items-center gap-4 p-4 rounded-2xl bg-purple-600/10 border border-purple-500/20"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-sm font-semibold text-white">Đơn đặt hàng tự động</div>
-                    <div className="text-xs text-gray-500">Phở Bò · 10 kg · Noko Supply</div>
-                  </div>
-                  <div className="text-xs text-purple-300 font-medium bg-purple-500/10 px-2 py-1 rounded-lg">Chờ duyệt</div>
-                </motion.div>
-
-                {/* Arrow */}
-                <div className="flex justify-center">
-                  <motion.div
-                    animate={{ y: [0, 4, 0] }}
-                    transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-                    className="flex flex-col items-center gap-1"
-                  >
-                    <div className="w-px h-5 bg-gradient-to-b from-pink-500 to-green-500" />
-                    <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-green-500" />
-                  </motion.div>
-                </div>
-
-                {/* Approved */}
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 }}
-                  className="flex items-center gap-4 p-4 rounded-2xl bg-green-600/10 border border-green-500/20"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-600 to-emerald-600 flex items-center justify-center flex-shrink-0">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-sm font-semibold text-white">Đã duyệt · Giao trong 24h</div>
-                    <div className="text-xs text-gray-500">Food cost cập nhật tự động</div>
-                  </div>
-                  <div className="text-xs text-green-400 font-medium bg-green-500/10 px-2 py-1 rounded-lg">✓ Done</div>
-                </motion.div>
+                ))}
               </div>
             </motion.div>
           </div>
@@ -781,8 +716,6 @@ export function NokoPOS() {
           </div>
         </section>
       </ParallaxSection>
-
-      <Footer />
     </div>
   );
 }

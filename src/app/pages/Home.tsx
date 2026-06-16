@@ -1,5 +1,4 @@
 import { Link } from "react-router";
-import { Header } from "../components/Header";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
@@ -13,9 +12,6 @@ import {
   MonitorSmartphone,
   GraduationCap,
   ShoppingBasket,
-  Facebook,
-  Youtube,
-  MessageCircle,
   CheckCircle2,
 } from "lucide-react";
 
@@ -67,7 +63,6 @@ export function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-hidden">
       <ScrollProgress />
-      <Header />
 
       {/* Cursor glow */}
       <motion.div
@@ -551,94 +546,6 @@ export function Home() {
         </div>
         </div>
       </section>
-
-      {/* ── FOOTER ───────────────────────────────────────────────────────────── */}
-      <footer className="border-t border-white/8 bg-gradient-to-b from-background to-black/60">
-        <div className="container py-16">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
-            {/* Brand */}
-            <div className="md:col-span-2">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-7 h-7 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
-                  <Star className="w-4 h-4 text-white" />
-                </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Noko
-                </span>
-              </div>
-              <p className="text-sm text-gray-500 mb-6 max-w-xs leading-relaxed">
-                Hệ sinh thái F&B toàn diện — giúp người Việt kinh doanh nhà hàng tại Mỹ đúng cách, từ ngày đầu tiên.
-              </p>
-              {/* Socials */}
-              <div className="flex gap-3">
-                {[
-                  { icon: Facebook, label: "Facebook" },
-                  { icon: MessageCircle, label: "Zalo" },
-                  { icon: Youtube, label: "YouTube" },
-                ].map((s) => (
-                  <motion.a
-                    key={s.label}
-                    href="#"
-                    aria-label={s.label}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:text-indigo-400 hover:border-indigo-500/40 transition-colors"
-                  >
-                    <s.icon className="w-4 h-4" />
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-
-            {/* Links */}
-            <div>
-              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Dịch vụ</h4>
-              <ul className="space-y-3 text-sm text-gray-500">
-                {[
-                  { label: "Noko POS", href: "/pos" },
-                  { label: "Noko Academy", href: "/academy" },
-                  { label: "Noko Supply", href: "/supply" },
-                ].map((l) => (
-                  <li key={l.label}>
-                    <Link to={l.href} className="hover:text-indigo-400 transition-colors">{l.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Công ty</h4>
-              <ul className="space-y-3 text-sm text-gray-500">
-                {[
-                  { label: "Về chúng tôi", href: "#about" },
-                  { label: "Blog", href: "#blog" },
-                  { label: "Liên hệ", href: "#contact" },
-                ].map((l) => (
-                  <li key={l.label}>
-                    <a href={l.href} className="hover:text-indigo-400 transition-colors">{l.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Liên hệ</h4>
-              <ul className="space-y-3 text-sm text-gray-500">
-                <li>info@noko.com</li>
-                <li>(714) 555-0123</li>
-                <li>California, United States</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="pt-8 border-t border-white/8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600">
-            <p>&copy; 2026 Noko. All rights reserved.</p>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-gray-400 transition-colors">Chính sách bảo mật</a>
-              <a href="#" className="hover:text-gray-400 transition-colors">Điều khoản sử dụng</a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

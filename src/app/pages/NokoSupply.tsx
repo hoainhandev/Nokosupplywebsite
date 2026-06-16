@@ -2,13 +2,14 @@ import { Link } from "react-router";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Input } from "../components/ui/input";
+import { supabase } from "../../lib/supabase";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { useEffect, useState, useRef } from "react";
+import { toast } from "sonner";
 import {
   ArrowRight, Star, X, CheckCircle2, ShoppingBasket,
   Truck, DollarSign, RefreshCw, Headphones,
-  Leaf, Package, Flame, Box, Sparkles,
-  Menu, ChevronDown, Users,
+  Leaf, Package,
 } from "lucide-react";
 
 // ── Scroll Progress ──────────────────────────────────────────────────────────
@@ -34,124 +35,18 @@ function ParallaxSection({ children }: { children: React.ReactNode }) {
 const stagger = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } };
 
-// ── Navbar ───────────────────────────────────────────────────────────────────
-const services = [
-  { name: "Noko POS", desc: "Giải pháp vận hành chuỗi nhà hàng", href: "/pos", color: "from-indigo-500 to-purple-500" },
-  { name: "Noko Academy", desc: "Đào tạo F&B chuyên nghiệp", href: "/academy", color: "from-purple-500 to-pink-500" },
-  { name: "Noko Supply", desc: "Nguyên liệu chuẩn từ vườn đến bàn", href: "/supply", color: "from-pink-500 to-rose-500" },
-];
-
-function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [svcOpen, setSvcOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const fn = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setSvcOpen(false); };
-    document.addEventListener("mousedown", fn);
-    return () => document.removeEventListener("mousedown", fn);
-  }, []);
-
-  return (
-    <motion.header initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 z-50 w-full border-b border-white/10 bg-background/80 backdrop-blur-xl">
-      <div className="container flex h-20 items-center justify-between">
-        <Link to="/">
-          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-3 cursor-pointer">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 blur-lg opacity-50" />
-              <Sparkles className="relative w-8 h-8 text-indigo-400" />
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Noko</span>
-          </motion.div>
-        </Link>
-
-        <nav className="hidden md:flex items-center gap-8">
-          {[{ label: "Trang chủ", href: "/" }, { label: "Về chúng tôi", href: "/#about" }, { label: "Blog", href: "#" }, { label: "Liên hệ", href: "#order" }].map((item, i) => (
-            <motion.a key={item.label} href={item.href} initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }}
-              className="text-sm font-medium text-gray-400 hover:text-white transition-all duration-300 relative group">
-              {item.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-rose-500 group-hover:w-full transition-all duration-300" />
-            </motion.a>
-          ))}
-          <div ref={ref} className="relative">
-            <motion.button initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.32 }}
-              onClick={() => setSvcOpen(!svcOpen)}
-              className="flex items-center gap-1 text-sm font-medium text-pink-400 relative">
-              Dịch vụ <span className="text-gray-400">·</span>
-              <span className="text-white font-semibold">Supply</span>
-              <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${svcOpen ? "rotate-180" : ""}`} />
-              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-rose-500" />
-            </motion.button>
-            {svcOpen && (
-              <motion.div initial={{ opacity: 0, y: 8, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.15 }}
-                className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 bg-card/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl shadow-black/50 overflow-hidden">
-                <div className="p-2">
-                  {services.map((svc) => (
-                    <Link key={svc.name} to={svc.href} onClick={() => setSvcOpen(false)}
-                      className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors group ${svc.href === "/supply" ? "bg-white/5" : "hover:bg-white/5"}`}>
-                      <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${svc.color} flex items-center justify-center flex-shrink-0`}>
-                        <Sparkles className="w-4 h-4 text-white" />
-                      </div>
-                      <div>
-                        <div className={`text-sm font-medium ${svc.href === "/supply" ? "text-pink-300" : "text-white"}`}>{svc.name}</div>
-                        <div className="text-xs text-gray-500">{svc.desc}</div>
-                      </div>
-                      {svc.href === "/supply" && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-pink-400" />}
-                    </Link>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </div>
-        </nav>
-
-        <div className="hidden md:flex">
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <a href="#order">
-              <Button size="sm" className="bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 border-0 shadow-lg shadow-pink-500/50 px-6">
-                Đặt hàng ngay
-              </Button>
-            </a>
-          </motion.div>
-        </div>
-
-        <button className="md:hidden p-2 text-gray-400 hover:text-white" onClick={() => setMenuOpen(!menuOpen)} aria-label="menu">
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {menuOpen && (
-        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }}
-          className="md:hidden border-t border-white/10 bg-background/95 backdrop-blur-xl">
-          <nav className="container flex flex-col gap-4 py-6">
-            {[{ label: "Trang chủ", href: "/" }, { label: "Về chúng tôi", href: "/#about" }, { label: "Blog", href: "#" }, { label: "Liên hệ", href: "#order" }].map((item) => (
-              <a key={item.label} href={item.href} className="text-sm font-medium text-gray-400 hover:text-white transition-colors" onClick={() => setMenuOpen(false)}>{item.label}</a>
-            ))}
-            <div className="border-t border-white/10 pt-4">
-              <p className="text-xs text-gray-600 mb-3 uppercase tracking-wider">Dịch vụ</p>
-              {services.map((svc) => (
-                <Link key={svc.name} to={svc.href} className="flex items-center gap-3 py-2 text-sm text-gray-400 hover:text-white transition-colors" onClick={() => setMenuOpen(false)}>
-                  <div className={`w-6 h-6 rounded-md bg-gradient-to-br ${svc.color} flex items-center justify-center`}><Sparkles className="w-3 h-3 text-white" /></div>
-                  <span className={svc.href === "/supply" ? "text-pink-300 font-medium" : ""}>{svc.name}</span>
-                </Link>
-              ))}
-            </div>
-            <a href="#order" onClick={() => setMenuOpen(false)}>
-              <Button size="sm" className="w-full bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500">Đặt hàng ngay</Button>
-            </a>
-          </nav>
-        </motion.div>
-      )}
-    </motion.header>
-  );
-}
-
 // ── Main Page ────────────────────────────────────────────────────────────────
 export function NokoSupply() {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState("Tất cả");
   const [posUser, setPosUser] = useState("supply-only");
   const [needs, setNeeds] = useState<string[]>([]);
+  const [restaurantName, setRestaurantName] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const fn = (e: MouseEvent) => setMouse({ x: e.clientX, y: e.clientY });
@@ -160,6 +55,39 @@ export function NokoSupply() {
   }, []);
 
   const toggleNeed = (n: string) => setNeeds(prev => prev.includes(n) ? prev.filter(x => x !== n) : [...prev, n]);
+
+  async function handleLeadSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase.from("supply_leads").insert({
+        restaurant_name: restaurantName,
+        name,
+        phone,
+        email,
+        state: state || null,
+        pos_status: posUser,
+        needs,
+        created_at: new Date().toISOString(),
+      });
+
+      if (error) throw error;
+
+      toast.success("Đã gửi yêu cầu báo giá! Chúng tôi sẽ liên hệ trong 24h.");
+      setRestaurantName("");
+      setName("");
+      setPhone("");
+      setEmail("");
+      setState("");
+      setPosUser("supply-only");
+      setNeeds([]);
+    } catch {
+      toast.error("Không thể gửi yêu cầu. Vui lòng thử lại sau.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   const tabs = ["Tất cả", "Rau củ", "Thịt & Hải sản", "Gia vị & Sốt", "Đồ khô", "Bao bì"];
 
@@ -180,7 +108,6 @@ export function NokoSupply() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-hidden">
       <ScrollProgress />
-      <Navbar />
 
       <motion.div className="fixed w-[500px] h-[500px] rounded-full pointer-events-none z-0 blur-3xl"
         style={{ background: "radial-gradient(circle, rgba(236,72,153,0.09) 0%, transparent 70%)", left: mouse.x - 250, top: mouse.y - 250 }} />
@@ -383,90 +310,129 @@ export function NokoSupply() {
         </section>
       </ParallaxSection>
 
-      {/* ── TÍCH HỢP POS ─────────────────────────────────────────────────────── */}
+      {/* ── TÍCH HỢP VỚI NOKO POS ─────────────────────────────────────────────── */}
       <section className="py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-950/20 via-purple-950/20 to-pink-950/20 pointer-events-none" />
-        <motion.div animate={{ scale: [1, 1.15, 1], rotate: [0, 60, 0] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-indigo-600/8 via-purple-600/8 to-pink-600/8 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-pink-950/15 via-rose-950/15 to-pink-950/10 pointer-events-none" />
+        <motion.div
+          animate={{ scale: [1, 1.15, 1], rotate: [0, 60, 0] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-pink-600/12 via-rose-600/12 to-pink-500/8 rounded-full blur-3xl pointer-events-none"
+        />
 
         <div className="container relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Visual flow — trái */}
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }} className="relative">
-              <motion.div animate={{ scale: [1, 1.04, 1] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 blur-3xl rounded-3xl" />
+            {/* Features — trái */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-pink-500/20 to-rose-500/20 border border-pink-500/30 mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse" />
+                <span className="text-sm font-medium bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">
+                  Tích hợp độc quyền
+                </span>
+              </div>
+
+              <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                  Dùng Noko POS?
+                </span>
+                <br />
+                <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">
+                  Đặt hàng tự động — không cần làm thủ công
+                </span>
+              </h2>
+
+              <motion.div
+                variants={stagger}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                className="space-y-4 mb-8"
+              >
+                {[
+                  "POS theo dõi tồn kho realtime",
+                  "Khi xuống ngưỡng → tự tạo đơn Supply",
+                  "Chủ quán chỉ approve trên app",
+                  "Giá Supply sync vào food cost báo cáo POS",
+                ].map((f) => (
+                  <motion.div key={f} variants={fadeUp} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-rose-400 flex-shrink-0 mt-0.5" />
+                    <p className="text-gray-300 text-sm leading-relaxed">{f}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              <p className="text-sm text-gray-600 mb-6 italic">
+                Chưa dùng Noko POS? Vẫn đặt hàng Supply bình thường được.
+              </p>
+
+              <Link
+                to="/pos"
+                className="inline-flex items-center text-sm font-medium text-pink-300 hover:text-pink-200 transition-colors group"
+              >
+                Tìm hiểu Noko POS
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+
+            {/* Visual — phải */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="relative"
+            >
+              <motion.div
+                animate={{ scale: [1, 1.04, 1] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 bg-gradient-to-br from-pink-600/25 to-rose-600/25 blur-3xl rounded-3xl"
+              />
               <div className="relative bg-card/50 backdrop-blur-xl border border-white/10 rounded-3xl p-7 space-y-4">
                 {[
-                  { label: "Noko POS", sub: "Phở Bò: còn 2 kg ↓", status: "Thấp", statusColor: "text-orange-400 bg-orange-400/10", iconBg: "from-indigo-600 to-purple-600", icon: "💻" },
-                  { label: "Đơn tự động tạo", sub: "Phở Bò · 10 kg · Noko Supply", status: "Chờ duyệt", statusColor: "text-purple-300 bg-purple-500/10", iconBg: "from-purple-600 to-pink-600", icon: "📋" },
-                  { label: "Chủ quán approve", sub: "1 chạm trên app — xong", status: "✓ Approved", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-pink-600 to-rose-600", icon: "✅" },
-                  { label: "Giao hàng & cập nhật", sub: "Food cost POS cập nhật tự động", status: "Done", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-green-600 to-emerald-600", icon: "🚚" },
+                  { label: "Noko POS", sub: "Phở Bò: còn 2 kg ↓", status: "Thấp", statusColor: "text-orange-400 bg-orange-400/10", iconBg: "from-indigo-600 to-purple-600", icon: "💻", cardClass: "bg-indigo-600/10 border-indigo-500/20" },
+                  { label: "Đơn tự động tạo", sub: "Phở Bò · 10 kg · Noko Supply", status: "Chờ duyệt", statusColor: "text-pink-300 bg-pink-500/10", iconBg: "from-pink-600 to-rose-600", icon: "📋", cardClass: "bg-pink-600/10 border-pink-500/20" },
+                  { label: "Chủ quán approve", sub: "1 chạm trên app — xong", status: "✓ Approved", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-rose-600 to-orange-600", icon: "✅", cardClass: "bg-rose-600/10 border-rose-500/20" },
+                  { label: "Giao hàng & cập nhật", sub: "Food cost POS cập nhật tự động", status: "Done", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-green-600 to-emerald-600", icon: "🚚", cardClass: "bg-green-600/10 border-green-500/20" },
                 ].map((step, i) => (
-                  <div key={i}>
-                    <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12 }}
-                      className={`flex items-center gap-4 p-4 rounded-2xl border ${i === 0 ? "bg-indigo-600/10 border-indigo-500/20" : i === 1 ? "bg-purple-600/10 border-purple-500/20" : i === 2 ? "bg-pink-600/10 border-pink-500/20" : "bg-green-600/10 border-green-500/20"}`}>
-                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${step.iconBg} flex items-center justify-center flex-shrink-0 text-lg`}>{step.icon}</div>
+                  <div key={step.label}>
+                    <motion.div
+                      variants={fadeUp}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className={`flex items-center gap-4 p-4 rounded-2xl border ${step.cardClass}`}
+                    >
+                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${step.iconBg} flex items-center justify-center flex-shrink-0 text-lg`}>
+                        {step.icon}
+                      </div>
                       <div className="flex-1 min-w-0">
                         <div className="text-sm font-semibold text-white">{step.label}</div>
                         <div className="text-xs text-gray-500 truncate">{step.sub}</div>
                       </div>
-                      <div className={`text-xs font-medium px-2 py-1 rounded-lg flex-shrink-0 ${step.statusColor}`}>{step.status}</div>
+                      <div className={`text-xs font-medium px-2 py-1 rounded-lg flex-shrink-0 ${step.statusColor}`}>
+                        {step.status}
+                      </div>
                     </motion.div>
                     {i < 3 && (
                       <div className="flex justify-center my-1">
-                        <motion.div animate={{ y: [0, 3, 0] }} transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }} className="flex flex-col items-center gap-0.5">
-                          <div className="w-px h-4 bg-gradient-to-b from-purple-500/50 to-pink-500/50" />
-                          <div className="w-0 h-0 border-l-[3px] border-r-[3px] border-t-[3px] border-l-transparent border-r-transparent border-t-pink-500/60" />
+                        <motion.div
+                          animate={{ y: [0, 3, 0] }}
+                          transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }}
+                          className="flex flex-col items-center gap-0.5"
+                        >
+                          <div className="w-px h-4 bg-gradient-to-b from-pink-500/50 to-rose-500/50" />
+                          <div className="w-0 h-0 border-l-[3px] border-r-[3px] border-t-[3px] border-l-transparent border-r-transparent border-t-rose-500/60" />
                         </motion.div>
                       </div>
                     )}
                   </div>
                 ))}
               </div>
-            </motion.div>
-
-            {/* Text — phải */}
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, delay: 0.15 }}>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-600/20 to-purple-600/20 border border-indigo-500/30 mb-6">
-                <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
-                <span className="text-sm text-indigo-300 font-medium">Tích hợp độc quyền</span>
-              </div>
-
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Dùng Noko POS?</span>
-                <br />
-                <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Đặt hàng tự động</span>
-                <br />
-                <span className="bg-gradient-to-r from-white/70 to-gray-400 bg-clip-text text-transparent text-3xl md:text-4xl">không cần làm thủ công</span>
-              </h2>
-
-              <div className="space-y-4 mb-8">
-                {[
-                  "POS theo dõi tồn kho realtime — biết chính xác còn bao nhiêu",
-                  "Khi nguyên liệu xuống ngưỡng → hệ thống tự tạo đơn đặt hàng Supply",
-                  "Chủ quán chỉ cần approve trên app — không cần gọi điện, không cần nhớ",
-                  "Giá Supply cập nhật thẳng vào báo cáo food cost của POS",
-                ].map((f, i) => (
-                  <motion.div key={i} initial={{ opacity: 0, x: 12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                    className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <CheckCircle2 className="w-3 h-3 text-white" />
-                    </div>
-                    <p className="text-gray-300 text-sm leading-relaxed">{f}</p>
-                  </motion.div>
-                ))}
-              </div>
-
-              <p className="text-sm text-gray-600 mb-6 italic">
-                Chưa dùng Noko POS? Vẫn đặt hàng Supply bình thường được.
-              </p>
-
-              <Link to="/pos">
-                <Button variant="outline" className="border-indigo-500/30 hover:border-indigo-500/60 hover:bg-indigo-500/5 text-indigo-300 group">
-                  Tìm hiểu Noko POS
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
             </motion.div>
           </div>
         </div>
@@ -664,38 +630,72 @@ export function NokoSupply() {
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6, delay: 0.1 }}>
               <Card className="bg-card/60 backdrop-blur-xl border-white/10 shadow-2xl shadow-pink-900/20">
                 <CardContent className="pt-8 pb-8">
-                  <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                  <form className="space-y-5" onSubmit={handleLeadSubmit}>
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-medium mb-2.5 text-gray-400">Tên nhà hàng *</label>
-                        <Input placeholder="Phở Saigon" required className="bg-input-background border-white/10 focus:border-pink-500 h-12" />
+                        <Input
+                          value={restaurantName}
+                          onChange={(e) => setRestaurantName(e.target.value)}
+                          placeholder="Phở Saigon"
+                          required
+                          disabled={isSubmitting}
+                          className="bg-input-background border-white/10 focus:border-pink-500 h-12"
+                        />
                       </div>
                       <div>
                         <label className="block text-sm font-medium mb-2.5 text-gray-400">Họ và tên *</label>
-                        <Input placeholder="Nguyễn Văn A" required className="bg-input-background border-white/10 focus:border-pink-500 h-12" />
+                        <Input
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          placeholder="Nguyễn Văn A"
+                          required
+                          disabled={isSubmitting}
+                          className="bg-input-background border-white/10 focus:border-pink-500 h-12"
+                        />
                       </div>
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-medium mb-2.5 text-gray-400">Số điện thoại *</label>
-                        <Input placeholder="(714) 000-0000" required className="bg-input-background border-white/10 focus:border-pink-500 h-12" />
+                        <Input
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          placeholder="(714) 000-0000"
+                          required
+                          disabled={isSubmitting}
+                          className="bg-input-background border-white/10 focus:border-pink-500 h-12"
+                        />
                       </div>
                       <div>
                         <label className="block text-sm font-medium mb-2.5 text-gray-400">Email *</label>
-                        <Input type="email" placeholder="email@example.com" required className="bg-input-background border-white/10 focus:border-pink-500 h-12" />
+                        <Input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="email@example.com"
+                          required
+                          disabled={isSubmitting}
+                          className="bg-input-background border-white/10 focus:border-pink-500 h-12"
+                        />
                       </div>
                     </div>
 
                     <div>
                       <label className="block text-sm font-medium mb-2.5 text-gray-400">Tiểu bang</label>
-                      <select className="w-full h-12 rounded-md bg-input-background border border-white/10 text-foreground text-sm px-3 focus:outline-none focus:border-pink-500 transition-colors">
+                      <select
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
+                        disabled={isSubmitting}
+                        className="w-full h-12 rounded-md bg-input-background border border-white/10 text-foreground text-sm px-3 focus:outline-none focus:border-pink-500 transition-colors"
+                      >
                         <option value="">-- Chọn tiểu bang --</option>
-                        <option>CA — California</option>
-                        <option>TX — Texas</option>
-                        <option>WA — Washington</option>
-                        <option>NY — New York</option>
-                        <option>Khác</option>
+                        <option value="CA — California">CA — California</option>
+                        <option value="TX — Texas">TX — Texas</option>
+                        <option value="WA — Washington">WA — Washington</option>
+                        <option value="NY — New York">NY — New York</option>
+                        <option value="Khác">Khác</option>
                       </select>
                     </div>
 
@@ -707,9 +707,9 @@ export function NokoSupply() {
                           { value: "pos-supply", label: "Đang dùng Noko POS + cần Supply" },
                           { value: "both-new", label: "Chưa dùng gì, muốn tìm hiểu cả 2" },
                         ].map((opt) => (
-                          <label key={opt.value} className="flex items-center gap-3 cursor-pointer group">
+                          <label key={opt.value} className={`flex items-center gap-3 group ${isSubmitting ? "cursor-not-allowed opacity-60" : "cursor-pointer"}`}>
                             <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${posUser === opt.value ? "border-pink-500 bg-pink-500" : "border-white/20 group-hover:border-white/40"}`}
-                              onClick={() => setPosUser(opt.value)}>
+                              onClick={() => !isSubmitting && setPosUser(opt.value)}>
                               {posUser === opt.value && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                             </div>
                             <span className={`text-sm transition-colors ${posUser === opt.value ? "text-white" : "text-gray-400 group-hover:text-gray-300"}`}>{opt.label}</span>
@@ -722,8 +722,8 @@ export function NokoSupply() {
                       <label className="block text-sm font-medium mb-3 text-gray-400">Nhu cầu chính (chọn nhiều)</label>
                       <div className="flex flex-wrap gap-2">
                         {["Rau củ", "Thịt & Hải sản", "Gia vị", "Đồ khô", "Tất cả"].map((n) => (
-                          <button key={n} type="button" onClick={() => toggleNeed(n)}
-                            className={`px-4 py-1.5 rounded-full text-sm transition-all duration-200 ${needs.includes(n)
+                          <button key={n} type="button" disabled={isSubmitting} onClick={() => toggleNeed(n)}
+                            className={`px-4 py-1.5 rounded-full text-sm transition-all duration-200 disabled:opacity-60 ${needs.includes(n)
                               ? "bg-gradient-to-r from-pink-600 to-rose-600 text-white shadow-md shadow-pink-500/20"
                               : "bg-card/50 border border-white/10 text-gray-400 hover:border-white/25 hover:text-gray-300"}`}>
                             {n}
@@ -733,9 +733,16 @@ export function NokoSupply() {
                     </div>
 
                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                      <Button type="submit" size="lg" className="w-full h-14 text-lg bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 border-0 shadow-2xl shadow-pink-500/40 group">
-                        Nhận báo giá ngay
-                        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      <Button
+                        type="submit"
+                        size="lg"
+                        disabled={isSubmitting}
+                        className="w-full h-14 text-lg bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 border-0 shadow-2xl shadow-pink-500/40 group disabled:opacity-60"
+                      >
+                        {isSubmitting ? "Đang gửi..." : "Nhận báo giá ngay"}
+                        {!isSubmitting && (
+                          <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        )}
                       </Button>
                     </motion.div>
 
@@ -747,58 +754,6 @@ export function NokoSupply() {
           </div>
         </div>
       </section>
-
-      {/* ── FOOTER ───────────────────────────────────────────────────────────── */}
-      <footer className="border-t border-white/8 bg-gradient-to-b from-background to-black/60">
-        <div className="container py-16">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
-            <div className="md:col-span-2">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-7 h-7 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
-                  <Star className="w-4 h-4 text-white" />
-                </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Noko</span>
-              </div>
-              <p className="text-sm text-gray-500 mb-6 max-w-xs leading-relaxed">
-                Hệ sinh thái F&B toàn diện — giúp người Việt kinh doanh nhà hàng tại Mỹ đúng cách, từ ngày đầu tiên.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Dịch vụ</h4>
-              <ul className="space-y-3 text-sm text-gray-500">
-                {[{ label: "Noko POS", href: "/pos" }, { label: "Noko Academy", href: "/academy" }, { label: "Noko Supply", href: "/supply" }].map((l) => (
-                  <li key={l.label}>
-                    <Link to={l.href} className={`hover:text-pink-400 transition-colors ${l.href === "/supply" ? "text-pink-400" : ""}`}>{l.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Công ty</h4>
-              <ul className="space-y-3 text-sm text-gray-500">
-                <li><Link to="/" className="hover:text-pink-400 transition-colors">Trang chủ</Link></li>
-                <li><Link to="/#about" className="hover:text-pink-400 transition-colors">Về chúng tôi</Link></li>
-                <li><a href="#" className="hover:text-pink-400 transition-colors">Blog</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Liên hệ</h4>
-              <ul className="space-y-3 text-sm text-gray-500">
-                <li>supply@noko.com</li>
-                <li>(714) 555-0123</li>
-                <li>California, United States</li>
-              </ul>
-            </div>
-          </div>
-          <div className="pt-8 border-t border-white/8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600">
-            <p>&copy; 2026 Noko Supply. All rights reserved.</p>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-gray-400 transition-colors">Chính sách bảo mật</a>
-              <a href="#" className="hover:text-gray-400 transition-colors">Điều khoản sử dụng</a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

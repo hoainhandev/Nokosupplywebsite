@@ -2,8 +2,10 @@ import { Link } from "react-router";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Input } from "../components/ui/input";
+import { supabase } from "../../lib/supabase";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { useEffect, useState, useRef } from "react";
+import { toast } from "sonner";
 import {
   ArrowRight,
   Star,
@@ -13,9 +15,6 @@ import {
   Users,
   Zap,
   TrendingUp,
-  Menu,
-  ChevronDown,
-  Sparkles,
   BookOpen,
   Award,
   Building2,
@@ -57,172 +56,14 @@ const item = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
-// ── Navbar (Academy-aware) ───────────────────────────────────────────────────
-const services = [
-  { name: "Noko POS", desc: "Giải pháp vận hành chuỗi nhà hàng", href: "/pos", color: "from-indigo-500 to-purple-500" },
-  { name: "Noko Academy", desc: "Đào tạo F&B chuyên nghiệp", href: "/academy", color: "from-purple-500 to-pink-500" },
-  { name: "Noko Supply", desc: "Nguyên liệu chuẩn từ vườn đến bàn", href: "/supply", color: "from-pink-500 to-rose-500" },
-];
-
-function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setIsServicesOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 z-50 w-full border-b border-white/10 bg-background/80 backdrop-blur-xl"
-    >
-      <div className="container flex h-20 items-center justify-between">
-        <Link to="/">
-          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-3 cursor-pointer">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 blur-lg opacity-50" />
-              <Sparkles className="relative w-8 h-8 text-indigo-400" />
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Noko
-            </span>
-          </motion.div>
-        </Link>
-
-        <nav className="hidden md:flex items-center gap-8">
-          {[
-            { label: "Trang chủ", href: "/" },
-            { label: "Về chúng tôi", href: "/#about" },
-            { label: "Blog", href: "#" },
-            { label: "Liên hệ", href: "#register" },
-          ].map((navItem, index) => (
-            <motion.a
-              key={navItem.label}
-              href={navItem.href}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="text-sm font-medium text-gray-400 hover:text-white transition-all duration-300 relative group"
-            >
-              {navItem.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300" />
-            </motion.a>
-          ))}
-
-          <div ref={dropdownRef} className="relative">
-            <motion.button
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              onClick={() => setIsServicesOpen(!isServicesOpen)}
-              className="flex items-center gap-1 text-sm font-medium text-purple-400 transition-all duration-300 relative"
-            >
-              Dịch vụ
-              <span className="text-gray-400">·</span>
-              <span className="text-white font-semibold">Academy</span>
-              <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${isServicesOpen ? "rotate-180" : ""}`} />
-              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-pink-500" />
-            </motion.button>
-
-            {isServicesOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: 8, scale: 0.96 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.15 }}
-                className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 bg-card/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl shadow-black/50 overflow-hidden"
-              >
-                <div className="p-2">
-                  {services.map((svc) => (
-                    <Link
-                      key={svc.name}
-                      to={svc.href}
-                      onClick={() => setIsServicesOpen(false)}
-                      className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors group ${svc.href === "/academy" ? "bg-white/5" : "hover:bg-white/5"}`}
-                    >
-                      <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${svc.color} flex items-center justify-center flex-shrink-0`}>
-                        <Sparkles className="w-4 h-4 text-white" />
-                      </div>
-                      <div>
-                        <div className={`text-sm font-medium ${svc.href === "/academy" ? "text-purple-300" : "text-white"}`}>{svc.name}</div>
-                        <div className="text-xs text-gray-500">{svc.desc}</div>
-                      </div>
-                      {svc.href === "/academy" && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-purple-400" />}
-                    </Link>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </div>
-        </nav>
-
-        <div className="hidden md:flex items-center gap-4">
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <a href="#register">
-              <Button size="sm" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 border-0 shadow-lg shadow-purple-500/50 px-6">
-                Đăng ký ngay
-              </Button>
-            </a>
-          </motion.div>
-        </div>
-
-        <button className="md:hidden p-2 text-gray-400 hover:text-white" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {isMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          className="md:hidden border-t border-white/10 bg-background/95 backdrop-blur-xl"
-        >
-          <nav className="container flex flex-col gap-4 py-6">
-            {[
-              { label: "Về chúng tôi", href: "/#about" },
-              { label: "Blog", href: "#" },
-              { label: "Liên hệ", href: "#register" },
-            ].map((navItem) => (
-              <a key={navItem.label} href={navItem.href} className="text-sm font-medium text-gray-400 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>
-                {navItem.label}
-              </a>
-            ))}
-            <div className="border-t border-white/10 pt-4">
-              <p className="text-xs text-gray-600 mb-3 uppercase tracking-wider">Dịch vụ</p>
-              {services.map((svc) => (
-                <Link key={svc.name} to={svc.href} className="flex items-center gap-3 py-2 text-sm text-gray-400 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>
-                  <div className={`w-6 h-6 rounded-md bg-gradient-to-br ${svc.color} flex items-center justify-center`}>
-                    <Sparkles className="w-3 h-3 text-white" />
-                  </div>
-                  <span className={svc.href === "/academy" ? "text-purple-300 font-medium" : ""}>{svc.name}</span>
-                </Link>
-              ))}
-            </div>
-            <a href="#register" onClick={() => setIsMenuOpen(false)}>
-              <Button size="sm" className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500">
-                Đăng ký ngay
-              </Button>
-            </a>
-          </nav>
-        </motion.div>
-      )}
-    </motion.header>
-  );
-}
-
 // ── Main Page ────────────────────────────────────────────────────────────────
 export function NokoAcademy() {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const [selectedCourse, setSelectedCourse] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const fn = (e: MouseEvent) => setMouse({ x: e.clientX, y: e.clientY });
@@ -230,10 +71,36 @@ export function NokoAcademy() {
     return () => window.removeEventListener("mousemove", fn);
   }, []);
 
+  async function handleRegisterSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase.from("academy_registrations").insert({
+        name,
+        phone,
+        email,
+        course: selectedCourse || null,
+        created_at: new Date().toISOString(),
+      });
+
+      if (error) throw error;
+
+      toast.success("Đăng ký thành công! Chúng tôi sẽ liên hệ trong 24h.");
+      setName("");
+      setPhone("");
+      setEmail("");
+      setSelectedCourse("");
+    } catch {
+      toast.error("Không thể gửi đăng ký. Vui lòng thử lại sau.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-hidden">
       <ScrollProgress />
-      <Navbar />
 
       {/* Cursor glow */}
       <motion.div
@@ -883,21 +750,43 @@ export function NokoAcademy() {
           >
             <Card className="bg-card/60 backdrop-blur-xl border-white/10 shadow-2xl shadow-purple-900/20">
               <CardContent className="pt-8 pb-8">
-                <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                <form className="space-y-5" onSubmit={handleRegisterSubmit}>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-sm font-medium mb-2.5 text-gray-400">Họ và tên *</label>
-                      <Input placeholder="Nguyễn Văn A" required className="bg-input-background border-white/10 focus:border-purple-500 h-12" />
+                      <Input
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Nguyễn Văn A"
+                        required
+                        disabled={isSubmitting}
+                        className="bg-input-background border-white/10 focus:border-purple-500 h-12"
+                      />
                     </div>
                     <div>
                       <label className="block text-sm font-medium mb-2.5 text-gray-400">Số điện thoại *</label>
-                      <Input placeholder="(714) 000-0000" required className="bg-input-background border-white/10 focus:border-purple-500 h-12" />
+                      <Input
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="(714) 000-0000"
+                        required
+                        disabled={isSubmitting}
+                        className="bg-input-background border-white/10 focus:border-purple-500 h-12"
+                      />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium mb-2.5 text-gray-400">Email *</label>
-                    <Input type="email" placeholder="email@example.com" required className="bg-input-background border-white/10 focus:border-purple-500 h-12" />
+                    <Input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="email@example.com"
+                      required
+                      disabled={isSubmitting}
+                      className="bg-input-background border-white/10 focus:border-purple-500 h-12"
+                    />
                   </div>
 
                   <div>
@@ -905,6 +794,7 @@ export function NokoAcademy() {
                     <select
                       value={selectedCourse}
                       onChange={(e) => setSelectedCourse(e.target.value)}
+                      disabled={isSubmitting}
                       className="w-full h-12 rounded-md bg-input-background border border-white/10 text-foreground text-sm px-3 focus:outline-none focus:border-purple-500 transition-colors"
                     >
                       <option value="">-- Chọn khóa học --</option>
@@ -919,10 +809,13 @@ export function NokoAcademy() {
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full h-14 text-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 border-0 shadow-2xl shadow-purple-500/40 group"
+                      disabled={isSubmitting}
+                      className="w-full h-14 text-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 border-0 shadow-2xl shadow-purple-500/40 group disabled:opacity-60"
                     >
-                      Đăng ký tư vấn miễn phí
-                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      {isSubmitting ? "Đang gửi..." : "Đăng ký tư vấn miễn phí"}
+                      {!isSubmitting && (
+                        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      )}
                     </Button>
                   </motion.div>
 
@@ -936,64 +829,6 @@ export function NokoAcademy() {
         </div>
         </div>
       </section>
-
-      {/* ── FOOTER ───────────────────────────────────────────────────────────── */}
-      <footer className="border-t border-white/8 bg-gradient-to-b from-background to-black/60">
-        <div className="container py-16">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
-            <div className="md:col-span-2">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-7 h-7 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
-                  <Star className="w-4 h-4 text-white" />
-                </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Noko
-                </span>
-              </div>
-              <p className="text-sm text-gray-500 mb-6 max-w-xs leading-relaxed">
-                Hệ sinh thái F&B toàn diện — giúp người Việt kinh doanh nhà hàng tại Mỹ đúng cách, từ ngày đầu tiên.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Dịch vụ</h4>
-              <ul className="space-y-3 text-sm text-gray-500">
-                {[{ label: "Noko POS", href: "/pos" }, { label: "Noko Academy", href: "/academy" }, { label: "Noko Supply", href: "/supply" }].map((l) => (
-                  <li key={l.label}>
-                    <Link to={l.href} className={`hover:text-indigo-400 transition-colors ${l.href === "/academy" ? "text-purple-400" : ""}`}>{l.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Công ty</h4>
-              <ul className="space-y-3 text-sm text-gray-500">
-                <li><Link to="/#about" className="hover:text-indigo-400 transition-colors">Về chúng tôi</Link></li>
-                <li><a href="#" className="hover:text-indigo-400 transition-colors">Blog</a></li>
-                <li><a href="#register" className="hover:text-indigo-400 transition-colors">Liên hệ</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Liên hệ</h4>
-              <ul className="space-y-3 text-sm text-gray-500">
-                <li>academy@noko.com</li>
-                <li>(714) 555-0123</li>
-                <li>California, United States</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="pt-8 border-t border-white/8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600">
-            <p>&copy; 2026 Noko Academy. All rights reserved.</p>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-gray-400 transition-colors">Chính sách bảo mật</a>
-              <a href="#" className="hover:text-gray-400 transition-colors">Điều khoản sử dụng</a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
