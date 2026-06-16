@@ -6,7 +6,7 @@ import type { BlogPost as BlogPostType } from "../../types/blog";
 import { motion, useScroll, useSpring } from "motion/react";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
-import { vi } from "date-fns/locale";
+import { enUS } from "date-fns/locale";
 import { ArrowLeft, Calendar, Loader2 } from "lucide-react";
 
 function ScrollProgress() {
@@ -22,7 +22,7 @@ function ScrollProgress() {
 
 function formatPostDate(post: BlogPostType) {
   const date = post.published_at ?? post.created_at;
-  return format(new Date(date), "d MMMM yyyy", { locale: vi });
+  return format(new Date(date), "d MMMM yyyy", { locale: enUS });
 }
 
 export function BlogPost() {
@@ -47,7 +47,7 @@ export function BlogPost() {
           setPost(data);
         }
       })
-      .catch(() => setError("Không thể tải bài viết. Vui lòng thử lại sau."))
+      .catch(() => setError("Unable to load this post. Please try again later."))
       .finally(() => setLoading(false));
   }, [slug]);
 
@@ -91,7 +91,7 @@ export function BlogPost() {
                 className="text-gray-400 hover:text-white p-0 h-auto group"
               >
                 <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-                Quay lại Blog
+                Back to Blog
               </Button>
             </Link>
           </motion.div>
@@ -99,7 +99,7 @@ export function BlogPost() {
           {loading && (
             <div className="flex flex-col items-center justify-center py-24 gap-4">
               <Loader2 className="w-8 h-8 text-indigo-400 animate-spin" />
-              <p className="text-gray-500">Đang tải bài viết...</p>
+              <p className="text-gray-500">Loading post...</p>
             </div>
           )}
 
@@ -108,7 +108,7 @@ export function BlogPost() {
               <p className="text-gray-400 mb-6">{error}</p>
               <Link to="/blog">
                 <Button variant="outline" className="border-white/20 hover:bg-white/5">
-                  Về trang Blog
+                  Back to Blog
                 </Button>
               </Link>
             </div>
@@ -116,11 +116,11 @@ export function BlogPost() {
 
           {notFound && !loading && !error && (
             <div className="text-center py-24">
-              <h1 className="text-3xl font-bold text-white mb-4">Không tìm thấy bài viết</h1>
-              <p className="text-gray-400 mb-8">Bài viết này không tồn tại hoặc đã bị gỡ.</p>
+              <h1 className="text-3xl font-bold text-white mb-4">Post not found</h1>
+              <p className="text-gray-400 mb-8">This post doesn't exist or has been removed.</p>
               <Link to="/blog">
                 <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0">
-                  Về trang Blog
+                  Back to Blog
                 </Button>
               </Link>
             </div>

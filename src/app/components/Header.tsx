@@ -7,19 +7,19 @@ import { motion } from "motion/react";
 const services = [
   {
     name: "Noko POS",
-    desc: "Giải pháp vận hành chuỗi nhà hàng",
+    desc: "Restaurant chain operations solution",
     href: "/pos",
     color: "from-indigo-500 to-purple-500",
   },
   {
     name: "Noko Academy",
-    desc: "Đào tạo F&B chuyên nghiệp",
+    desc: "Professional F&B training",
     href: "/academy",
     color: "from-purple-500 to-pink-500",
   },
   {
     name: "Noko Supply",
-    desc: "Nguyên liệu chuẩn từ vườn đến bàn",
+    desc: "Farm-to-table quality ingredients",
     href: "/supply",
     color: "from-pink-500 to-rose-500",
   },
@@ -67,10 +67,10 @@ export function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {[
-            { label: "Trang chủ", href: "/", isRoute: true },
-            { label: "Về chúng tôi", href: "/about", isRoute: true },
+            { label: "Home", href: "/", isRoute: true },
+            { label: "About Us", href: "/about", isRoute: true },
             { label: "Blog", href: "/blog", isRoute: true },
-            { label: "Liên hệ", href: "/contact", isRoute: true },
+            { label: "Contact", href: "/contact", isRoute: true },
           ].map((item, index) => {
             const className =
               "text-sm font-medium text-gray-400 hover:text-white transition-all duration-300 relative group";
@@ -106,7 +106,7 @@ export function Header() {
               onClick={() => setIsServicesOpen(!isServicesOpen)}
               className="flex items-center gap-1 text-sm font-medium text-gray-400 hover:text-white transition-all duration-300 relative group"
             >
-              Dịch vụ
+              Services
               <ChevronDown
                 className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? "rotate-180" : ""}`}
               />
@@ -154,7 +154,7 @@ export function Header() {
                 size="sm"
                 className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0 shadow-lg shadow-indigo-500/50 px-6"
               >
-                Bắt đầu ngay
+                Get Started
               </Button>
             </Link>
           </motion.div>
@@ -180,10 +180,10 @@ export function Header() {
         >
           <nav className="container flex flex-col gap-4 py-6">
             {[
-              { label: "Trang chủ", href: "/", isRoute: true },
-              { label: "Về chúng tôi", href: "/about", isRoute: true },
+              { label: "Home", href: "/", isRoute: true },
+              { label: "About Us", href: "/about", isRoute: true },
               { label: "Blog", href: "/blog", isRoute: true },
-              { label: "Liên hệ", href: "/contact", isRoute: true },
+              { label: "Contact", href: "/contact", isRoute: true },
             ].map((item) =>
               item.isRoute ? (
                 <Link
@@ -197,7 +197,7 @@ export function Header() {
               ) : null
             )}
             <div className="border-t border-white/10 pt-4">
-              <p className="text-xs text-gray-600 mb-3 uppercase tracking-wider">Dịch vụ</p>
+              <p className="text-xs text-gray-600 mb-3 uppercase tracking-wider">Services</p>
               {services.map((svc) => (
                 <Link
                   key={svc.name}
@@ -218,7 +218,7 @@ export function Header() {
                   size="sm"
                   className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500"
                 >
-                  Bắt đầu ngay
+                  Get Started
                 </Button>
               </Link>
             </div>

@@ -6,7 +6,7 @@ import type { BlogPost } from "../../types/blog";
 import { motion, useScroll, useSpring } from "motion/react";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
-import { vi } from "date-fns/locale";
+import { enUS } from "date-fns/locale";
 import { BookOpen, Calendar, Loader2 } from "lucide-react";
 
 function ScrollProgress() {
@@ -22,7 +22,7 @@ function ScrollProgress() {
 
 function formatPostDate(post: BlogPost) {
   const date = post.published_at ?? post.created_at;
-  return format(new Date(date), "d MMMM yyyy", { locale: vi });
+  return format(new Date(date), "d MMMM yyyy", { locale: enUS });
 }
 
 export function Blog() {
@@ -33,7 +33,7 @@ export function Blog() {
   useEffect(() => {
     fetchPublishedPosts()
       .then(setPosts)
-      .catch(() => setError("Không thể tải danh sách bài viết. Vui lòng thử lại sau."))
+      .catch(() => setError("Unable to load posts. Please try again later."))
       .finally(() => setLoading(false));
   }, []);
 
@@ -68,15 +68,15 @@ export function Blog() {
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               <span className="bg-gradient-to-r from-white via-indigo-100 to-purple-200 bg-clip-text text-transparent">
-                Kiến thức F&B
+                F&B Knowledge
               </span>
               <br />
               <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                thực chiến tại Mỹ
+                for the U.S. market
               </span>
             </h1>
             <p className="text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto">
-              Mẹo vận hành, xu hướng ngành và câu chuyện thành công từ cộng đồng Noko.
+              Operations tips, industry trends, and success stories from the Noko community.
             </p>
           </motion.div>
         </div>
@@ -88,7 +88,7 @@ export function Blog() {
           {loading && (
             <div className="flex flex-col items-center justify-center py-24 gap-4">
               <Loader2 className="w-8 h-8 text-indigo-400 animate-spin" />
-              <p className="text-gray-500">Đang tải bài viết...</p>
+              <p className="text-gray-500">Loading posts...</p>
             </div>
           )}
 
@@ -100,7 +100,7 @@ export function Blog() {
 
           {!loading && !error && posts.length === 0 && (
             <div className="text-center py-24">
-              <p className="text-gray-400">Chưa có bài viết nào. Hãy quay lại sau nhé!</p>
+              <p className="text-gray-400">No posts yet. Check back soon!</p>
             </div>
           )}
 

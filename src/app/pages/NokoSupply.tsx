@@ -38,7 +38,7 @@ const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, tra
 // ── Main Page ────────────────────────────────────────────────────────────────
 export function NokoSupply() {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
-  const [activeTab, setActiveTab] = useState("Tất cả");
+  const [activeTab, setActiveTab] = useState("All");
   const [posUser, setPosUser] = useState("supply-only");
   const [needs, setNeeds] = useState<string[]>([]);
   const [restaurantName, setRestaurantName] = useState("");
@@ -74,7 +74,7 @@ export function NokoSupply() {
 
       if (error) throw error;
 
-      toast.success("Đã gửi yêu cầu báo giá! Chúng tôi sẽ liên hệ trong 24h.");
+      toast.success("Quote request sent! We'll be in touch within 24 hours.");
       setRestaurantName("");
       setName("");
       setPhone("");
@@ -83,27 +83,27 @@ export function NokoSupply() {
       setPosUser("supply-only");
       setNeeds([]);
     } catch {
-      toast.error("Không thể gửi yêu cầu. Vui lòng thử lại sau.");
+      toast.error("Unable to submit request. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
   }
 
-  const tabs = ["Tất cả", "Rau củ", "Thịt & Hải sản", "Gia vị & Sốt", "Đồ khô", "Bao bì"];
+  const tabs = ["All", "Produce", "Meat & Seafood", "Sauces & Seasonings", "Dry Goods", "Packaging"];
 
   const products = [
-    { name: "Xương bò tươi", unit: "kg", tab: "Thịt & Hải sản", badge: "Bestseller", badgeColor: "from-orange-500 to-red-500", icon: "🥩" },
-    { name: "Rau muống", unit: "kg", tab: "Rau củ", badge: "Bestseller", badgeColor: "from-green-500 to-emerald-500", icon: "🥬" },
-    { name: "Nước mắm Phú Quốc", unit: "thùng", tab: "Gia vị & Sốt", badge: "Bestseller", badgeColor: "from-orange-500 to-red-500", icon: "🍶" },
-    { name: "Hải sản mix đông lạnh", unit: "kg", tab: "Thịt & Hải sản", badge: "Mới", badgeColor: "from-blue-500 to-cyan-500", icon: "🦐" },
-    { name: "Gạo jasmine", unit: "thùng", tab: "Đồ khô", badge: "Bestseller", badgeColor: "from-orange-500 to-red-500", icon: "🌾" },
-    { name: "Hộp take-away kraft", unit: "hộp", tab: "Bao bì", badge: "Mới", badgeColor: "from-blue-500 to-cyan-500", icon: "📦" },
-    { name: "Giá đỗ tươi", unit: "kg", tab: "Rau củ", badge: null, badgeColor: "", icon: "🌱" },
-    { name: "Sốt tương đen", unit: "thùng", tab: "Gia vị & Sốt", badge: null, badgeColor: "", icon: "🫙" },
-    { name: "Thịt heo ba chỉ", unit: "kg", tab: "Thịt & Hải sản", badge: null, badgeColor: "", icon: "🥓" },
+    { name: "Fresh beef bones", unit: "kg", tab: "Meat & Seafood", badge: "Bestseller", badgeColor: "from-orange-500 to-red-500", icon: "🥩" },
+    { name: "Water spinach", unit: "kg", tab: "Produce", badge: "Bestseller", badgeColor: "from-green-500 to-emerald-500", icon: "🥬" },
+    { name: "Phú Quốc fish sauce", unit: "case", tab: "Sauces & Seasonings", badge: "Bestseller", badgeColor: "from-orange-500 to-red-500", icon: "🍶" },
+    { name: "Frozen seafood mix", unit: "kg", tab: "Meat & Seafood", badge: "New", badgeColor: "from-blue-500 to-cyan-500", icon: "🦐" },
+    { name: "Jasmine rice", unit: "case", tab: "Dry Goods", badge: "Bestseller", badgeColor: "from-orange-500 to-red-500", icon: "🌾" },
+    { name: "Kraft take-out containers", unit: "box", tab: "Packaging", badge: "New", badgeColor: "from-blue-500 to-cyan-500", icon: "📦" },
+    { name: "Fresh bean sprouts", unit: "kg", tab: "Produce", badge: null, badgeColor: "", icon: "🌱" },
+    { name: "Hoisin sauce", unit: "case", tab: "Sauces & Seasonings", badge: null, badgeColor: "", icon: "🫙" },
+    { name: "Pork belly", unit: "kg", tab: "Meat & Seafood", badge: null, badgeColor: "", icon: "🥓" },
   ];
 
-  const filtered = activeTab === "Tất cả" ? products : products.filter(p => p.tab === activeTab);
+  const filtered = activeTab === "All" ? products : products.filter(p => p.tab === activeTab);
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-x-hidden">
@@ -129,21 +129,21 @@ export function NokoSupply() {
             <motion.div animate={{ rotate: 360 }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}>
               <ShoppingBasket className="w-4 h-4 text-pink-400" />
             </motion.div>
-            <span className="text-sm text-pink-300 font-medium">Nguyên liệu chuẩn — Giao đúng hẹn</span>
+            <span className="text-sm text-pink-300 font-medium">Quality Ingredients — On-Time Delivery</span>
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.15 }}
             className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-            <span className="bg-gradient-to-r from-white via-pink-100 to-rose-200 bg-clip-text text-transparent">Nguồn hàng ổn định</span>
+            <span className="bg-gradient-to-r from-white via-pink-100 to-rose-200 bg-clip-text text-transparent">Reliable supply</span>
             <br />
-            <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">cho nhà hàng người Việt</span>
+            <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">for Vietnamese restaurants</span>
             <br />
-            <span className="bg-gradient-to-r from-white/80 to-gray-400 bg-clip-text text-transparent text-4xl md:text-5xl">tại Mỹ</span>
+            <span className="bg-gradient-to-r from-white/80 to-gray-400 bg-clip-text text-transparent text-4xl md:text-5xl">in the US</span>
           </motion.h1>
 
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.4 }}
             className="text-xl text-gray-400 mb-10 leading-relaxed max-w-2xl mx-auto">
-            Noko Supply cung cấp nguyên liệu F&B chất lượng cao — đặt hàng dễ, giao nhanh, tích hợp trực tiếp với Noko POS.
+            Noko Supply delivers premium F&B ingredients — easy ordering, fast delivery, and direct integration with Noko POS.
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.55 }}
@@ -151,14 +151,14 @@ export function NokoSupply() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
               <a href="#products">
                 <Button size="lg" className="text-lg px-10 h-14 bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 border-0 shadow-2xl shadow-pink-500/40 group">
-                  Xem danh mục hàng <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  Browse Our Catalog <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </a>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
               <a href="#order">
                 <Button size="lg" variant="outline" className="text-lg px-10 h-14 border-white/20 hover:bg-white/5 hover:border-white/40">
-                  Liên hệ đặt hàng
+                  Contact Us to Order
                 </Button>
               </a>
             </motion.div>
@@ -172,12 +172,12 @@ export function NokoSupply() {
                   <div key={i} className={`w-7 h-7 rounded-full ${c} border-2 border-background`} />
                 ))}
               </div>
-              <span>500+ nhà hàng tin dùng</span>
+              <span>500+ restaurants trust us</span>
             </div>
             <div className="w-px h-4 bg-white/10" />
             <div className="flex items-center gap-1.5">
               <Truck className="w-4 h-4 text-pink-400" />
-              <span>Giao hàng California & Texas</span>
+              <span>Delivery in California & Texas</span>
             </div>
           </motion.div>
         </div>
@@ -200,18 +200,18 @@ export function NokoSupply() {
               <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}
                 className="text-center mb-14">
                 <h2 className="text-4xl md:text-5xl font-bold">
-                  <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Chủ quán đang gặp phải</span>
+                  <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Restaurant owners are dealing with</span>
                   <br />
-                  <span className="bg-gradient-to-r from-orange-400 to-rose-400 bg-clip-text text-transparent">điều này?</span>
+                  <span className="bg-gradient-to-r from-orange-400 to-rose-400 bg-clip-text text-transparent">any of these?</span>
                 </h2>
               </motion.div>
 
               <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 {[
-                  { text: "Nguyên liệu không ổn định, chất lượng lúc tốt lúc không", sub: "Khó giữ chuẩn món khi hàng về mỗi lúc mỗi khác" },
-                  { text: "Giá nhập hay thay đổi, khó tính food cost", sub: "Không thể lập kế hoạch chi phí chính xác theo tháng" },
-                  { text: "Phải đặt từ nhiều nhà cung cấp, mất thời gian", sub: "3-5 cuộc gọi mỗi tuần chỉ để đặt hàng nguyên liệu" },
-                  { text: "Giao hàng trễ, ảnh hưởng vận hành cả ngày", sub: "Thiếu nguyên liệu giữa ca — phải 86 món hoặc chạy đi mua lẻ" },
+                  { text: "Inconsistent ingredients — quality varies order to order", sub: "Hard to keep dishes consistent when every delivery is different" },
+                  { text: "Fluctuating prices make food cost hard to calculate", sub: "Can't plan monthly costs with confidence" },
+                  { text: "Ordering from multiple suppliers wastes time", sub: "3–5 calls every week just to place ingredient orders" },
+                  { text: "Late deliveries disrupt your entire day", sub: "Run out mid-shift — 86 items or scramble to buy retail" },
                 ].map((pain, i) => (
                   <motion.div key={i} variants={fadeUp}>
                     <motion.div whileHover={{ x: 4, scale: 1.01 }} transition={{ duration: 0.2 }}
@@ -239,20 +239,20 @@ export function NokoSupply() {
           <div className="container relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}>
-                <p className="text-pink-400 font-medium text-sm uppercase tracking-widest mb-5">Về Noko Supply</p>
+                <p className="text-pink-400 font-medium text-sm uppercase tracking-widest mb-5">About Noko Supply</p>
                 <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
-                  <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Hiểu nhà hàng</span>
+                  <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">We understand what restaurants</span>
                   <br />
-                  <span className="bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">cần gì, cần khi nào.</span>
+                  <span className="bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">need — and when they need it.</span>
                 </h2>
                 <p className="text-gray-400 text-lg leading-relaxed mb-10">
-                  Noko Supply được xây dựng bởi chính những người trong ngành F&B — hiểu rõ nhà hàng cần gì, cần khi nào và cần ở đâu.
+                  Noko Supply was built by people in the F&B industry — we know what restaurants need, when they need it, and where they need it delivered.
                 </p>
                 <div className="space-y-5">
                   {[
-                    { icon: Leaf, title: "Nguồn gốc rõ ràng", desc: "Trực tiếp từ farm & nhà sản xuất — không qua trung gian, truy xuất nguồn gốc đầy đủ.", color: "from-green-600 to-emerald-600" },
-                    { icon: DollarSign, title: "Giá cố định theo tháng", desc: "Báo giá một lần, dùng cả tháng — tính food cost chính xác, không lo biến động.", color: "from-pink-600 to-rose-600" },
-                    { icon: Package, title: "Một đầu mối — đủ loại", desc: "Rau củ, thịt cá, gia vị, đồ khô, bao bì — tất cả từ một nhà cung cấp duy nhất.", color: "from-orange-600 to-rose-600" },
+                    { icon: Leaf, title: "Traceable Sourcing", desc: "Direct from farms & producers — no middlemen, full traceability from source to your kitchen.", color: "from-green-600 to-emerald-600" },
+                    { icon: DollarSign, title: "Fixed Monthly Pricing", desc: "One quote, valid all month — calculate food cost accurately without worrying about price swings.", color: "from-pink-600 to-rose-600" },
+                    { icon: Package, title: "One Supplier — Everything You Need", desc: "Produce, meat & seafood, seasonings, dry goods, packaging — all from a single trusted partner.", color: "from-orange-600 to-rose-600" },
                   ].map((pt) => (
                     <motion.div key={pt.title} whileHover={{ x: 8 }} transition={{ duration: 0.2 }} className="flex items-start gap-4">
                       <div className={`w-11 h-11 bg-gradient-to-br ${pt.color} rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg`}>
@@ -273,10 +273,10 @@ export function NokoSupply() {
                 <div className="relative bg-card/50 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                     {[
-                      { value: "500+", label: "Nhà hàng", color: "from-pink-500 to-rose-500" },
-                      { value: "2×/tuần", label: "Giao hàng", color: "from-orange-500 to-rose-500" },
-                      { value: "100%", label: "Nguồn gốc rõ", color: "from-green-500 to-emerald-500" },
-                      { value: "24h", label: "Hỗ trợ", color: "from-rose-500 to-pink-500" },
+                      { value: "500+", label: "Restaurants", color: "from-pink-500 to-rose-500" },
+                      { value: "2×/week", label: "Delivery", color: "from-orange-500 to-rose-500" },
+                      { value: "100%", label: "Traceable", color: "from-green-500 to-emerald-500" },
+                      { value: "24h", label: "Support", color: "from-rose-500 to-pink-500" },
                     ].map((s, i) => (
                       <motion.div key={s.label} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1, type: "spring" }}
                         className="bg-background/60 rounded-2xl p-5 border border-white/8">
@@ -287,9 +287,9 @@ export function NokoSupply() {
                   </div>
                   <div className="space-y-3">
                     {[
-                      { label: "Đơn hàng giao đúng hẹn", pct: 98 },
-                      { label: "Khách hàng tái đặt hàng", pct: 94 },
-                      { label: "Hài lòng về chất lượng", pct: 97 },
+                      { label: "Orders delivered on time", pct: 98 },
+                      { label: "Customers who reorder", pct: 94 },
+                      { label: "Satisfied with quality", pct: 97 },
                     ].map((b) => (
                       <div key={b.label}>
                         <div className="flex justify-between text-xs mb-1.5">
@@ -333,17 +333,17 @@ export function NokoSupply() {
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-pink-500/20 to-rose-500/20 border border-pink-500/30 mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse" />
                 <span className="text-sm font-medium bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">
-                  Tích hợp độc quyền
+                  Exclusive Integration
                 </span>
               </div>
 
               <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
                 <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  Dùng Noko POS?
+                  Using Noko POS?
                 </span>
                 <br />
                 <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">
-                  Đặt hàng tự động — không cần làm thủ công
+                  Auto-ordering — no manual work required
                 </span>
               </h2>
 
@@ -355,10 +355,10 @@ export function NokoSupply() {
                 className="space-y-4 mb-8"
               >
                 {[
-                  "POS theo dõi tồn kho realtime",
-                  "Khi xuống ngưỡng → tự tạo đơn Supply",
-                  "Chủ quán chỉ approve trên app",
-                  "Giá Supply sync vào food cost báo cáo POS",
+                  "POS tracks inventory in real time",
+                  "When stock hits threshold → auto-creates a Supply order",
+                  "Restaurant owner just approves in the app",
+                  "Supply prices sync into POS food cost reports",
                 ].map((f) => (
                   <motion.div key={f} variants={fadeUp} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-rose-400 flex-shrink-0 mt-0.5" />
@@ -368,14 +368,14 @@ export function NokoSupply() {
               </motion.div>
 
               <p className="text-sm text-gray-600 mb-6 italic">
-                Chưa dùng Noko POS? Vẫn đặt hàng Supply bình thường được.
+                Not using Noko POS yet? You can still order from Supply as usual.
               </p>
 
               <Link
                 to="/pos"
                 className="inline-flex items-center text-sm font-medium text-pink-300 hover:text-pink-200 transition-colors group"
               >
-                Tìm hiểu Noko POS
+                Learn More About Noko POS
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
@@ -395,10 +395,10 @@ export function NokoSupply() {
               />
               <div className="relative bg-card/50 backdrop-blur-xl border border-white/10 rounded-3xl p-7 space-y-4">
                 {[
-                  { label: "Noko POS", sub: "Phở Bò: còn 2 kg ↓", status: "Thấp", statusColor: "text-orange-400 bg-orange-400/10", iconBg: "from-indigo-600 to-purple-600", icon: "💻", cardClass: "bg-indigo-600/10 border-indigo-500/20" },
-                  { label: "Đơn tự động tạo", sub: "Phở Bò · 10 kg · Noko Supply", status: "Chờ duyệt", statusColor: "text-pink-300 bg-pink-500/10", iconBg: "from-pink-600 to-rose-600", icon: "📋", cardClass: "bg-pink-600/10 border-pink-500/20" },
-                  { label: "Chủ quán approve", sub: "1 chạm trên app — xong", status: "✓ Approved", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-rose-600 to-orange-600", icon: "✅", cardClass: "bg-rose-600/10 border-rose-500/20" },
-                  { label: "Giao hàng & cập nhật", sub: "Food cost POS cập nhật tự động", status: "Done", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-green-600 to-emerald-600", icon: "🚚", cardClass: "bg-green-600/10 border-green-500/20" },
+                  { label: "Noko POS", sub: "Beef pho broth: 2 kg left ↓", status: "Low", statusColor: "text-orange-400 bg-orange-400/10", iconBg: "from-indigo-600 to-purple-600", icon: "💻", cardClass: "bg-indigo-600/10 border-indigo-500/20" },
+                  { label: "Auto-generated order", sub: "Beef pho broth · 10 kg · Noko Supply", status: "Pending", statusColor: "text-pink-300 bg-pink-500/10", iconBg: "from-pink-600 to-rose-600", icon: "📋", cardClass: "bg-pink-600/10 border-pink-500/20" },
+                  { label: "Owner approves", sub: "One tap in the app — done", status: "✓ Approved", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-rose-600 to-orange-600", icon: "✅", cardClass: "bg-rose-600/10 border-rose-500/20" },
+                  { label: "Delivery & update", sub: "POS food cost updates automatically", status: "Done", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-green-600 to-emerald-600", icon: "🚚", cardClass: "bg-green-600/10 border-green-500/20" },
                 ].map((step, i) => (
                   <div key={step.label}>
                     <motion.div
@@ -446,11 +446,11 @@ export function NokoSupply() {
         <div className="container relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}
             className="text-center mb-12">
-            <p className="text-pink-400 font-medium text-sm uppercase tracking-widest mb-4">Danh mục</p>
+            <p className="text-pink-400 font-medium text-sm uppercase tracking-widest mb-4">Catalog</p>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Chúng tôi</span>
+              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">What we</span>
               <br />
-              <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">cung cấp</span>
+              <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">supply</span>
             </h2>
           </motion.div>
 
@@ -485,10 +485,10 @@ export function NokoSupply() {
                         )}
                       </div>
                       <h3 className="text-white font-semibold mb-1 group-hover:text-pink-200 transition-colors">{p.name}</h3>
-                      <p className="text-xs text-gray-500 mb-4">Đơn vị: {p.unit}</p>
+                      <p className="text-xs text-gray-500 mb-4">Unit: {p.unit}</p>
                       <a href="#order">
                         <Button size="sm" variant="outline" className="w-full border-white/10 hover:border-pink-500/40 hover:bg-pink-500/5 text-sm group/btn">
-                          Liên hệ báo giá
+                          Request a Quote
                           <ArrowRight className="ml-1.5 w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                         </Button>
                       </a>
@@ -509,7 +509,7 @@ export function NokoSupply() {
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}
               className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Vì sao chọn</span>
+                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Why choose</span>
                 <br />
                 <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">Noko Supply?</span>
               </h2>
@@ -518,10 +518,10 @@ export function NokoSupply() {
             <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { icon: Truck, title: "Giao hàng 2 lần/tuần", desc: "Đúng giờ, đúng địa điểm — không cần theo dõi, không cần nhắc.", color: "from-pink-600 to-rose-600", glow: "shadow-pink-500/20" },
-                { icon: DollarSign, title: "Giá minh bạch", desc: "Báo giá cố định theo tháng — tính food cost chính xác, không lo biến động.", color: "from-orange-600 to-rose-600", glow: "shadow-orange-500/20" },
-                { icon: RefreshCw, title: "Đổi trả dễ dàng", desc: "Hàng không đạt chuẩn — đổi ngay trong lần giao tiếp theo, không rắc rối.", color: "from-rose-600 to-pink-600", glow: "shadow-rose-500/20" },
-                { icon: Headphones, title: "Hỗ trợ 7 ngày", desc: "Có vấn đề bất kỳ ngày nào trong tuần — gọi là có người nghe máy.", color: "from-red-600 to-orange-600", glow: "shadow-red-500/20" },
+                { icon: Truck, title: "Delivery Twice a Week", desc: "On time, to the right location — no chasing, no reminders needed.", color: "from-pink-600 to-rose-600", glow: "shadow-pink-500/20" },
+                { icon: DollarSign, title: "Transparent Pricing", desc: "Fixed monthly quotes — calculate food cost accurately without price surprises.", color: "from-orange-600 to-rose-600", glow: "shadow-orange-500/20" },
+                { icon: RefreshCw, title: "Easy Returns", desc: "Product doesn't meet standards — replaced on your next delivery, hassle-free.", color: "from-rose-600 to-pink-600", glow: "shadow-rose-500/20" },
+                { icon: Headphones, title: "7-Day Support", desc: "Issues any day of the week — call and someone will answer.", color: "from-red-600 to-orange-600", glow: "shadow-red-500/20" },
               ].map((f) => (
                 <motion.div key={f.title} variants={fadeUp} whileHover={{ y: -8, scale: 1.03 }} className="text-center group">
                   <div className={`w-16 h-16 bg-gradient-to-br ${f.color} rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-xl ${f.glow} relative`}>
@@ -545,7 +545,7 @@ export function NokoSupply() {
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}
               className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Nhà hàng nói gì về</span>
+                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">What restaurants say about</span>
                 <br />
                 <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">Noko Supply</span>
               </h2>
@@ -554,22 +554,22 @@ export function NokoSupply() {
             <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
-                  name: "Chị Thu Hương", restaurant: "Quán Bún Bò · Garden Grove, CA", avatar: "TH",
+                  name: "Thu Hương", restaurant: "Quán Bún Bò · Garden Grove, CA", avatar: "TH",
                   avatarColor: "from-pink-500 to-rose-500", posUser: false,
-                  quote: "Từ khi dùng Noko Supply, giá nguyên liệu cố định theo tháng — tôi tính được food cost chính xác lần đầu tiên sau 3 năm mở quán.",
-                  result: "Giảm 15% food cost", resultColor: "text-green-400",
+                  quote: "Since switching to Noko Supply, my ingredient prices are fixed monthly — I calculated food cost accurately for the first time in 3 years of running my restaurant.",
+                  result: "15% lower food cost", resultColor: "text-green-400",
                 },
                 {
-                  name: "Anh Quốc Bảo", restaurant: "Phở Saigon · Houston, TX", avatar: "QB",
+                  name: "Quốc Bảo", restaurant: "Phở Saigon · Houston, TX", avatar: "QB",
                   avatarColor: "from-indigo-500 to-purple-500", posUser: true,
-                  quote: "Dùng cả POS lẫn Supply — giờ không bao giờ hết hàng giữa ca nữa. POS tự đặt hết rồi, tôi chỉ cần approve buổi sáng.",
-                  result: "Không bao giờ hết hàng giữa ca", resultColor: "text-purple-400",
+                  quote: "Using both POS and Supply — I never run out mid-shift anymore. POS handles all the ordering; I just approve in the morning.",
+                  result: "Never out of stock mid-shift", resultColor: "text-purple-400",
                 },
                 {
-                  name: "Anh Minh Khoa", restaurant: "Cơm Tấm Ba Miền · San Jose, CA", avatar: "MK",
+                  name: "Minh Khoa", restaurant: "Cơm Tấm Ba Miền · San Jose, CA", avatar: "MK",
                   avatarColor: "from-orange-500 to-rose-500", posUser: true,
-                  quote: "Trước mất 2 tiếng mỗi tuần chỉ để gọi điện đặt hàng. Giờ hệ thống tự lo, tôi không cần làm gì — dành thời gian đó lo việc khác.",
-                  result: "Tiết kiệm 2h/tuần", resultColor: "text-orange-400",
+                  quote: "I used to spend 2 hours a week just calling to place orders. Now the system handles it — I use that time for everything else.",
+                  result: "Save 2 hrs/week", resultColor: "text-orange-400",
                 },
               ].map((t, i) => (
                 <motion.div key={t.name} variants={fadeUp}>
@@ -620,13 +620,13 @@ export function NokoSupply() {
           <div className="max-w-2xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}
               className="text-center mb-12">
-              <p className="text-pink-400 font-medium text-sm uppercase tracking-widest mb-4">Bắt đầu ngay</p>
+              <p className="text-pink-400 font-medium text-sm uppercase tracking-widest mb-4">Get Started</p>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Sẵn sàng ổn định</span>
+                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Ready to stabilize</span>
                 <br />
-                <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">nguồn nguyên liệu?</span>
+                <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">your ingredient supply?</span>
               </h2>
-              <p className="text-gray-500 text-lg">Để lại thông tin — chúng tôi gửi bảng giá và tư vấn miễn phí trong 24h.</p>
+              <p className="text-gray-500 text-lg">Leave your details — we'll send pricing and a free consultation within 24 hours.</p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6, delay: 0.1 }}>
@@ -635,7 +635,7 @@ export function NokoSupply() {
                   <form className="space-y-5" onSubmit={handleLeadSubmit}>
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-medium mb-2.5 text-gray-400">Tên nhà hàng *</label>
+                        <label className="block text-sm font-medium mb-2.5 text-gray-400">Restaurant Name *</label>
                         <Input
                           value={restaurantName}
                           onChange={(e) => setRestaurantName(e.target.value)}
@@ -646,11 +646,11 @@ export function NokoSupply() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2.5 text-gray-400">Họ và tên *</label>
+                        <label className="block text-sm font-medium mb-2.5 text-gray-400">Full Name *</label>
                         <Input
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          placeholder="Nguyễn Văn A"
+                          placeholder="John Smith"
                           required
                           disabled={isSubmitting}
                           className="bg-input-background border-white/10 focus:border-pink-500 h-12"
@@ -660,7 +660,7 @@ export function NokoSupply() {
 
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-medium mb-2.5 text-gray-400">Số điện thoại *</label>
+                        <label className="block text-sm font-medium mb-2.5 text-gray-400">Phone Number *</label>
                         <Input
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
@@ -685,29 +685,29 @@ export function NokoSupply() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium mb-2.5 text-gray-400">Tiểu bang</label>
+                      <label className="block text-sm font-medium mb-2.5 text-gray-400">State</label>
                       <select
                         value={state}
                         onChange={(e) => setState(e.target.value)}
                         disabled={isSubmitting}
                         className="w-full h-12 rounded-md bg-input-background border border-white/10 text-foreground text-sm px-3 focus:outline-none focus:border-pink-500 transition-colors"
                       >
-                        <option value="">-- Chọn tiểu bang --</option>
+                        <option value="">-- Select a state --</option>
                         <option value="CA — California">CA — California</option>
                         <option value="TX — Texas">TX — Texas</option>
                         <option value="WA — Washington">WA — Washington</option>
                         <option value="NY — New York">NY — New York</option>
-                        <option value="Khác">Khác</option>
+                        <option value="Other">Other</option>
                       </select>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium mb-3 text-gray-400">Bạn đang dùng gì?</label>
+                      <label className="block text-sm font-medium mb-3 text-gray-400">What are you using today?</label>
                       <div className="space-y-2.5">
                         {[
-                          { value: "supply-only", label: "Chỉ cần Supply" },
-                          { value: "pos-supply", label: "Đang dùng Noko POS + cần Supply" },
-                          { value: "both-new", label: "Chưa dùng gì, muốn tìm hiểu cả 2" },
+                          { value: "supply-only", label: "Supply only" },
+                          { value: "pos-supply", label: "Using Noko POS + need Supply" },
+                          { value: "both-new", label: "New to both — want to learn about everything" },
                         ].map((opt) => (
                           <label key={opt.value} className={`flex items-center gap-3 group ${isSubmitting ? "cursor-not-allowed opacity-60" : "cursor-pointer"}`}>
                             <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${posUser === opt.value ? "border-pink-500 bg-pink-500" : "border-white/20 group-hover:border-white/40"}`}
@@ -721,9 +721,9 @@ export function NokoSupply() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium mb-3 text-gray-400">Nhu cầu chính (chọn nhiều)</label>
+                      <label className="block text-sm font-medium mb-3 text-gray-400">Primary needs (select multiple)</label>
                       <div className="flex flex-wrap gap-2">
-                        {["Rau củ", "Thịt & Hải sản", "Gia vị", "Đồ khô", "Tất cả"].map((n) => (
+                        {["Produce", "Meat & Seafood", "Seasonings", "Dry Goods", "All"].map((n) => (
                           <button key={n} type="button" disabled={isSubmitting} onClick={() => toggleNeed(n)}
                             className={`px-4 py-1.5 rounded-full text-sm transition-all duration-200 disabled:opacity-60 ${needs.includes(n)
                               ? "bg-gradient-to-r from-pink-600 to-rose-600 text-white shadow-md shadow-pink-500/20"
@@ -741,14 +741,14 @@ export function NokoSupply() {
                         disabled={isSubmitting}
                         className="w-full h-14 text-lg bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 border-0 shadow-2xl shadow-pink-500/40 group disabled:opacity-60"
                       >
-                        {isSubmitting ? "Đang gửi..." : "Nhận báo giá ngay"}
+                        {isSubmitting ? "Submitting..." : "Get a Quote Now"}
                         {!isSubmitting && (
                           <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         )}
                       </Button>
                     </motion.div>
 
-                    <p className="text-center text-sm text-gray-600">Phản hồi trong 24h — không spam — tư vấn bằng tiếng Việt</p>
+                    <p className="text-center text-sm text-gray-600">Response within 24 hours — no spam — consultation available in Vietnamese</p>
                   </form>
                 </CardContent>
               </Card>

@@ -60,14 +60,14 @@ export function Contact() {
         created_at: new Date().toISOString(),
       });
       if (error) throw error;
-      toast.success("Đã gửi! Chúng tôi sẽ phản hồi trong 24h ✓");
+      toast.success("Sent! We'll respond within 24 hours ✓");
       setName("");
       setEmail("");
       setPhone("");
       setInterest("");
       setMessage("");
     } catch {
-      toast.error("Không thể gửi tin nhắn. Vui lòng thử lại sau.");
+      toast.error("Unable to send your message. Please try again later.");
     } finally {
       setSubmitting(false);
     }
@@ -94,19 +94,19 @@ export function Contact() {
         <div className="container relative z-10 text-center max-w-4xl">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-indigo-600/20 to-purple-600/20 border border-indigo-500/30 mb-8">
             <Mail className="w-4 h-4 text-indigo-400" />
-            <span className="text-sm text-indigo-300 font-medium">Liên hệ</span>
+            <span className="text-sm text-indigo-300 font-medium">Contact</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
             <span className="bg-gradient-to-r from-white via-indigo-100 to-purple-200 bg-clip-text text-transparent">
-              Chúng tôi luôn sẵn sàng
+              We're always ready
             </span>
             <br />
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              lắng nghe
+              to listen
             </span>
           </h1>
           <p className="text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto">
-            Dù bạn đang có câu hỏi về dịch vụ, cần tư vấn hay muốn hợp tác — hãy liên hệ với chúng tôi.
+            Whether you have questions about our services, need advice, or want to partner with us — get in touch.
           </p>
         </div>
       </section>
@@ -117,28 +117,28 @@ export function Contact() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <Card className="bg-card/50 border-white/10">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-white mb-8">Thông tin liên hệ</h2>
+                  <h2 className="text-2xl font-bold text-white mb-8">Contact Information</h2>
                   <div className="space-y-5">
                     <div className="flex items-center gap-4 text-gray-300"><Phone className="w-5 h-5 text-indigo-400" /> (714) 555-0123</div>
                     <div className="flex items-center gap-4 text-gray-300"><Mail className="w-5 h-5 text-indigo-400" /> info@noko.com</div>
                     <div className="flex items-center gap-4 text-gray-300"><MapPin className="w-5 h-5 text-indigo-400" /> California, United States</div>
-                    <div className="flex items-center gap-4 text-gray-300"><Clock className="w-5 h-5 text-indigo-400" /> Thứ 2 - Thứ 6: 9am - 6pm PST</div>
+                    <div className="flex items-center gap-4 text-gray-300"><Clock className="w-5 h-5 text-indigo-400" /> Mon - Fri: 9am - 6pm PST</div>
                   </div>
                   <div className="flex flex-wrap gap-4 justify-center mt-8">
                     <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:text-indigo-400 hover:border-indigo-500/40 transition-colors"><Facebook className="w-4 h-4" /></a>
                     <a href="#" aria-label="Zalo" className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:text-indigo-400 hover:border-indigo-500/40 transition-colors"><MessageCircle className="w-4 h-4" /></a>
                     <a href="#" aria-label="YouTube" className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:text-indigo-400 hover:border-indigo-500/40 transition-colors"><Youtube className="w-4 h-4" /></a>
                   </div>
-                  <p className="text-sm text-gray-500 text-center mt-6">Phản hồi trong 24h</p>
+                  <p className="text-sm text-gray-500 text-center mt-6">Response within 24 hours</p>
                 </CardContent>
               </Card>
 
               <Card className="bg-card/50 border-white/10">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-white mb-8">Gửi tin nhắn</h2>
+                  <h2 className="text-2xl font-bold text-white mb-8">Send a Message</h2>
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="space-y-2">
-                      <Label htmlFor="contact-name" className="text-gray-300">Họ tên</Label>
+                      <Label htmlFor="contact-name" className="text-gray-300">Full Name</Label>
                       <Input id="contact-name" required value={name} onChange={(e) => setName(e.target.value)} className="bg-secondary/50 border-white/10 focus:border-indigo-500/50 h-12 rounded-xl" />
                     </div>
                     <div className="space-y-2">
@@ -146,30 +146,30 @@ export function Contact() {
                       <Input id="contact-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="bg-secondary/50 border-white/10 focus:border-indigo-500/50 h-12 rounded-xl" />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="contact-phone" className="text-gray-300">Số điện thoại</Label>
+                      <Label htmlFor="contact-phone" className="text-gray-300">Phone Number</Label>
                       <Input id="contact-phone" value={phone} onChange={(e) => setPhone(e.target.value)} className="bg-secondary/50 border-white/10 focus:border-indigo-500/50 h-12 rounded-xl" />
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-gray-300">Bạn quan tâm đến</Label>
+                      <Label className="text-gray-300">I'm interested in</Label>
                       <Select value={interest} onValueChange={setInterest}>
                         <SelectTrigger className="bg-secondary/50 border-white/10 focus:border-indigo-500/50 h-12 rounded-xl">
-                          <SelectValue placeholder="Chọn dịch vụ" />
+                          <SelectValue placeholder="Select a service" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="Noko POS">Noko POS</SelectItem>
                           <SelectItem value="Noko Academy">Noko Academy</SelectItem>
                           <SelectItem value="Noko Supply">Noko Supply</SelectItem>
-                          <SelectItem value="Khác">Khác</SelectItem>
+                          <SelectItem value="Other">Other</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="contact-message" className="text-gray-300">Nội dung tin nhắn</Label>
+                      <Label htmlFor="contact-message" className="text-gray-300">Message</Label>
                       <Textarea id="contact-message" required rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className="bg-secondary/50 border-white/10 focus:border-indigo-500/50 rounded-xl" />
                     </div>
                     <Button type="submit" disabled={submitting} className="w-full h-12 text-base bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0 shadow-2xl shadow-indigo-500/40">
                       <Send className="w-4 h-4" />
-                      {submitting ? "Đang gửi..." : "Gửi tin nhắn"}
+                      {submitting ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
                 </CardContent>

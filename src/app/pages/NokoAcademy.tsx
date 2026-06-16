@@ -86,13 +86,13 @@ export function NokoAcademy() {
 
       if (error) throw error;
 
-      toast.success("Đăng ký thành công! Chúng tôi sẽ liên hệ trong 24h.");
+      toast.success("Registration successful! We'll be in touch within 24 hours.");
       setName("");
       setPhone("");
       setEmail("");
       setSelectedCourse("");
     } catch {
-      toast.error("Không thể gửi đăng ký. Vui lòng thử lại sau.");
+      toast.error("Unable to submit registration. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
@@ -142,7 +142,7 @@ export function NokoAcademy() {
             <motion.div animate={{ rotate: 360 }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}>
               <GraduationCap className="w-4 h-4 text-purple-400" />
             </motion.div>
-            <span className="text-sm text-purple-300 font-medium">Đào tạo F&B chuyên nghiệp</span>
+            <span className="text-sm text-purple-300 font-medium">Professional F&B Training</span>
           </motion.div>
 
           <motion.h1
@@ -152,11 +152,11 @@ export function NokoAcademy() {
             className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
           >
             <span className="bg-gradient-to-r from-white via-purple-100 to-pink-200 bg-clip-text text-transparent">
-              Học đúng — Làm đúng
+              Learn Right — Do Right
             </span>
             <br />
             <span className="bg-gradient-to-r from-white/80 to-gray-400 bg-clip-text text-transparent text-4xl md:text-5xl">
-              ngay từ quán đầu tiên
+              from your very first restaurant
             </span>
           </motion.h1>
 
@@ -166,7 +166,7 @@ export function NokoAcademy() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="text-xl text-gray-400 mb-10 leading-relaxed max-w-2xl mx-auto"
           >
-            Noko Academy đào tạo chủ quán người Việt tại Mỹ vận hành bài bản, kiểm soát chi phí và mở rộng đúng thời điểm.
+            Noko Academy trains Vietnamese restaurant owners in the US to run operations systematically, control costs, and expand at the right time.
           </motion.p>
 
           <motion.div
@@ -178,7 +178,7 @@ export function NokoAcademy() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
               <a href="#courses">
                 <Button size="lg" className="text-lg px-10 h-14 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 border-0 shadow-2xl shadow-purple-500/40 group">
-                  Xem các khóa học
+                  View Courses
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </a>
@@ -186,7 +186,7 @@ export function NokoAcademy() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
               <a href="#register">
                 <Button size="lg" variant="outline" className="text-lg px-10 h-14 border-white/20 hover:bg-white/5 hover:border-white/40">
-                  Tư vấn miễn phí
+                  Free Consultation
                 </Button>
               </a>
             </motion.div>
@@ -205,17 +205,17 @@ export function NokoAcademy() {
                   <div key={i} className={`w-7 h-7 rounded-full ${c} border-2 border-background`} />
                 ))}
               </div>
-              <span>500+ chủ quán đã học</span>
+              <span>500+ restaurant owners trained</span>
             </div>
             <div className="w-px h-4 bg-white/10" />
             <div className="flex items-center gap-1.5">
               <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-              <span>4 tiểu bang</span>
+              <span>4 states</span>
             </div>
             <div className="w-px h-4 bg-white/10" />
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-green-400" />
-              <span>Thực chiến 100%</span>
+              <span>100% Hands-On</span>
             </div>
           </motion.div>
         </div>
@@ -251,11 +251,11 @@ export function NokoAcademy() {
             >
               <h2 className="text-4xl md:text-5xl font-bold">
                 <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  Bạn đang gặp phải
+                  Are you dealing with
                 </span>
                 <br />
                 <span className="bg-gradient-to-r from-orange-400 to-rose-400 bg-clip-text text-transparent">
-                  điều này không?
+                  any of these?
                 </span>
               </h2>
             </motion.div>
@@ -268,10 +268,10 @@ export function NokoAcademy() {
               className="grid grid-cols-1 md:grid-cols-2 gap-12"
             >
               {[
-                { text: "Mở quán xong mới biết mình thiếu gì", sub: "Không có lộ trình chuẩn bị từ trước" },
-                { text: "Chi phí vượt budget, không biết lỗ ở đâu", sub: "Thiếu kiến thức kiểm soát food cost & overhead" },
-                { text: "Nhân viên không ổn định, vận hành rối", sub: "Không có hệ thống đào tạo và quy trình chuẩn" },
-                { text: "Muốn mở thêm quán nhưng không dám", sub: "Lo ngại mất kiểm soát khi scale up" },
+                { text: "Opened your restaurant only to realize what you were missing", sub: "No clear roadmap to prepare ahead of time" },
+                { text: "Costs exceed budget — and you can't pinpoint where you're losing money", sub: "Missing knowledge on food cost & overhead control" },
+                { text: "Unstable staff and chaotic day-to-day operations", sub: "No standardized training system or SOPs" },
+                { text: "Want to open more locations but afraid to take the leap", sub: "Worried about losing control when scaling up" },
               ].map((pain, i) => (
                 <motion.div key={i} variants={item}>
                   <motion.div
@@ -299,7 +299,7 @@ export function NokoAcademy() {
               className="text-center mt-10"
             >
               <p className="text-gray-500 text-lg">
-                Nếu có ít nhất 1 điều trên — <span className="text-purple-400 font-medium">Noko Academy được xây dựng cho bạn.</span>
+                If any of the above applies — <span className="text-purple-400 font-medium">Noko Academy was built for you.</span>
               </p>
             </motion.div>
           </div>
@@ -320,38 +320,38 @@ export function NokoAcademy() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6 }}
               >
-                <p className="text-purple-400 font-medium text-sm uppercase tracking-widest mb-5">Về Noko Academy</p>
+                <p className="text-purple-400 font-medium text-sm uppercase tracking-widest mb-5">About Noko Academy</p>
                 <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
                   <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                    Không phải lý thuyết.
+                    Not theory.
                   </span>
                   <br />
                   <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    Là kinh nghiệm thực chiến.
+                    Real hands-on experience.
                   </span>
                 </h2>
                 <p className="text-gray-400 text-lg leading-relaxed mb-10">
-                  Noko Academy được xây dựng bởi những người đã thực sự mở quán tại Mỹ — không phải lý thuyết, mà là kinh nghiệm thực chiến được hệ thống hóa thành chương trình đào tạo bài bản.
+                  Noko Academy was built by people who have actually opened restaurants in the US — not textbook theory, but real-world experience systematized into a structured training program.
                 </p>
 
                 <div className="space-y-5">
                   {[
                     {
                       icon: Zap,
-                      title: "Thực chiến 100%",
-                      desc: "Mỗi bài học đều có case study thật từ nhà hàng người Việt tại Mỹ — từ thất bại đến thành công.",
+                      title: "100% Hands-On",
+                      desc: "Every lesson includes real case studies from Vietnamese restaurants in the US — from failures to success stories.",
                       color: "from-purple-600 to-indigo-600",
                     },
                     {
                       icon: Users,
-                      title: "Cộng đồng 500+ chủ quán",
-                      desc: "Kết nối, chia sẻ và hỗ trợ nhau trong cộng đồng chủ quán người Việt tại Mỹ.",
+                      title: "Community of 500+ Restaurant Owners",
+                      desc: "Connect, share, and support each other in a community of Vietnamese restaurant owners across the US.",
                       color: "from-pink-600 to-rose-600",
                     },
                     {
                       icon: Award,
-                      title: "Hỗ trợ sau khóa học",
-                      desc: "Không bỏ rơi sau khi học xong — mentor theo dõi và hỗ trợ 3 tháng sau tốt nghiệp.",
+                      title: "Post-Course Support",
+                      desc: "We don't leave you after graduation — mentors follow up and support you for 3 months after you complete the course.",
                       color: "from-indigo-600 to-purple-600",
                     },
                   ].map((point) => (
@@ -390,10 +390,10 @@ export function NokoAcademy() {
                   {/* Simulated stat cards */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                     {[
-                      { value: "500+", label: "Học viên", color: "from-purple-500 to-indigo-500" },
-                      { value: "4", label: "Tiểu bang", color: "from-pink-500 to-rose-500" },
-                      { value: "98%", label: "Hài lòng", color: "from-indigo-500 to-purple-500" },
-                      { value: "3 tháng", label: "Hỗ trợ sau", color: "from-rose-500 to-pink-500" },
+                      { value: "500+", label: "Students", color: "from-purple-500 to-indigo-500" },
+                      { value: "4", label: "States", color: "from-pink-500 to-rose-500" },
+                      { value: "98%", label: "Satisfaction", color: "from-indigo-500 to-purple-500" },
+                      { value: "3 months", label: "Post-course support", color: "from-rose-500 to-pink-500" },
                     ].map((stat, i) => (
                       <motion.div
                         key={stat.label}
@@ -413,9 +413,9 @@ export function NokoAcademy() {
                   {/* Progress bars */}
                   <div className="space-y-4">
                     {[
-                      { label: "Học viên mở quán thành công", pct: 87 },
-                      { label: "Hoàn vốn trong 6 tháng", pct: 72 },
-                      { label: "Mở thêm quán sau 1 năm", pct: 54 },
+                      { label: "Students who successfully opened a restaurant", pct: 87 },
+                      { label: "Break even within 6 months", pct: 72 },
+                      { label: "Opened another location within 1 year", pct: 54 },
                     ].map((bar) => (
                       <div key={bar.label}>
                         <div className="flex justify-between text-xs mb-1.5">
@@ -460,16 +460,16 @@ export function NokoAcademy() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <p className="text-purple-400 font-medium text-sm uppercase tracking-widest mb-4">Chương trình đào tạo</p>
+            <p className="text-purple-400 font-medium text-sm uppercase tracking-widest mb-4">Training Programs</p>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">4 khóa học.</span>
+              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">4 courses.</span>
               <br />
               <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
-                Cho mọi giai đoạn.
+                For every stage.
               </span>
             </h2>
             <p className="text-gray-500 max-w-xl mx-auto text-lg">
-              Từ người chưa có quán đến chủ chuỗi — luôn có khóa học phù hợp với bạn.
+              From first-time owners to multi-location operators — there's always a course that fits where you are.
             </p>
           </motion.div>
 
@@ -482,65 +482,65 @@ export function NokoAcademy() {
           >
             {[
               {
-                badge: "Người mới bắt đầu",
+                badge: "Getting Started",
                 badgeColor: "from-green-500 to-emerald-500",
                 icon: BookOpen,
                 iconGrad: "from-green-600 to-emerald-600",
-                name: "Khóa 1 — Mở quán từ A–Z",
-                target: "Chưa có quán, đang có vốn, muốn bắt đầu đúng cách",
+                name: "Course 1 — Open a Restaurant A–Z",
+                target: "No restaurant yet, have capital, want to start the right way",
                 bullets: [
-                  "Lên concept & menu phù hợp thị trường Mỹ",
-                  "Tìm mặt bằng tại Mỹ: tiêu chí & đàm phán",
-                  "License & legal: các giấy phép cần thiết",
-                  "Setup vận hành ngày đầu khai trương",
+                  "Develop concept & menu for the US market",
+                  "Find a location in the US: criteria & negotiation",
+                  "Licenses & legal: permits you'll need",
+                  "Day-one operations setup for opening day",
                 ],
                 border: "hover:border-green-500/40",
                 glow: "shadow-green-500/20",
               },
               {
-                badge: "Đang có quán",
+                badge: "Currently Operating",
                 badgeColor: "from-blue-500 to-indigo-500",
                 icon: TrendingUp,
                 iconGrad: "from-blue-600 to-indigo-600",
-                name: "Khóa 2 — Vận hành & Tối ưu",
-                target: "Chủ quán đang hoạt động, muốn thoát vận hành cảm tính",
+                name: "Course 2 — Operations & Optimization",
+                target: "Active restaurant owners who want to move beyond gut-feel operations",
                 bullets: [
-                  "Kiểm soát food cost & giảm lãng phí",
-                  "Quản lý ca làm, lịch shift và overtime",
-                  "Tối ưu menu: chọn món sinh lời, xoá món kém",
-                  "Đọc báo cáo tài chính P&L hàng tháng",
+                  "Control food cost & reduce waste",
+                  "Manage shifts, schedules, and overtime",
+                  "Optimize your menu: keep profitable items, cut underperformers",
+                  "Read monthly P&L financial reports",
                 ],
                 border: "hover:border-blue-500/40",
                 glow: "shadow-blue-500/20",
               },
               {
-                badge: "Có 1–2 quán",
+                badge: "1–2 Locations",
                 badgeColor: "from-purple-500 to-pink-500",
                 icon: Building2,
                 iconGrad: "from-purple-600 to-pink-600",
-                name: "Khóa 3 — Mở rộng chuỗi",
-                target: "Muốn nhân rộng mô hình mà không mất kiểm soát",
+                name: "Course 3 — Scale Your Chain",
+                target: "Ready to replicate your model without losing control",
                 bullets: [
-                  "Chuẩn hóa quy trình vận hành toàn chuỗi",
-                  "Tuyển & đào tạo quản lý cấp trung",
-                  "Mô hình franchise: cách làm đúng tại Mỹ",
-                  "Kiểm soát chất lượng đa chi nhánh",
+                  "Standardize operations across your entire chain",
+                  "Hire & train mid-level managers",
+                  "Franchise model: how to do it right in the US",
+                  "Quality control across multiple locations",
                 ],
                 border: "hover:border-purple-500/40",
                 glow: "shadow-purple-500/20",
               },
               {
-                badge: "Gói doanh nghiệp",
+                badge: "Enterprise Package",
                 badgeColor: "from-orange-500 to-rose-500",
                 icon: Briefcase,
                 iconGrad: "from-orange-600 to-rose-600",
-                name: "Khóa 4 — Đào tạo nhân viên",
-                target: "Doanh nghiệp F&B muốn nâng cấp toàn bộ đội ngũ",
+                name: "Course 4 — Staff Training",
+                target: "F&B businesses looking to upskill their entire team",
                 bullets: [
-                  "Chương trình đào tạo custom theo từng vị trí",
-                  "Training on-site tại nhà hàng của bạn",
-                  "Xây dựng tài liệu nội bộ & SOP",
-                  "Đánh giá định kỳ và cải tiến liên tục",
+                  "Custom training programs by role",
+                  "On-site training at your restaurant",
+                  "Build internal documentation & SOPs",
+                  "Regular assessments and continuous improvement",
                 ],
                 border: "hover:border-orange-500/40",
                 glow: "shadow-orange-500/20",
@@ -571,7 +571,7 @@ export function NokoAcademy() {
                         {course.name}
                       </h3>
                       <p className="text-sm text-gray-500 mb-5 leading-relaxed">
-                        <span className="text-gray-600">Dành cho: </span>{course.target}
+                        <span className="text-gray-600">For: </span>{course.target}
                       </p>
 
                       <ul className="space-y-2.5 mb-7 flex-1">
@@ -585,7 +585,7 @@ export function NokoAcademy() {
 
                       <a href="#register" onClick={() => setSelectedCourse(course.name)}>
                         <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 border-0 shadow-lg shadow-purple-500/20 group/btn">
-                          Đăng ký khóa này
+                          Enroll in This Course
                           <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                         </Button>
                       </a>
@@ -617,7 +617,7 @@ export function NokoAcademy() {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Học viên nói gì về</span>
+                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">What students say about</span>
                 <br />
                 <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
                   Noko Academy
@@ -634,34 +634,34 @@ export function NokoAcademy() {
             >
               {[
                 {
-                  name: "Chị Lan Anh",
+                  name: "Lan Anh",
                   restaurant: "Bếp Việt · San Jose, CA",
                   avatar: "LA",
                   avatarColor: "from-purple-500 to-pink-500",
-                  quote: "Trước khi học Noko Academy tôi không biết food cost là gì. Sau Khóa 2, tôi cắt được 18% chi phí nguyên liệu chỉ trong 2 tháng.",
-                  result: "Giảm 18% food cost",
+                  quote: "Before Noko Academy, I didn't know what food cost was. After Course 2, I cut ingredient costs by 18% in just 2 months.",
+                  result: "18% lower food cost",
                   resultColor: "text-green-400",
-                  course: "Vận hành & Tối ưu",
+                  course: "Operations & Optimization",
                 },
                 {
-                  name: "Anh Minh Tuấn",
+                  name: "Minh Tuấn",
                   restaurant: "Phở 888 · Houston, TX",
                   avatar: "MT",
                   avatarColor: "from-indigo-500 to-purple-500",
-                  quote: "Khóa Mở quán A–Z giúp tôi tránh được ít nhất 3 sai lầm nghiêm trọng mà nhiều chủ quán khác mắc phải khi lần đầu ra mắt.",
-                  result: "Hoàn vốn sau 5 tháng",
+                  quote: "The Open a Restaurant A–Z course helped me avoid at least 3 serious mistakes that many other restaurant owners make on their first launch.",
+                  result: "Break even in 5 months",
                   resultColor: "text-purple-400",
-                  course: "Mở quán từ A–Z",
+                  course: "Open a Restaurant A–Z",
                 },
                 {
-                  name: "Chị Hương Giang",
+                  name: "Hương Giang",
                   restaurant: "Chuỗi Bún Bò · Atlanta, GA",
                   avatar: "HG",
                   avatarColor: "from-pink-500 to-rose-500",
-                  quote: "Nhờ Khóa 3, tôi biết cách chuẩn hóa quy trình và mở được quán thứ 3 mà không cần phải có mặt ở đó mỗi ngày.",
-                  result: "Mở 3 chi nhánh",
+                  quote: "Thanks to Course 3, I learned how to standardize operations and opened a 3rd location without needing to be there every day.",
+                  result: "3 locations opened",
                   resultColor: "text-pink-400",
-                  course: "Mở rộng chuỗi",
+                  course: "Scale Your Chain",
                 },
               ].map((t, index) => (
                 <motion.div key={t.name} variants={item}>
@@ -729,15 +729,15 @@ export function NokoAcademy() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <p className="text-purple-400 font-medium text-sm uppercase tracking-widest mb-4">Bắt đầu ngay hôm nay</p>
+            <p className="text-purple-400 font-medium text-sm uppercase tracking-widest mb-4">Get Started Today</p>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Bắt đầu hành trình</span>
+              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Start your journey</span>
               <br />
               <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
-                kinh doanh đúng cách
+                to build your business the right way
               </span>
             </h2>
-            <p className="text-gray-500 text-lg">Điền thông tin — chúng tôi sẽ liên hệ tư vấn trong 24h.</p>
+            <p className="text-gray-500 text-lg">Fill in your details — we'll reach out for a consultation within 24 hours.</p>
           </motion.div>
 
           <motion.div
@@ -751,18 +751,18 @@ export function NokoAcademy() {
                 <form className="space-y-5" onSubmit={handleRegisterSubmit}>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-sm font-medium mb-2.5 text-gray-400">Họ và tên *</label>
+                      <label className="block text-sm font-medium mb-2.5 text-gray-400">Full Name *</label>
                       <Input
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="Nguyễn Văn A"
+                        placeholder="John Smith"
                         required
                         disabled={isSubmitting}
                         className="bg-input-background border-white/10 focus:border-purple-500 h-12"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-2.5 text-gray-400">Số điện thoại *</label>
+                      <label className="block text-sm font-medium mb-2.5 text-gray-400">Phone Number *</label>
                       <Input
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
@@ -788,18 +788,18 @@ export function NokoAcademy() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2.5 text-gray-400">Chọn khóa học quan tâm</label>
+                    <label className="block text-sm font-medium mb-2.5 text-gray-400">Course You're Interested In</label>
                     <select
                       value={selectedCourse}
                       onChange={(e) => setSelectedCourse(e.target.value)}
                       disabled={isSubmitting}
                       className="w-full h-12 rounded-md bg-input-background border border-white/10 text-foreground text-sm px-3 focus:outline-none focus:border-purple-500 transition-colors"
                     >
-                      <option value="">-- Chọn khóa học --</option>
-                      <option value="Khóa 1 — Mở quán từ A–Z">Khóa 1 — Mở quán từ A–Z</option>
-                      <option value="Khóa 2 — Vận hành & Tối ưu">Khóa 2 — Vận hành &amp; Tối ưu</option>
-                      <option value="Khóa 3 — Mở rộng chuỗi">Khóa 3 — Mở rộng chuỗi</option>
-                      <option value="Khóa 4 — Đào tạo nhân viên">Khóa 4 — Đào tạo nhân viên</option>
+                      <option value="">-- Select a course --</option>
+                      <option value="Course 1 — Open a Restaurant A–Z">Course 1 — Open a Restaurant A–Z</option>
+                      <option value="Course 2 — Operations & Optimization">Course 2 — Operations &amp; Optimization</option>
+                      <option value="Course 3 — Scale Your Chain">Course 3 — Scale Your Chain</option>
+                      <option value="Course 4 — Staff Training">Course 4 — Staff Training</option>
                     </select>
                   </div>
 
@@ -810,7 +810,7 @@ export function NokoAcademy() {
                       disabled={isSubmitting}
                       className="w-full h-14 text-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 border-0 shadow-2xl shadow-purple-500/40 group disabled:opacity-60"
                     >
-                      {isSubmitting ? "Đang gửi..." : "Đăng ký tư vấn miễn phí"}
+                      {isSubmitting ? "Submitting..." : "Book a Free Consultation"}
                       {!isSubmitting && (
                         <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                       )}
@@ -818,7 +818,7 @@ export function NokoAcademy() {
                   </motion.div>
 
                   <p className="text-center text-sm text-gray-600">
-                    Chúng tôi sẽ liên hệ trong 24h · Không spam · Tư vấn bằng tiếng Việt
+                    We'll be in touch within 24 hours · No spam · Consultation available in Vietnamese
                   </p>
                 </form>
               </CardContent>

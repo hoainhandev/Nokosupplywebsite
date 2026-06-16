@@ -106,7 +106,7 @@ export function Home() {
             <motion.div animate={{ rotate: 360 }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}>
               <Star className="w-4 h-4 text-indigo-400" />
             </motion.div>
-            <span className="text-sm text-indigo-300 font-medium">Hệ sinh thái F&B #1 cho người Việt tại Mỹ</span>
+            <span className="text-sm text-indigo-300 font-medium">#1 F&B Ecosystem for Vietnamese in the US</span>
           </motion.div>
 
           {/* Headline */}
@@ -117,15 +117,15 @@ export function Home() {
             className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
           >
             <span className="bg-gradient-to-r from-white via-indigo-100 to-purple-200 bg-clip-text text-transparent">
-              Xây dựng & vận hành
+              Build & operate
             </span>
             <br />
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              nhà hàng đúng cách
+              your restaurant the right way
             </span>
             <br />
             <span className="bg-gradient-to-r from-white/80 to-gray-400 bg-clip-text text-transparent text-4xl md:text-5xl lg:text-6xl">
-              — từ ngày đầu tiên
+              — from day one
             </span>
           </motion.h1>
 
@@ -136,7 +136,7 @@ export function Home() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="text-xl text-gray-400 mb-12 leading-relaxed max-w-2xl mx-auto"
           >
-            Noko cung cấp toàn bộ hạ tầng để người Việt kinh doanh F&B tại Mỹ vận hành chuyên nghiệp, tăng trưởng bền vững.
+            Noko provides the full infrastructure for Vietnamese F&B business owners in the US to run professionally and grow sustainably.
           </motion.p>
 
           {/* CTAs */}
@@ -152,7 +152,7 @@ export function Home() {
                   size="lg"
                   className="text-lg px-10 h-14 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0 shadow-2xl shadow-indigo-500/40 group"
                 >
-                  Khám phá hệ sinh thái
+                  Explore the Ecosystem
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </a>
@@ -164,7 +164,7 @@ export function Home() {
                   variant="outline"
                   className="text-lg px-10 h-14 border-white/20 hover:bg-white/5 hover:border-white/40"
                 >
-                  Xem câu chuyện Noko
+                  See the Noko Story
                 </Button>
               </a>
             </motion.div>
@@ -202,11 +202,11 @@ export function Home() {
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
                 <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  Người Việt mở quán tại Mỹ
+                  Vietnamese opening restaurants in the US
                 </span>
                 <br />
                 <span className="bg-gradient-to-r from-orange-400 to-rose-400 bg-clip-text text-transparent">
-                  đang gặp phải điều này...
+                  are running into this...
                 </span>
               </h2>
             </motion.div>
@@ -221,24 +221,24 @@ export function Home() {
               {[
                 {
                   icon: AlertTriangle,
-                  title: "Vận hành bằng cảm tính",
-                  desc: "Không có hệ thống theo dõi, mọi quyết định đều dựa vào ước tính và kinh nghiệm cá nhân — dễ sai, khó sửa.",
+                  title: "Operating on gut instinct",
+                  desc: "No tracking system — every decision relies on guesswork and personal experience. Easy to get wrong, hard to fix.",
                   color: "from-orange-500/20 to-orange-500/5",
                   border: "border-orange-500/20",
                   iconColor: "text-orange-400",
                 },
                 {
                   icon: PackageSearch,
-                  title: "Không biết lấy nguyên liệu",
-                  desc: "Tìm nguồn hàng chuẩn chất lượng, đúng giá tại Mỹ là bài toán nan giải với hầu hết chủ nhà hàng người Việt.",
+                  title: "Struggling to source ingredients",
+                  desc: "Finding quality ingredients at fair prices in the US is a major challenge for most Vietnamese restaurant owners.",
                   color: "from-yellow-500/20 to-yellow-500/5",
                   border: "border-yellow-500/20",
                   iconColor: "text-yellow-400",
                 },
                 {
                   icon: BookOpen,
-                  title: "Thiếu kiến thức kinh doanh",
-                  desc: "Thị trường Mỹ có luật lệ, văn hóa tiêu dùng và cách vận hành rất khác — không có ai chỉ dẫn bài bản.",
+                  title: "Lacking business know-how",
+                  desc: "The US market has different regulations, consumer culture, and operations — with no structured guidance to show the way.",
                   color: "from-rose-500/20 to-rose-500/5",
                   border: "border-rose-500/20",
                   iconColor: "text-rose-400",
@@ -286,16 +286,16 @@ export function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-20"
           >
-            <p className="text-indigo-400 font-medium text-sm uppercase tracking-widest mb-4">Hệ sinh thái</p>
+            <p className="text-indigo-400 font-medium text-sm uppercase tracking-widest mb-4">Ecosystem</p>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Ba giải pháp.</span>
+              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Three solutions.</span>
               <br />
               <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Một hệ sinh thái.
+                One ecosystem.
               </span>
             </h2>
             <p className="text-gray-500 max-w-xl mx-auto text-lg">
-              Mỗi sản phẩm giải quyết một bài toán cụ thể — cùng nhau tạo nên nền tảng F&B hoàn chỉnh.
+              Each product solves a specific challenge — together they form a complete F&B platform.
             </p>
           </motion.div>
 
@@ -310,43 +310,43 @@ export function Home() {
               {
                 icon: MonitorSmartphone,
                 name: "Noko POS",
-                tagline: "Giải pháp vận hành chuỗi nhà hàng",
-                desc: "Hệ thống POS thế hệ mới được thiết kế riêng cho nhà hàng người Việt tại Mỹ — quản lý đơn hàng, nhân viên, báo cáo thời gian thực.",
+                tagline: "Restaurant chain operations solution",
+                desc: "A next-generation POS system built for Vietnamese restaurants in the US — order management, staff tracking, and real-time reporting.",
                 href: "/pos",
                 gradient: "from-indigo-600 to-blue-600",
                 glow: "shadow-indigo-500/30",
                 border: "hover:border-indigo-500/50",
-                features: ["Quản lý đơn hàng", "Báo cáo real-time", "Đa chi nhánh"],
+                features: ["Order management", "Real-time reporting", "Multi-location"],
               },
               {
                 icon: GraduationCap,
                 name: "Noko Academy",
-                tagline: "Đào tạo F&B chuyên nghiệp",
-                desc: "Chương trình đào tạo thực chiến cho chủ nhà hàng và nhân viên — từ vận hành, marketing đến quản lý tài chính tại thị trường Mỹ.",
+                tagline: "Professional F&B training",
+                desc: "Hands-on training for restaurant owners and staff — from operations and marketing to financial management in the US market.",
                 href: "/academy",
                 gradient: "from-purple-600 to-indigo-600",
                 glow: "shadow-purple-500/30",
                 border: "hover:border-purple-500/50",
-                features: ["Khóa học thực chiến", "Mentor 1-1", "Cộng đồng hỗ trợ"],
+                features: ["Hands-on courses", "1-on-1 mentoring", "Support community"],
                 featured: true,
               },
               {
                 icon: ShoppingBasket,
                 name: "Noko Supply",
-                tagline: "Nguyên liệu chuẩn từ vườn đến bàn",
-                desc: "Cung cấp nguyên liệu F&B chất lượng cao, giá cạnh tranh, giao tận nơi tại California — đặc biệt phù hợp với nhà hàng Việt.",
+                tagline: "Premium ingredients from farm to table",
+                desc: "High-quality F&B ingredients at competitive prices, delivered across California — specially curated for Vietnamese restaurants.",
                 href: "/supply",
                 gradient: "from-pink-600 to-purple-600",
                 glow: "shadow-pink-500/30",
                 border: "hover:border-pink-500/50",
-                features: ["Nguyên liệu chuẩn", "Giao tận nơi", "Giá wholesale"],
+                features: ["Premium ingredients", "Doorstep delivery", "Wholesale pricing"],
               },
             ].map((svc) => (
               <motion.div key={svc.name} variants={item} className="relative">
                 {svc.featured && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
                     <span className="px-4 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/30">
-                      Phổ biến nhất
+                      Most popular
                     </span>
                   </div>
                 )}
@@ -383,7 +383,7 @@ export function Home() {
                           variant="outline"
                           className="w-full border-white/15 hover:border-white/30 hover:bg-white/5 group/btn"
                         >
-                          Tìm hiểu thêm
+                          Learn More
                           <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                         </Button>
                       </CardContent>
@@ -422,10 +422,10 @@ export function Home() {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Được tin dùng bởi</span>
+                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Trusted by</span>
                 <br />
                 <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  500+ nhà hàng người Việt tại Mỹ
+                  500+ Vietnamese restaurants in the US
                 </span>
               </h2>
             </motion.div>
@@ -439,9 +439,9 @@ export function Home() {
               className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto mb-20"
             >
               {[
-                { value: "500+", label: "Nhà hàng đang dùng", sub: "tại California & 3 tiểu bang khác" },
-                { value: "4", label: "Tiểu bang phủ sóng", sub: "CA · TX · WA · GA" },
-                { value: "98%", label: "Khách hàng hài lòng", sub: "dựa trên khảo sát 2024" },
+                { value: "500+", label: "Restaurants using Noko", sub: "in California & 3 other states" },
+                { value: "4", label: "States served", sub: "CA · TX · WA · GA" },
+                { value: "98%", label: "Customer satisfaction", sub: "based on 2024 survey" },
               ].map((stat, i) => (
                 <motion.div key={stat.label} variants={item} className="text-center">
                   <motion.div
@@ -469,19 +469,19 @@ export function Home() {
                 className="flex gap-6 w-max"
               >
                 {[
-                  { name: "King Bánh Mì", gradient: "from-yellow-500 to-orange-500" },
+                  { name: "King Banh Mi", gradient: "from-yellow-500 to-orange-500" },
                   { name: "Pizza Master", gradient: "from-red-500 to-red-700" },
-                  { name: "Phở Việt", gradient: "from-green-500 to-teal-600" },
-                  { name: "Café 24h", gradient: "from-purple-500 to-pink-600" },
-                  { name: "Bún Bò Huế", gradient: "from-orange-500 to-red-500" },
-                  { name: "Sài Gòn Kitchen", gradient: "from-teal-500 to-cyan-500" },
+                  { name: "Pho Viet", gradient: "from-green-500 to-teal-600" },
+                  { name: "Cafe 24H", gradient: "from-purple-500 to-pink-600" },
+                  { name: "Bun Bo Hue", gradient: "from-orange-500 to-red-500" },
+                  { name: "Saigon Kitchen", gradient: "from-teal-500 to-cyan-500" },
                   // Duplicate for seamless loop
-                  { name: "King Bánh Mì", gradient: "from-yellow-500 to-orange-500" },
+                  { name: "King Banh Mi", gradient: "from-yellow-500 to-orange-500" },
                   { name: "Pizza Master", gradient: "from-red-500 to-red-700" },
-                  { name: "Phở Việt", gradient: "from-green-500 to-teal-600" },
-                  { name: "Café 24h", gradient: "from-purple-500 to-pink-600" },
-                  { name: "Bún Bò Huế", gradient: "from-orange-500 to-red-500" },
-                  { name: "Sài Gòn Kitchen", gradient: "from-teal-500 to-cyan-500" },
+                  { name: "Pho Viet", gradient: "from-green-500 to-teal-600" },
+                  { name: "Cafe 24H", gradient: "from-purple-500 to-pink-600" },
+                  { name: "Bun Bo Hue", gradient: "from-orange-500 to-red-500" },
+                  { name: "Saigon Kitchen", gradient: "from-teal-500 to-cyan-500" },
                 ].map((brand, i) => (
                   <div
                     key={`${brand.name}-${i}`}
@@ -514,18 +514,18 @@ export function Home() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7 }}
           >
-            <p className="text-indigo-400 font-medium text-sm uppercase tracking-widest mb-6">Bắt đầu ngay hôm nay</p>
+            <p className="text-indigo-400 font-medium text-sm uppercase tracking-widest mb-6">Get started today</p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
               <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                Sẵn sàng xây dựng
+                Ready to build
               </span>
               <br />
               <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                nhà hàng đúng cách?
+                your restaurant the right way?
               </span>
             </h2>
             <p className="text-gray-500 text-lg mb-12 max-w-xl mx-auto">
-              Đội ngũ tư vấn của Noko sẵn sàng đồng hành cùng bạn — từ ngày đầu tiên đến khi vận hành ổn định.
+              Noko's advisory team is ready to partner with you — from day one through stable operations.
             </p>
 
             <motion.div
@@ -538,13 +538,13 @@ export function Home() {
                   size="lg"
                   className="text-lg px-14 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0 shadow-2xl shadow-indigo-500/40 group rounded-2xl"
                 >
-                  Liên hệ tư vấn miễn phí
+                  Get a free consultation
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
             </motion.div>
 
-            <p className="text-gray-600 text-sm mt-6">Không mất phí · Phản hồi trong 24h · Tư vấn bằng tiếng Việt</p>
+            <p className="text-gray-600 text-sm mt-6">No cost · Response within 24 hours · Vietnamese-language support</p>
           </motion.div>
         </div>
         </div>

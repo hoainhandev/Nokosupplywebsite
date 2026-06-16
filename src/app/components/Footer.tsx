@@ -9,9 +9,9 @@ const services = [
 ];
 
 const companyLinks = [
-  { label: "Về chúng tôi", href: "#about" },
+  { label: "About Us", href: "#about" },
   { label: "Blog", href: "/blog" },
-  { label: "Liên hệ", href: "#contact" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const socials = [
@@ -41,7 +41,7 @@ export function Footer() {
               </span>
             </div>
             <p className="text-sm text-gray-500 mb-6 max-w-xs leading-relaxed">
-              Hệ sinh thái F&B toàn diện — giúp người Việt kinh doanh nhà hàng tại Mỹ đúng cách, từ ngày đầu tiên.
+              A complete F&B ecosystem — helping Vietnamese Americans run restaurants the right way, from day one.
             </p>
             <div className="flex gap-3">
               {socials.map((s) => (
@@ -64,7 +64,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Dịch vụ</h4>
+            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Services</h4>
             <ul className="space-y-3 text-sm text-gray-500">
               {services.map((l) => (
                 <li key={l.label}>
@@ -82,7 +82,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Công ty</h4>
+            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Company</h4>
             <ul className="space-y-3 text-sm text-gray-500">
               {companyLinks.map((l) => (
                 <li key={l.label}>
@@ -106,7 +106,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Liên hệ</h4>
+            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Contact</h4>
             <ul className="space-y-3 text-sm text-gray-500">
               <li>info@noko.com</li>
               <li>(714) 555-0123</li>
@@ -125,10 +125,10 @@ export function Footer() {
           <p>&copy; 2026 Noko. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-gray-400 transition-colors">
-              Chính sách bảo mật
+              Privacy Policy
             </a>
             <a href="#" className="hover:text-gray-400 transition-colors">
-              Điều khoản sử dụng
+              Terms of Use
             </a>
           </div>
         </motion.div>

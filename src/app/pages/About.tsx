@@ -30,34 +30,34 @@ function ParallaxSection({ children }: { children: React.ReactNode }) {
 
 export function About() {
   const stats = [
-    { value: "500+", label: "nhà hàng tin dùng" },
-    { value: "4", label: "tiểu bang" },
-    { value: "$2M+", label: "doanh thu được tối ưu" },
-    { value: "98%", label: "học viên hài lòng" },
+    { value: "500+", label: "trusted restaurants" },
+    { value: "4", label: "states" },
+    { value: "$2M+", label: "revenue optimized" },
+    { value: "98%", label: "satisfied students" },
   ];
 
   const founders = [
     {
       name: "Nguyễn Văn An",
       role: "Co-founder & CEO",
-      bio: "10 năm kinh nghiệm F&B tại Mỹ, từng vận hành chuỗi 5 nhà hàng tại California",
+      bio: "10 years of F&B experience in the U.S., formerly operated a chain of 5 restaurants in California",
     },
     {
       name: "Trần Thị Mai",
       role: "Co-founder & COO",
-      bio: "Chuyên gia vận hành, đào tạo 200+ chủ quán người Việt tại Mỹ",
+      bio: "Operations expert who has trained 200+ Vietnamese restaurant owners in the U.S.",
     },
     {
       name: "Lê Minh Khoa",
       role: "CTO",
-      bio: "Kỹ sư phần mềm 8 năm, xây dựng Noko POS từ nhu cầu thực tế của nhà hàng",
+      bio: "8-year software engineer who built Noko POS from real restaurant needs",
     },
   ];
 
   const values = [
-    { icon: Target, title: "Thực chiến", desc: "Không lý thuyết suông" },
-    { icon: Users, title: "Cộng đồng", desc: "Người Việt giúp người Việt" },
-    { icon: Leaf, title: "Bền vững", desc: "Xây dựng để tồn tại lâu dài" },
+    { icon: Target, title: "Hands-on", desc: "No empty theory" },
+    { icon: Users, title: "Community", desc: "Vietnamese helping Vietnamese" },
+    { icon: Leaf, title: "Sustainability", desc: "Built to last" },
   ];
 
   return (
@@ -81,20 +81,20 @@ export function About() {
         <div className="container relative z-10 text-center max-w-4xl">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-indigo-600/20 to-purple-600/20 border border-indigo-500/30 mb-10">
             <Sparkles className="w-4 h-4 text-indigo-400" />
-            <span className="text-sm text-indigo-300 font-medium">Về chúng tôi</span>
+            <span className="text-sm text-indigo-300 font-medium">About Us</span>
           </div>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">
             <span className="bg-gradient-to-r from-white via-indigo-100 to-purple-200 bg-clip-text text-transparent">
-              Xây dựng bởi người Việt,
+              Built by Vietnamese,
             </span>
             <br />
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              cho người Việt tại Mỹ
+              for Vietnamese in America
             </span>
           </h1>
           <p className="text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
-            Noko ra đời từ chính những khó khăn mà chúng tôi đã trải qua khi mở quán tại Mỹ
-            — thiếu hệ thống, thiếu nguồn hàng ổn định, thiếu kiến thức bài bản.
+            Noko was born from the very challenges we faced when opening a restaurant in America
+            — no systems, no reliable supply chain, no structured know-how.
           </p>
         </div>
       </section>
@@ -106,11 +106,11 @@ export function About() {
               <div>
                 <h2 className="text-4xl md:text-5xl font-bold mb-8">
                   <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                    Câu chuyện Noko
+                    The Noko Story
                   </span>
                 </h2>
                 <p className="text-gray-400 leading-relaxed whitespace-pre-line">
-                  {"Năm 2019, những người sáng lập Noko đã trải qua đúng những gì bạn đang trải qua — vận hành bằng cảm tính, không biết food cost là bao nhiêu, tìm nguồn nguyên liệu mãi không ổn.\n\nSau nhiều năm xây dựng và thất bại, chúng tôi đúc kết được hệ thống vận hành hiệu quả. Và chúng tôi muốn chia sẻ điều đó với cộng đồng.\n\nNoko không chỉ là phần mềm hay nguyên liệu — Noko là người đồng hành của bạn từ ngày đầu tiên."}
+                  {"In 2019, the founders of Noko went through exactly what you're going through — running on instinct, not knowing food costs, and struggling to find reliable ingredient suppliers.\n\nAfter years of building and failing, we distilled an efficient operating system. And we want to share it with the community.\n\nNoko isn't just software or ingredients — Noko is your partner from day one."}
                 </p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -148,7 +148,7 @@ export function About() {
       <section className="py-20">
         <div className="container">
           <h3 className="text-4xl md:text-5xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Đội ngũ sáng lập</span>
+            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Founding Team</span>
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {founders.map((founder) => (
@@ -168,7 +168,7 @@ export function About() {
       <section className="py-20">
         <div className="container">
           <h3 className="text-4xl md:text-5xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Giá trị cốt lõi</span>
+            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Core Values</span>
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {values.map((value) => (
@@ -193,18 +193,18 @@ export function About() {
         <div className="container relative z-10 text-center max-w-3xl">
           <h3 className="text-4xl md:text-5xl font-bold mb-8">
             <span className="bg-gradient-to-r from-white via-indigo-100 to-purple-200 bg-clip-text text-transparent">
-              Sẵn sàng bắt đầu cùng Noko?
+              Ready to get started with Noko?
             </span>
           </h3>
           <div className="flex flex-wrap gap-4 justify-center">
             <Button asChild size="lg" className="text-lg px-10 h-14 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0 shadow-2xl shadow-indigo-500/40 group">
               <Link to="/#ecosystem">
-                Khám phá dịch vụ
+                Explore Services
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="text-lg px-10 h-14 border-white/20 hover:bg-white/5 hover:border-white/40">
-              <Link to="/contact">Liên hệ chúng tôi</Link>
+              <Link to="/contact">Contact Us</Link>
             </Button>
           </div>
         </div>

@@ -124,7 +124,7 @@ export function NokoPOS() {
                 <motion.div animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }}>
                   <Star className="w-4 h-4 text-indigo-400" />
                 </motion.div>
-                <span className="text-sm text-indigo-300">Được tin dùng bởi 500+ nhà hàng</span>
+                <span className="text-sm text-indigo-300">Trusted by 500+ restaurants</span>
               </motion.div>
 
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
@@ -134,7 +134,7 @@ export function NokoPOS() {
                   transition={{ delay: 0.2 }}
                   className="block bg-gradient-to-r from-white via-indigo-200 to-purple-200 bg-clip-text text-transparent"
                 >
-                  Giải Pháp POS
+                  POS Solution
                 </motion.span>
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
@@ -142,7 +142,7 @@ export function NokoPOS() {
                   transition={{ delay: 0.4 }}
                   className="block bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
                 >
-                  Thế Hệ Mới
+                  Next Generation
                 </motion.span>
               </h1>
 
@@ -152,7 +152,7 @@ export function NokoPOS() {
                 transition={{ delay: 0.6 }}
                 className="text-xl text-gray-400 mb-10 leading-relaxed"
               >
-                Nâng tầm trải nghiệm khách hàng và tối ưu hóa vận hành nhà hàng với công nghệ AI và đám mây tiên tiến nhất.
+                Elevate guest experiences and streamline restaurant operations with cutting-edge AI and cloud technology.
               </motion.p>
 
               <motion.div
@@ -166,13 +166,13 @@ export function NokoPOS() {
                     size="lg"
                     className="text-lg px-10 h-14 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0 shadow-2xl shadow-indigo-500/50 group"
                   >
-                    Dùng thử miễn phí
+                    Start Free Trial
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button size="lg" variant="outline" className="text-lg px-10 h-14 border-white/20 hover:bg-white/5 hover:border-white/40">
-                    Xem demo
+                    View Demo
                   </Button>
                 </motion.div>
               </motion.div>
@@ -231,11 +231,11 @@ export function NokoPOS() {
               className="text-center mb-20"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">Được Tin Dùng Bởi</span>
+                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">Trusted By</span>
                 <br />
-                <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Các Thương Hiệu Hàng Đầu</span>
+                <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Leading Brands</span>
               </h2>
-              <p className="text-xl text-gray-500 max-w-2xl mx-auto">Hơn 500+ nhà hàng đã tin tưởng và phát triển cùng Noko POS</p>
+              <p className="text-xl text-gray-500 max-w-2xl mx-auto">Over 500 restaurants trust and grow with Noko POS</p>
             </motion.div>
 
             <motion.div
@@ -273,18 +273,18 @@ export function NokoPOS() {
             >
               {[
                 {
-                  name: "King Bánh Mì", branches: "15 chi nhánh",
-                  quote: "Noko POS giúp chúng tôi quản lý hiệu quả hơn 15 chi nhánh. Doanh thu tăng 40% chỉ sau 6 tháng sử dụng.",
+                  name: "King Bánh Mì", branches: "15 locations",
+                  quote: "Noko POS helps us manage 15 locations more efficiently. Revenue increased 40% in just 6 months.",
                   img: "https://images.unsplash.com/photo-1556742393-d75f468bfcb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2ZmZWUlMjBzaG9wJTIwY2FzaGllciUyMHN5c3RlbXxlbnwxfHx8fDE3NzI1MzA3NTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
                 },
                 {
-                  name: "Pizza Master", branches: "8 chi nhánh",
-                  quote: "Hệ thống đơn giản, dễ sử dụng. Nhân viên mới chỉ cần đào tạo 30 phút là có thể sử dụng thành thạo.",
+                  name: "Pizza Master", branches: "8 locations",
+                  quote: "The system is simple and easy to use. New staff can be trained in 30 minutes and use it confidently.",
                   img: "https://images.unsplash.com/photo-1763867641258-c8ea40860f7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwc3RhZmYlMjB0YWJsZXQlMjBvcmRlcnxlbnwxfHx8fDE3NzI1MzA3NTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
                 },
                 {
-                  name: "Phở Việt", branches: "20 chi nhánh",
-                  quote: "Báo cáo chi tiết giúp chúng tôi đưa ra quyết định kinh doanh chính xác và tối ưu chi phí vận hành.",
+                  name: "Phở Việt", branches: "20 locations",
+                  quote: "Detailed reports help us make accurate business decisions and optimize operating costs.",
                   img: "https://images.unsplash.com/photo-1771853327796-976c8862362f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwa2l0Y2hlbiUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzcyNTMwNzU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
                 },
               ].map((client, index) => (
@@ -337,11 +337,11 @@ export function NokoPOS() {
               className="text-center mb-20"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">Tính Năng</span>
+                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">Powerful</span>
                 <br />
-                <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Vượt Trội</span>
+                <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Features</span>
               </h2>
-              <p className="text-xl text-gray-500 max-w-2xl mx-auto">Tất cả những gì bạn cần để quản lý nhà hàng hiệu quả</p>
+              <p className="text-xl text-gray-500 max-w-2xl mx-auto">Everything you need to run your restaurant efficiently</p>
             </motion.div>
 
             <motion.div
@@ -352,12 +352,12 @@ export function NokoPOS() {
               className="grid grid-cols-1 md:grid-cols-3 gap-8"
             >
               {[
-                { icon: ShoppingCart, title: "Quản lý đơn hàng", desc: "Xử lý đơn hàng nhanh chóng, tách/gộp bàn dễ dàng, hỗ trợ nhiều hình thức thanh toán.", color: "from-blue-500 to-cyan-500" },
-                { icon: BarChart3, title: "Báo cáo chi tiết", desc: "Theo dõi doanh thu, chi phí, món ăn bán chạy với báo cáo trực quan và chi tiết.", color: "from-green-500 to-emerald-500" },
-                { icon: Users, title: "Quản lý nhân viên", desc: "Phân quyền chi tiết, theo dõi ca làm việc, tính lương tự động cho nhân viên.", color: "from-purple-500 to-pink-500" },
-                { icon: Smartphone, title: "Đa nền tảng", desc: "Hoạt động trên máy tính, tablet, điện thoại. Đồng bộ dữ liệu thời gian thực.", color: "from-orange-500 to-red-500" },
-                { icon: Cloud, title: "Đám mây", desc: "Dữ liệu được lưu trữ an toàn trên cloud, truy cập mọi lúc mọi nơi với kết nối internet.", color: "from-teal-500 to-cyan-500" },
-                { icon: Zap, title: "Tích hợp giao hàng", desc: "Kết nối với các nền tảng giao hàng như Grab, Shopee Food, GoFood một cách dễ dàng.", color: "from-yellow-500 to-orange-500" },
+                { icon: ShoppingCart, title: "Order Management", desc: "Process orders quickly, split and merge tables with ease, and support multiple payment methods.", color: "from-blue-500 to-cyan-500" },
+                { icon: BarChart3, title: "Detailed Reporting", desc: "Track revenue, costs, and top-selling dishes with clear, visual reports.", color: "from-green-500 to-emerald-500" },
+                { icon: Users, title: "Staff Management", desc: "Granular permissions, shift tracking, and automated payroll for your team.", color: "from-purple-500 to-pink-500" },
+                { icon: Smartphone, title: "Multi-Platform", desc: "Works on desktop, tablet, and phone. Real-time data sync across all devices.", color: "from-orange-500 to-red-500" },
+                { icon: Cloud, title: "Cloud", desc: "Data stored securely in the cloud. Access anywhere, anytime with an internet connection.", color: "from-teal-500 to-cyan-500" },
+                { icon: Zap, title: "Delivery Integration", desc: "Connect easily with delivery platforms like Grab, Shopee Food, and GoFood.", color: "from-yellow-500 to-orange-500" },
               ].map((feature) => (
                 <motion.div key={feature.title} variants={itemVariants}>
                   <motion.div whileHover={{ scale: 1.05, y: -5 }} transition={{ duration: 0.3 }}>
@@ -403,17 +403,17 @@ export function NokoPOS() {
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
                 <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                  Tích hợp độc quyền
+                  Exclusive Integration
                 </span>
               </div>
 
               <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
                 <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  Kết nối Noko Supply
+                  Connect with Noko Supply
                 </span>
                 <br />
                 <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Đặt hàng tự động — không cần làm thủ công
+                  Auto Ordering — No Manual Work
                 </span>
               </h2>
 
@@ -425,10 +425,10 @@ export function NokoPOS() {
                 className="space-y-4 mb-8"
               >
                 {[
-                  "POS theo dõi tồn kho realtime",
-                  "Khi xuống ngưỡng → tự tạo đơn Supply",
-                  "Chủ quán chỉ approve trên app",
-                  "Giá Supply sync vào food cost báo cáo POS",
+                  "POS tracks inventory in real time",
+                  "When stock hits threshold → auto-create Supply order",
+                  "Restaurant Owner approves with one tap in the app",
+                  "Supply prices sync into POS food cost reports",
                 ].map((f) => (
                   <motion.div key={f} variants={itemVariants} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" />
@@ -438,14 +438,14 @@ export function NokoPOS() {
               </motion.div>
 
               <p className="text-sm text-gray-600 mb-6 italic">
-                Chưa cần Supply? POS vẫn hoạt động độc lập bình thường.
+                Don't need Supply yet? POS works fully on its own.
               </p>
 
               <Link
                 to="/supply"
                 className="inline-flex items-center text-sm font-medium text-indigo-300 hover:text-indigo-200 transition-colors group"
               >
-                Xem Noko Supply
+                View Noko Supply
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
@@ -465,10 +465,10 @@ export function NokoPOS() {
               />
               <div className="relative bg-card/50 backdrop-blur-xl border border-white/10 rounded-3xl p-7 space-y-4">
                 {[
-                  { label: "Noko POS", sub: "Phở Bò: còn 2 kg ↓", status: "Thấp", statusColor: "text-orange-400 bg-orange-400/10", iconBg: "from-indigo-600 to-purple-600", icon: "💻", cardClass: "bg-indigo-600/10 border-indigo-500/20" },
-                  { label: "Đơn tự động tạo", sub: "Phở Bò · 10 kg · Noko Supply", status: "Chờ duyệt", statusColor: "text-purple-300 bg-purple-500/10", iconBg: "from-purple-600 to-pink-600", icon: "📋", cardClass: "bg-purple-600/10 border-purple-500/20" },
-                  { label: "Chủ quán approve", sub: "1 chạm trên app — xong", status: "✓ Approved", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-indigo-600 to-purple-600", icon: "✅", cardClass: "bg-indigo-600/10 border-indigo-500/20" },
-                  { label: "Giao hàng & cập nhật", sub: "Food cost POS cập nhật tự động", status: "Done", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-green-600 to-emerald-600", icon: "🚚", cardClass: "bg-green-600/10 border-green-500/20" },
+                  { label: "Noko POS", sub: "Beef Pho: 2 kg left ↓", status: "Low", statusColor: "text-orange-400 bg-orange-400/10", iconBg: "from-indigo-600 to-purple-600", icon: "💻", cardClass: "bg-indigo-600/10 border-indigo-500/20" },
+                  { label: "Auto Order Created", sub: "Beef Pho · 10 kg · Noko Supply", status: "Pending Approval", statusColor: "text-purple-300 bg-purple-500/10", iconBg: "from-purple-600 to-pink-600", icon: "📋", cardClass: "bg-purple-600/10 border-purple-500/20" },
+                  { label: "Restaurant Owner Approves", sub: "One tap in the app — done", status: "✓ Approved", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-indigo-600 to-purple-600", icon: "✅", cardClass: "bg-indigo-600/10 border-indigo-500/20" },
+                  { label: "Delivery & Update", sub: "POS food cost updates automatically", status: "Done", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-green-600 to-emerald-600", icon: "🚚", cardClass: "bg-green-600/10 border-green-500/20" },
                 ].map((step, i) => (
                   <div key={step.label}>
                     <motion.div
@@ -523,7 +523,7 @@ export function NokoPOS() {
               className="text-center mb-20"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">Tại Sao Chọn</span>
+                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">Why Choose</span>
                 <br />
                 <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Noko POS?</span>
               </h2>
@@ -537,10 +537,10 @@ export function NokoPOS() {
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
             >
               {[
-                { icon: TrendingUp, title: "Tăng doanh thu", desc: "Tăng trung bình 35% doanh thu sau 6 tháng sử dụng", colorClass: "text-blue-400", bgClass: "bg-blue-600/20", borderClass: "border-blue-500/30" },
-                { icon: Clock, title: "Tiết kiệm thời gian", desc: "Giảm 60% thời gian xử lý đơn hàng và quản lý", colorClass: "text-green-400", bgClass: "bg-green-600/20", borderClass: "border-green-500/30" },
-                { icon: Shield, title: "Bảo mật tối đa", desc: "Dữ liệu được mã hóa và sao lưu tự động hàng ngày", colorClass: "text-purple-400", bgClass: "bg-purple-600/20", borderClass: "border-purple-500/30" },
-                { icon: Star, title: "Hỗ trợ 24/7", desc: "Đội ngũ hỗ trợ kỹ thuật luôn sẵn sàng giúp đỡ", colorClass: "text-orange-400", bgClass: "bg-orange-600/20", borderClass: "border-orange-500/30" },
+                { icon: TrendingUp, title: "Increase Revenue", desc: "Average 35% revenue increase after 6 months of use", colorClass: "text-blue-400", bgClass: "bg-blue-600/20", borderClass: "border-blue-500/30" },
+                { icon: Clock, title: "Save Time", desc: "Reduce order processing and management time by 60%", colorClass: "text-green-400", bgClass: "bg-green-600/20", borderClass: "border-green-500/30" },
+                { icon: Shield, title: "Maximum Security", desc: "Data encrypted and automatically backed up daily", colorClass: "text-purple-400", bgClass: "bg-purple-600/20", borderClass: "border-purple-500/30" },
+                { icon: Star, title: "24/7 Support", desc: "Technical support team always ready to help", colorClass: "text-orange-400", bgClass: "bg-orange-600/20", borderClass: "border-orange-500/30" },
               ].map((benefit, index) => (
                 <motion.div key={benefit.title} variants={itemVariants} whileHover={{ y: -10, scale: 1.05 }} className="text-center group">
                   <FloatingElement delay={index * 0.2}>
@@ -574,10 +574,10 @@ export function NokoPOS() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center"
           >
             {[
-              { value: "500+", label: "Nhà hàng tin dùng" },
-              { value: "1M+", label: "Đơn hàng mỗi tháng" },
-              { value: "99.9%", label: "Uptime hệ thống" },
-              { value: "4.9/5", label: "Đánh giá khách hàng" },
+              { value: "500+", label: "Restaurants Trust Us" },
+              { value: "1M+", label: "Orders Per Month" },
+              { value: "99.9%", label: "System Uptime" },
+              { value: "4.9/5", label: "Customer Rating" },
             ].map((stat, index) => (
               <motion.div key={stat.label} variants={itemVariants}>
                 <motion.div whileHover={{ scale: 1.1, rotate: 5 }} transition={{ duration: 0.3 }} className="relative">
@@ -610,11 +610,11 @@ export function NokoPOS() {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">Bắt Đầu Ngay</span>
+                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">Get Started</span>
                 <br />
-                <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Hôm Nay</span>
+                <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Today</span>
               </h2>
-              <p className="text-xl text-gray-500">Điền thông tin bên dưới, chúng tôi sẽ liên hệ với bạn trong vòng 24h</p>
+              <p className="text-xl text-gray-500">Fill in the form below and we'll reach out within 24 hours</p>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
@@ -626,12 +626,12 @@ export function NokoPOS() {
                 className="space-y-8"
               >
                 <div>
-                  <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">Tại sao nên chọn chúng tôi?</h3>
+                  <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">Why choose us?</h3>
                   <div className="space-y-6">
                     {[
-                      { icon: Zap, title: "Triển khai nhanh chóng", desc: "Chỉ trong 48h, hệ thống của bạn đã sẵn sàng hoạt động", grad: "from-indigo-600 to-purple-600" },
-                      { icon: Users, title: "Đào tạo miễn phí", desc: "Đào tạo toàn bộ nhân viên và hỗ trợ tận tình", grad: "from-green-600 to-emerald-600" },
-                      { icon: Shield, title: "Bảo hành trọn đời", desc: "Bảo hành phần mềm và hỗ trợ kỹ thuật 24/7", grad: "from-orange-600 to-red-600" },
+                      { icon: Zap, title: "Fast Implementation", desc: "In just 48 hours, your system is ready to go", grad: "from-indigo-600 to-purple-600" },
+                      { icon: Users, title: "Free Training", desc: "Train your entire team with dedicated support", grad: "from-green-600 to-emerald-600" },
+                      { icon: Shield, title: "Lifetime Warranty", desc: "Lifetime software warranty and 24/7 technical support", grad: "from-orange-600 to-red-600" },
                     ].map((item) => (
                       <motion.div key={item.title} whileHover={{ x: 10, scale: 1.02 }} className="flex items-start gap-4">
                         <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.grad} flex items-center justify-center flex-shrink-0`}>
@@ -647,7 +647,7 @@ export function NokoPOS() {
                 </div>
 
                 <div className="pt-6 border-t border-white/10">
-                  <h4 className="text-lg font-semibold text-white mb-4">Liên hệ trực tiếp</h4>
+                  <h4 className="text-lg font-semibold text-white mb-4">Contact Us Directly</h4>
                   <div className="space-y-3 text-gray-400">
                     <motion.div whileHover={{ x: 5 }} className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-indigo-600/20 flex items-center justify-center">
@@ -682,12 +682,12 @@ export function NokoPOS() {
                     <form className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                          <label htmlFor="name" className="block text-sm font-medium mb-3 text-gray-400">Họ và tên *</label>
-                          <Input id="name" placeholder="Nguyễn Văn A" required className="bg-input-background border-white/10 focus:border-indigo-500 h-12" />
+                          <label htmlFor="name" className="block text-sm font-medium mb-3 text-gray-400">Full Name *</label>
+                          <Input id="name" placeholder="John Smith" required className="bg-input-background border-white/10 focus:border-indigo-500 h-12" />
                         </div>
                         <div>
-                          <label htmlFor="phone" className="block text-sm font-medium mb-3 text-gray-400">Số điện thoại *</label>
-                          <Input id="phone" placeholder="0901234567" required className="bg-input-background border-white/10 focus:border-indigo-500 h-12" />
+                          <label htmlFor="phone" className="block text-sm font-medium mb-3 text-gray-400">Phone Number *</label>
+                          <Input id="phone" placeholder="(714) 555-0123" required className="bg-input-background border-white/10 focus:border-indigo-500 h-12" />
                         </div>
                       </div>
                       <div>
@@ -695,20 +695,20 @@ export function NokoPOS() {
                         <Input id="email" type="email" placeholder="email@example.com" required className="bg-input-background border-white/10 focus:border-indigo-500 h-12" />
                       </div>
                       <div>
-                        <label htmlFor="restaurant" className="block text-sm font-medium mb-3 text-gray-400">Tên nhà hàng</label>
-                        <Input id="restaurant" placeholder="Tên nhà hàng của bạn" className="bg-input-background border-white/10 focus:border-indigo-500 h-12" />
+                        <label htmlFor="restaurant" className="block text-sm font-medium mb-3 text-gray-400">Restaurant Name</label>
+                        <Input id="restaurant" placeholder="Your restaurant name" className="bg-input-background border-white/10 focus:border-indigo-500 h-12" />
                       </div>
                       <div>
-                        <label htmlFor="branches" className="block text-sm font-medium mb-3 text-gray-400">Số lượng chi nhánh</label>
+                        <label htmlFor="branches" className="block text-sm font-medium mb-3 text-gray-400">Number of Locations</label>
                         <Input id="branches" type="number" placeholder="1" className="bg-input-background border-white/10 focus:border-indigo-500 h-12" />
                       </div>
                       <div>
-                        <label htmlFor="message" className="block text-sm font-medium mb-3 text-gray-400">Ghi chú</label>
-                        <Textarea id="message" placeholder="Cho chúng tôi biết thêm về nhu cầu của bạn..." rows={4} className="bg-input-background border-white/10 focus:border-indigo-500" />
+                        <label htmlFor="message" className="block text-sm font-medium mb-3 text-gray-400">Notes</label>
+                        <Textarea id="message" placeholder="Tell us more about your needs..." rows={4} className="bg-input-background border-white/10 focus:border-indigo-500" />
                       </div>
                       <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                         <Button type="submit" size="lg" className="w-full h-14 text-lg bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0 shadow-2xl shadow-indigo-500/50 group">
-                          Gửi yêu cầu tư vấn
+                          Book a Consultation
                           <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Button>
                       </motion.div>
