@@ -1,56 +1,42 @@
+import { Link } from "react-router";
 import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
-import { Input } from "../components/ui/input";
-import { Textarea } from "../components/ui/textarea";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { useEffect, useState, useRef } from "react";
 import {
-  ShoppingCart,
-  BarChart3,
-  Users,
-  Smartphone,
-  Cloud,
-  Zap,
-  TrendingUp,
-  Clock,
-  Shield,
-  Star,
   ArrowRight,
+  Star,
+  AlertTriangle,
+  PackageSearch,
+  BookOpen,
+  MonitorSmartphone,
+  GraduationCap,
+  ShoppingBasket,
+  Facebook,
+  Youtube,
+  MessageCircle,
+  CheckCircle2,
 } from "lucide-react";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
+// ── Scroll Progress Bar ──────────────────────────────────────────────────────
+function ScrollProgress() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  return (
+    <motion.div
+      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 origin-left z-50"
+      style={{ scaleX }}
+    />
+  );
+}
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 },
-  },
-};
-
-// Parallax Section Component
+// ── Parallax wrapper ─────────────────────────────────────────────────────────
 function ParallaxSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0]);
   return (
     <motion.div ref={ref} style={{ y, opacity }} className={className}>
       {children}
@@ -58,51 +44,24 @@ function ParallaxSection({ children, className = "" }: { children: React.ReactNo
   );
 }
 
-// Scroll Progress Bar
-function ScrollProgress() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
+// ── Stagger helpers ──────────────────────────────────────────────────────────
+const container = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
+};
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
-  return (
-    <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 transform origin-left z-50"
-      style={{ scaleX }}
-    />
-  );
-}
-
-// Floating Element Component
-function FloatingElement({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  return (
-    <motion.div
-      animate={{
-        y: [0, -20, 0],
-      }}
-      transition={{
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay,
-      }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
+// ── Main Component ───────────────────────────────────────────────────────────
 export function Home() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    const fn = (e: MouseEvent) => setMouse({ x: e.clientX, y: e.clientY });
+    window.addEventListener("mousemove", fn);
+    return () => window.removeEventListener("mousemove", fn);
   }, []);
 
   return (
@@ -110,173 +69,118 @@ export function Home() {
       <ScrollProgress />
       <Header />
 
-      {/* Cursor Glow Effect */}
+      {/* Cursor glow */}
       <motion.div
-        className="fixed w-96 h-96 rounded-full pointer-events-none z-0 blur-3xl"
+        className="fixed w-[500px] h-[500px] rounded-full pointer-events-none z-0 blur-3xl"
         style={{
-          background: "radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%)",
-          left: mousePosition.x - 192,
-          top: mousePosition.y - 192,
+          background: "radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)",
+          left: mouse.x - 250,
+          top: mouse.y - 250,
         }}
       />
 
-      {/* Hero Section */}
+      {/* ── HERO ─────────────────────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* Animated Background */}
-        <div className="absolute inset-0 overflow-hidden">
+        {/* Animated bg blobs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              rotate: [0, 90, 0],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="absolute top-1/4 -left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl"
+            animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
+            transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/4 -left-1/4 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-3xl"
           />
           <motion.div
-            animate={{
-              scale: [1, 1.3, 1],
-              rotate: [0, -90, 0],
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"
+            animate={{ scale: [1, 1.3, 1], rotate: [0, -90, 0] }}
+            transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+            className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-3xl"
           />
           <motion.div
-            animate={{
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-indigo-600/10 to-purple-600/10 rounded-full blur-3xl"
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-r from-indigo-600/8 to-purple-600/8 rounded-full blur-3xl"
           />
         </div>
 
-        <div className="container relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-600/20 to-purple-600/20 border border-indigo-500/30 mb-8"
-              >
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                >
-                  <Star className="w-4 h-4 text-indigo-400" />
-                </motion.div>
-                <span className="text-sm text-indigo-300">Được tin dùng bởi 500+ nhà hàng</span>
-              </motion.div>
-
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="block bg-gradient-to-r from-white via-indigo-200 to-purple-200 bg-clip-text text-transparent"
-                >
-                  Giải Pháp POS
-                </motion.span>
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="block bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
-                >
-                  Thế Hệ Mới
-                </motion.span>
-              </h1>
-
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-                className="text-xl text-gray-400 mb-10 leading-relaxed"
-              >
-                Nâng tầm trải nghiệm khách hàng và tối ưu hóa vận hành nhà hàng với công nghệ AI và đám mây tiên tiến nhất.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
-                className="flex flex-col sm:flex-row gap-4"
-              >
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    size="lg"
-                    className="text-lg px-10 h-14 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0 shadow-2xl shadow-indigo-500/50 group"
-                  >
-                    Dùng thử miễn phí
-                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="text-lg px-10 h-14 border-white/20 hover:bg-white/5 hover:border-white/40"
-                  >
-                    Xem demo
-                  </Button>
-                </motion.div>
-              </motion.div>
+        <div className="container relative z-10 text-center max-w-4xl">
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-indigo-600/20 to-purple-600/20 border border-indigo-500/30 mb-10"
+          >
+            <motion.div animate={{ rotate: 360 }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}>
+              <Star className="w-4 h-4 text-indigo-400" />
             </motion.div>
+            <span className="text-sm text-indigo-300 font-medium">Hệ sinh thái F&B #1 cho người Việt tại Mỹ</span>
+          </motion.div>
 
-            <FloatingElement delay={0.5}>
-              <motion.div
-                initial={{ opacity: 0, x: 50, rotateY: -15 }}
-                animate={{ opacity: 1, x: 0, rotateY: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                className="relative"
-              >
-                <motion.div
-                  animate={{
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 blur-3xl opacity-30 rounded-3xl"
-                />
-                <motion.div
-                  whileHover={{ scale: 1.02, rotateY: 5 }}
-                  transition={{ duration: 0.3 }}
-                  className="relative"
+          {/* Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
+          >
+            <span className="bg-gradient-to-r from-white via-indigo-100 to-purple-200 bg-clip-text text-transparent">
+              Xây dựng & vận hành
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              nhà hàng đúng cách
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-white/80 to-gray-400 bg-clip-text text-transparent text-4xl md:text-5xl lg:text-6xl">
+              — từ ngày đầu tiên
+            </span>
+          </motion.h1>
+
+          {/* Sub-text */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="text-xl text-gray-400 mb-12 leading-relaxed max-w-2xl mx-auto"
+          >
+            Noko cung cấp toàn bộ hạ tầng để người Việt kinh doanh F&B tại Mỹ vận hành chuyên nghiệp, tăng trưởng bền vững.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+              <a href="#ecosystem">
+                <Button
+                  size="lg"
+                  className="text-lg px-10 h-14 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0 shadow-2xl shadow-indigo-500/40 group"
                 >
-                  <ImageWithFallback
-                    src="https://images.unsplash.com/photo-1742238621804-62e3b4947d62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjByZXN0YXVyYW50JTIwUE9TJTIwc3lzdGVtfGVufDF8fHx8MTc3MjUzMDc1OHww&ixlib=rb-4.1.0&q=80&w=1080"
-                    alt="Modern POS System"
-                    className="rounded-3xl shadow-2xl w-full border border-white/10"
-                  />
-                </motion.div>
-              </motion.div>
-            </FloatingElement>
-          </div>
+                  Khám phá hệ sinh thái
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </a>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+              <a href="#about">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-lg px-10 h-14 border-white/20 hover:bg-white/5 hover:border-white/40"
+                >
+                  Xem câu chuyện Noko
+                </Button>
+              </a>
+            </motion.div>
+          </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
+          transition={{ delay: 1.2 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2"
         >
           <motion.div
@@ -284,386 +188,15 @@ export function Home() {
             transition={{ duration: 1.5, repeat: Infinity }}
             className="w-6 h-10 border-2 border-white/20 rounded-full flex items-start justify-center p-2"
           >
-            <motion.div className="w-1.5 h-1.5 bg-indigo-400 rounded-full" />
+            <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full" />
           </motion.div>
         </motion.div>
       </section>
 
-      {/* Clients Section */}
+      {/* ── PAIN POINTS ──────────────────────────────────────────────────────── */}
       <ParallaxSection>
-        <section id="clients" className="py-32 relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/10 to-transparent" />
-          <div className="container relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-20"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-                  Được Tin Dùng Bởi
-                </span>
-                <br />
-                <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                  Các Thương Hiệu Hàng Đầu
-                </span>
-              </h2>
-              <p className="text-xl text-gray-500 max-w-2xl mx-auto">
-                Hơn 500+ nhà hàng đã tin tưởng và phát triển cùng Noko Supply
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20"
-            >
-              {[
-                { name: "King Bánh Mì", gradient: "from-yellow-400 to-orange-500" },
-                { name: "Pizza Master", gradient: "from-red-500 to-red-700" },
-                { name: "Phở Việt", gradient: "from-green-500 to-teal-600" },
-                { name: "Café 24h", gradient: "from-purple-500 to-pink-600" },
-              ].map((brand, index) => (
-                <motion.div
-                  key={brand.name}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05, y: -5, rotate: Math.random() * 4 - 2 }}
-                  className="relative group"
-                >
-                  <motion.div
-                    animate={{
-                      opacity: [0.5, 0.7, 0.5],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      delay: index * 0.2,
-                    }}
-                    className={`absolute inset-0 bg-gradient-to-br ${brand.gradient} blur-xl rounded-2xl`}
-                  />
-                  <div className={`relative bg-gradient-to-br ${brand.gradient} text-white font-bold text-xl md:text-2xl px-8 py-8 rounded-2xl shadow-2xl flex items-center justify-center text-center`}>
-                    {brand.name}
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              className="grid md:grid-cols-3 gap-8"
-            >
-              {[
-                {
-                  name: "King Bánh Mì",
-                  branches: "15 chi nhánh",
-                  quote: "Noko Supply giúp chúng tôi quản lý hiệu quả hơn 15 chi nhánh. Doanh thu tăng 40% chỉ sau 6 tháng sử dụng.",
-                  img: "https://images.unsplash.com/photo-1556742393-d75f468bfcb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2ZmZWUlMjBzaG9wJTIwY2FzaGllciUyMHN5c3RlbXxlbnwxfHx8fDE3NzI1MzA3NTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-                },
-                {
-                  name: "Pizza Master",
-                  branches: "8 chi nhánh",
-                  quote: "Hệ thống đơn giản, dễ sử dụng. Nhân viên mới chỉ cần đào tạo 30 phút là có thể sử dụng thành thạo.",
-                  img: "https://images.unsplash.com/photo-1763867641258-c8ea40860f7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwc3RhZmYlMjB0YWJsZXQlMjBvcmRlcnxlbnwxfHx8fDE3NzI1MzA3NTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-                },
-                {
-                  name: "Phở Việt",
-                  branches: "20 chi nhánh",
-                  quote: "Báo cáo chi tiết giúp chúng tôi đưa ra quyết định kinh doanh chính xác và tối ưu chi phí vận hành.",
-                  img: "https://images.unsplash.com/photo-1771853327796-976c8862362f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwa2l0Y2hlbiUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzcyNTMwNzU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-                },
-              ].map((client, index) => (
-                <motion.div key={client.name} variants={itemVariants}>
-                  <motion.div
-                    whileHover={{ y: -10, rotateX: 5 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Card className="bg-card/50 backdrop-blur-xl border-white/10 hover:border-indigo-500/50 transition-all duration-300 group h-full">
-                      <CardContent className="pt-8">
-                        <div className="flex items-center gap-4 mb-6">
-                          <div className="relative">
-                            <motion.div
-                              animate={{
-                                scale: [1, 1.1, 1],
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                delay: index * 0.3,
-                              }}
-                              className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 blur-md opacity-50 rounded-full"
-                            />
-                            <ImageWithFallback
-                              src={client.img}
-                              alt={client.name}
-                              className="relative w-16 h-16 rounded-full object-cover border-2 border-white/20"
-                            />
-                          </div>
-                          <div>
-                            <div className="font-semibold text-white text-lg">{client.name}</div>
-                            <div className="text-sm text-gray-500">{client.branches}</div>
-                          </div>
-                        </div>
-                        <p className="text-gray-400 leading-relaxed">&ldquo;{client.quote}&rdquo;</p>
-                        <div className="flex gap-1 mt-4">
-                          {[...Array(5)].map((_, i) => (
-                            <motion.div
-                              key={i}
-                              initial={{ opacity: 0, scale: 0 }}
-                              whileInView={{ opacity: 1, scale: 1 }}
-                              transition={{ delay: i * 0.1 }}
-                              viewport={{ once: true }}
-                            >
-                              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                            </motion.div>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-      </ParallaxSection>
-
-      {/* Features Section */}
-      <ParallaxSection>
-        <section id="features" className="py-32 relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/10 to-transparent" />
-          <div className="container relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-20"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-                  Tính Năng
-                </span>
-                <br />
-                <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                  Vượt Trội
-                </span>
-              </h2>
-              <p className="text-xl text-gray-500 max-w-2xl mx-auto">
-                Tất cả những gì bạn cần để quản lý nhà hàng hiệu quả
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-              {[
-                {
-                  icon: ShoppingCart,
-                  title: "Quản lý đơn hàng",
-                  desc: "Xử lý đơn hàng nhanh chóng, tách/gộp bàn dễ dàng, hỗ trợ nhiều hình thức thanh toán.",
-                  color: "from-blue-500 to-cyan-500",
-                },
-                {
-                  icon: BarChart3,
-                  title: "Báo cáo chi tiết",
-                  desc: "Theo dõi doanh thu, chi phí, món ăn bán chạy với báo cáo trực quan và chi tiết.",
-                  color: "from-green-500 to-emerald-500",
-                },
-                {
-                  icon: Users,
-                  title: "Quản lý nhân viên",
-                  desc: "Phân quyền chi tiết, theo dõi ca làm việc, tính lương tự động cho nhân viên.",
-                  color: "from-purple-500 to-pink-500",
-                },
-                {
-                  icon: Smartphone,
-                  title: "Đa nền tảng",
-                  desc: "Hoạt động trên máy tính, tablet, điện thoại. Đồng bộ dữ liệu thời gian thực.",
-                  color: "from-orange-500 to-red-500",
-                },
-                {
-                  icon: Cloud,
-                  title: "Đám mây",
-                  desc: "Dữ liệu được lưu trữ an toàn trên cloud, truy cập mọi lúc mọi nơi với kết nối internet.",
-                  color: "from-teal-500 to-cyan-500",
-                },
-                {
-                  icon: Zap,
-                  title: "Tích hợp giao hàng",
-                  desc: "Kết nối với các nền tảng giao hàng như Grab, Shopee Food, GoFood một cách dễ dàng.",
-                  color: "from-yellow-500 to-orange-500",
-                },
-              ].map((feature, index) => (
-                <motion.div key={feature.title} variants={itemVariants}>
-                  <motion.div
-                    whileHover={{ scale: 1.05, y: -5, rotateZ: Math.random() * 2 - 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Card className="bg-card/50 backdrop-blur-xl border-white/10 hover:border-indigo-500/50 transition-all duration-300 group h-full relative overflow-hidden">
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-br from-indigo-600/5 to-purple-600/5"
-                        initial={{ opacity: 0 }}
-                        whileHover={{ opacity: 1 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                      <CardContent className="pt-8 relative">
-                        <motion.div
-                          className={`w-14 h-14 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg relative`}
-                          whileHover={{ rotate: 360 }}
-                          transition={{ duration: 0.6 }}
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl" />
-                          <feature.icon className="w-7 h-7 text-white relative z-10" />
-                        </motion.div>
-                        <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-indigo-300 transition-colors">
-                          {feature.title}
-                        </h3>
-                        <p className="text-gray-500 leading-relaxed">{feature.desc}</p>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-      </ParallaxSection>
-
-      {/* Benefits Section */}
-      <ParallaxSection>
-        <section id="benefits" className="py-32 relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/10 to-transparent" />
-          <div className="container relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-20"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-                  Tại Sao Chọn
-                </span>
-                <br />
-                <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                  Noko Supply?
-                </span>
-              </h2>
-            </motion.div>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
-            >
-              {[
-                { icon: TrendingUp, title: "Tăng doanh thu", desc: "Tăng trung bình 35% doanh thu sau 6 tháng sử dụng", color: "blue" },
-                { icon: Clock, title: "Tiết kiệm thời gian", desc: "Giảm 60% thời gian xử lý đơn hàng và quản lý", color: "green" },
-                { icon: Shield, title: "Bảo mật tối đa", desc: "Dữ liệu được mã hóa và sao lưu tự động hàng ngày", color: "purple" },
-                { icon: Star, title: "Hỗ trợ 24/7", desc: "Đội ngũ hỗ trợ kỹ thuật luôn sẵn sàng giúp đỡ", color: "orange" },
-              ].map((benefit, index) => (
-                <motion.div
-                  key={benefit.title}
-                  variants={itemVariants}
-                  whileHover={{ y: -10, scale: 1.05 }}
-                  className="text-center group"
-                >
-                  <FloatingElement delay={index * 0.2}>
-                    <div className={`w-20 h-20 bg-gradient-to-br from-${benefit.color}-600/20 to-${benefit.color}-600/5 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 border border-${benefit.color}-500/30`}>
-                      <benefit.icon className={`w-10 h-10 text-${benefit.color}-400`} />
-                    </div>
-                  </FloatingElement>
-                  <h3 className="text-xl font-semibold mb-3 text-white">{benefit.title}</h3>
-                  <p className="text-gray-500 leading-relaxed">{benefit.desc}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-      </ParallaxSection>
-
-      {/* Stats Section */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/10 via-purple-600/10 to-pink-600/10" />
-        <motion.div
-          animate={{
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            x: [0, -100, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"
-        />
-
-        <div className="container relative z-10">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid md:grid-cols-4 gap-12 text-center"
-          >
-            {[
-              { value: "500+", label: "Nhà hàng tin dùng" },
-              { value: "1M+", label: "Đơn hàng mỗi tháng" },
-              { value: "99.9%", label: "Uptime hệ thống" },
-              { value: "4.9/5", label: "Đánh giá khách hàng" },
-            ].map((stat, index) => (
-              <motion.div key={stat.label} variants={itemVariants}>
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.3 }}
-                  className="relative"
-                >
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1, type: "spring" }}
-                    className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-3"
-                  >
-                    {stat.value}
-                  </motion.div>
-                  <div className="text-gray-500 text-lg">{stat.label}</div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <ParallaxSection>
-        <section id="contact" className="py-32 relative">
+        <section id="about" className="py-32 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-950/5 to-transparent pointer-events-none" />
           <div className="container relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -672,210 +205,440 @@ export function Home() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-                  Bắt Đầu Ngay
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                  Người Việt mở quán tại Mỹ
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                  Hôm Nay
+                <span className="bg-gradient-to-r from-orange-400 to-rose-400 bg-clip-text text-transparent">
+                  đang gặp phải điều này...
                 </span>
               </h2>
-              <p className="text-xl text-gray-500">
-                Điền thông tin bên dưới, chúng tôi sẽ liên hệ với bạn trong vòng 24h
-              </p>
             </motion.div>
 
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
-              {/* Left Side - Info */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6 }}
-                className="space-y-8"
-              >
-                <div>
-                  <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-                    Tại sao nên chọn chúng tôi?
-                  </h3>
-                  <div className="space-y-6">
-                    <motion.div
-                      whileHover={{ x: 10, scale: 1.02 }}
-                      className="flex items-start gap-4"
-                    >
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center flex-shrink-0">
-                        <Zap className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-semibold text-white mb-2">Triển khai nhanh chóng</h4>
-                        <p className="text-gray-500">Chỉ trong 48h, hệ thống của bạn đã sẵn sàng hoạt động</p>
-                      </div>
-                    </motion.div>
-
-                    <motion.div
-                      whileHover={{ x: 10, scale: 1.02 }}
-                      className="flex items-start gap-4"
-                    >
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-600 to-emerald-600 flex items-center justify-center flex-shrink-0">
-                        <Users className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-semibold text-white mb-2">Đào tạo miễn phí</h4>
-                        <p className="text-gray-500">Đào tạo toàn bộ nhân viên và hỗ trợ tận tình</p>
-                      </div>
-                    </motion.div>
-
-                    <motion.div
-                      whileHover={{ x: 10, scale: 1.02 }}
-                      className="flex items-start gap-4"
-                    >
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-600 to-red-600 flex items-center justify-center flex-shrink-0">
-                        <Shield className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-semibold text-white mb-2">Bảo hành trọn đời</h4>
-                        <p className="text-gray-500">Bảo hành phần mềm và hỗ trợ kỹ thuật 24/7</p>
-                      </div>
-                    </motion.div>
-                  </div>
-                </div>
-
-                <div className="pt-6 border-t border-white/10">
-                  <h4 className="text-lg font-semibold text-white mb-4">Liên hệ trực tiếp</h4>
-                  <div className="space-y-3 text-gray-400">
-                    <motion.div whileHover={{ x: 5 }} className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-indigo-600/20 flex items-center justify-center">
-                        <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <span>info@nokosupply.com</span>
-                    </motion.div>
-                    <motion.div whileHover={{ x: 5 }} className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-green-600/20 flex items-center justify-center">
-                        <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                        </svg>
-                      </div>
-                      <span>(714) 555-0123</span>
-                    </motion.div>
-                    <motion.div whileHover={{ x: 5 }} className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-purple-600/20 flex items-center justify-center">
-                        <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                      </div>
-                      <span>California, United States</span>
-                    </motion.div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Right Side - Form */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <Card className="bg-card/50 backdrop-blur-xl border-white/10 shadow-2xl">
-                  <CardContent className="pt-10">
-                    <form className="space-y-6">
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <div>
-                          <label htmlFor="name" className="block text-sm font-medium mb-3 text-gray-400">
-                            Họ và tên *
-                          </label>
-                          <Input
-                            id="name"
-                            placeholder="Nguyễn Văn A"
-                            required
-                            className="bg-input-background border-white/10 focus:border-indigo-500 h-12"
-                          />
+            <motion.div
+              variants={container}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+            >
+              {[
+                {
+                  icon: AlertTriangle,
+                  title: "Vận hành bằng cảm tính",
+                  desc: "Không có hệ thống theo dõi, mọi quyết định đều dựa vào ước tính và kinh nghiệm cá nhân — dễ sai, khó sửa.",
+                  color: "from-orange-500/20 to-orange-500/5",
+                  border: "border-orange-500/20",
+                  iconColor: "text-orange-400",
+                },
+                {
+                  icon: PackageSearch,
+                  title: "Không biết lấy nguyên liệu",
+                  desc: "Tìm nguồn hàng chuẩn chất lượng, đúng giá tại Mỹ là bài toán nan giải với hầu hết chủ nhà hàng người Việt.",
+                  color: "from-yellow-500/20 to-yellow-500/5",
+                  border: "border-yellow-500/20",
+                  iconColor: "text-yellow-400",
+                },
+                {
+                  icon: BookOpen,
+                  title: "Thiếu kiến thức kinh doanh",
+                  desc: "Thị trường Mỹ có luật lệ, văn hóa tiêu dùng và cách vận hành rất khác — không có ai chỉ dẫn bài bản.",
+                  color: "from-rose-500/20 to-rose-500/5",
+                  border: "border-rose-500/20",
+                  iconColor: "text-rose-400",
+                },
+              ].map((pain) => (
+                <motion.div key={pain.title} variants={item}>
+                  <motion.div
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Card className={`bg-gradient-to-br ${pain.color} border ${pain.border} backdrop-blur-xl h-full relative overflow-hidden`}>
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-white/3 rounded-full -translate-y-16 translate-x-16" />
+                      <CardContent className="pt-8">
+                        <div className={`w-12 h-12 rounded-xl bg-white/5 border ${pain.border} flex items-center justify-center mb-5`}>
+                          <pain.icon className={`w-6 h-6 ${pain.iconColor}`} />
                         </div>
-                        <div>
-                          <label htmlFor="phone" className="block text-sm font-medium mb-3 text-gray-400">
-                            Số điện thoại *
-                          </label>
-                          <Input
-                            id="phone"
-                            placeholder="0901234567"
-                            required
-                            className="bg-input-background border-white/10 focus:border-indigo-500 h-12"
-                          />
+                        <h3 className="text-lg font-semibold text-white mb-3">{pain.title}</h3>
+                        <p className="text-gray-400 text-sm leading-relaxed">{pain.desc}</p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      </ParallaxSection>
+
+      {/* ── HỆ SINH THÁI ─────────────────────────────────────────────────────── */}
+      <section id="ecosystem" className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/15 to-transparent pointer-events-none" />
+        {/* Large decorative blob */}
+        <motion.div
+          animate={{ scale: [1, 1.15, 1], rotate: [0, 45, 0] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-indigo-600/8 via-purple-600/8 to-pink-600/8 rounded-full blur-3xl pointer-events-none"
+        />
+
+        <div className="container relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-20"
+          >
+            <p className="text-indigo-400 font-medium text-sm uppercase tracking-widest mb-4">Hệ sinh thái</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Ba giải pháp.</span>
+              <br />
+              <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Một hệ sinh thái.
+              </span>
+            </h2>
+            <p className="text-gray-500 max-w-xl mx-auto text-lg">
+              Mỗi sản phẩm giải quyết một bài toán cụ thể — cùng nhau tạo nên nền tảng F&B hoàn chỉnh.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            className="grid md:grid-cols-3 gap-8"
+          >
+            {[
+              {
+                icon: MonitorSmartphone,
+                name: "Noko POS",
+                tagline: "Giải pháp vận hành chuỗi nhà hàng",
+                desc: "Hệ thống POS thế hệ mới được thiết kế riêng cho nhà hàng người Việt tại Mỹ — quản lý đơn hàng, nhân viên, báo cáo thời gian thực.",
+                href: "/pos",
+                gradient: "from-indigo-600 to-blue-600",
+                glow: "shadow-indigo-500/30",
+                border: "hover:border-indigo-500/50",
+                features: ["Quản lý đơn hàng", "Báo cáo real-time", "Đa chi nhánh"],
+              },
+              {
+                icon: GraduationCap,
+                name: "Noko Academy",
+                tagline: "Đào tạo F&B chuyên nghiệp",
+                desc: "Chương trình đào tạo thực chiến cho chủ nhà hàng và nhân viên — từ vận hành, marketing đến quản lý tài chính tại thị trường Mỹ.",
+                href: "/academy",
+                gradient: "from-purple-600 to-indigo-600",
+                glow: "shadow-purple-500/30",
+                border: "hover:border-purple-500/50",
+                features: ["Khóa học thực chiến", "Mentor 1-1", "Cộng đồng hỗ trợ"],
+                featured: true,
+              },
+              {
+                icon: ShoppingBasket,
+                name: "Noko Supply",
+                tagline: "Nguyên liệu chuẩn từ vườn đến bàn",
+                desc: "Cung cấp nguyên liệu F&B chất lượng cao, giá cạnh tranh, giao tận nơi tại California — đặc biệt phù hợp với nhà hàng Việt.",
+                href: "/supply",
+                gradient: "from-pink-600 to-purple-600",
+                glow: "shadow-pink-500/30",
+                border: "hover:border-pink-500/50",
+                features: ["Nguyên liệu chuẩn", "Giao tận nơi", "Giá wholesale"],
+              },
+            ].map((svc) => (
+              <motion.div key={svc.name} variants={item} className="relative">
+                {svc.featured && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+                    <span className="px-4 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/30">
+                      Phổ biến nhất
+                    </span>
+                  </div>
+                )}
+                <Link to={svc.href} className="block h-full">
+                  <motion.div
+                    whileHover={{ y: -10, scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                    className="h-full"
+                  >
+                    <Card className={`bg-card/60 backdrop-blur-xl border-white/10 ${svc.border} transition-all duration-300 h-full relative overflow-hidden group cursor-pointer`}>
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-white/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      />
+                      <CardContent className="pt-8 flex flex-col h-full">
+                        <div className={`w-14 h-14 bg-gradient-to-br ${svc.gradient} rounded-2xl flex items-center justify-center mb-6 shadow-xl ${svc.glow} relative`}>
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl" />
+                          <svc.icon className="w-7 h-7 text-white relative z-10" />
                         </div>
-                      </div>
 
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium mb-3 text-gray-400">
-                          Email *
-                        </label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="email@example.com"
-                          required
-                          className="bg-input-background border-white/10 focus:border-indigo-500 h-12"
-                        />
-                      </div>
+                        <div className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">{svc.tagline}</div>
+                        <h3 className="text-2xl font-bold text-white mb-4">{svc.name}</h3>
+                        <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-1">{svc.desc}</p>
 
-                      <div>
-                        <label htmlFor="restaurant" className="block text-sm font-medium mb-3 text-gray-400">
-                          Tên nhà hàng
-                        </label>
-                        <Input
-                          id="restaurant"
-                          placeholder="Tên nhà hàng của bạn"
-                          className="bg-input-background border-white/10 focus:border-indigo-500 h-12"
-                        />
-                      </div>
+                        <ul className="space-y-2 mb-8">
+                          {svc.features.map((f) => (
+                            <li key={f} className="flex items-center gap-2 text-sm text-gray-400">
+                              <CheckCircle2 className="w-4 h-4 text-indigo-400 flex-shrink-0" />
+                              {f}
+                            </li>
+                          ))}
+                        </ul>
 
-                      <div>
-                        <label htmlFor="branches" className="block text-sm font-medium mb-3 text-gray-400">
-                          Số lượng chi nhánh
-                        </label>
-                        <Input
-                          id="branches"
-                          type="number"
-                          placeholder="1"
-                          className="bg-input-background border-white/10 focus:border-indigo-500 h-12"
-                        />
-                      </div>
-
-                      <div>
-                        <label htmlFor="message" className="block text-sm font-medium mb-3 text-gray-400">
-                          Ghi chú
-                        </label>
-                        <Textarea
-                          id="message"
-                          placeholder="Cho chúng tôi biết thêm về nhu cầu của bạn..."
-                          rows={4}
-                          className="bg-input-background border-white/10 focus:border-indigo-500"
-                        />
-                      </div>
-
-                      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                         <Button
-                          type="submit"
-                          size="lg"
-                          className="w-full h-14 text-lg bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0 shadow-2xl shadow-indigo-500/50 group"
+                          variant="outline"
+                          className="w-full border-white/15 hover:border-white/30 hover:bg-white/5 group/btn"
                         >
-                          Gửi yêu cầu tư vấn
-                          <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                          Tìm hiểu thêm
+                          <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                         </Button>
-                      </motion.div>
-                    </form>
-                  </CardContent>
-                </Card>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── SOCIAL PROOF ─────────────────────────────────────────────────────── */}
+      <ParallaxSection>
+        <section className="py-32 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/8 via-purple-600/8 to-pink-600/8 pointer-events-none" />
+          <motion.div
+            animate={{ x: [0, 80, 0], y: [0, 40, 0] }}
+            transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+            className="absolute top-0 left-1/4 w-80 h-80 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none"
+          />
+          <motion.div
+            animate={{ x: [0, -80, 0], y: [0, -40, 0] }}
+            transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+            className="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-600/15 rounded-full blur-3xl pointer-events-none"
+          />
+
+          <div className="container relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Được tin dùng bởi</span>
+                <br />
+                <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  500+ nhà hàng người Việt tại Mỹ
+                </span>
+              </h2>
+            </motion.div>
+
+            {/* Stats row */}
+            <motion.div
+              variants={container}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto mb-20"
+            >
+              {[
+                { value: "500+", label: "Nhà hàng đang dùng", sub: "tại California & 3 tiểu bang khác" },
+                { value: "4", label: "Tiểu bang phủ sóng", sub: "CA · TX · WA · GA" },
+                { value: "98%", label: "Khách hàng hài lòng", sub: "dựa trên khảo sát 2024" },
+              ].map((stat, i) => (
+                <motion.div key={stat.label} variants={item} className="text-center">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, type: "spring", stiffness: 200 }}
+                    className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-2"
+                  >
+                    {stat.value}
+                  </motion.div>
+                  <div className="text-white font-semibold text-lg mb-1">{stat.label}</div>
+                  <div className="text-gray-500 text-sm">{stat.sub}</div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Marquee brand logos */}
+            <div className="relative overflow-hidden">
+              <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
+              <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
+              <motion.div
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="flex gap-6 w-max"
+              >
+                {[
+                  { name: "King Bánh Mì", gradient: "from-yellow-500 to-orange-500" },
+                  { name: "Pizza Master", gradient: "from-red-500 to-red-700" },
+                  { name: "Phở Việt", gradient: "from-green-500 to-teal-600" },
+                  { name: "Café 24h", gradient: "from-purple-500 to-pink-600" },
+                  { name: "Bún Bò Huế", gradient: "from-orange-500 to-red-500" },
+                  { name: "Sài Gòn Kitchen", gradient: "from-teal-500 to-cyan-500" },
+                  // Duplicate for seamless loop
+                  { name: "King Bánh Mì", gradient: "from-yellow-500 to-orange-500" },
+                  { name: "Pizza Master", gradient: "from-red-500 to-red-700" },
+                  { name: "Phở Việt", gradient: "from-green-500 to-teal-600" },
+                  { name: "Café 24h", gradient: "from-purple-500 to-pink-600" },
+                  { name: "Bún Bò Huế", gradient: "from-orange-500 to-red-500" },
+                  { name: "Sài Gòn Kitchen", gradient: "from-teal-500 to-cyan-500" },
+                ].map((brand, i) => (
+                  <div
+                    key={`${brand.name}-${i}`}
+                    className={`flex-shrink-0 px-8 py-4 rounded-2xl bg-gradient-to-br ${brand.gradient} text-white font-bold text-base shadow-xl`}
+                  >
+                    {brand.name}
+                  </div>
+                ))}
               </motion.div>
             </div>
           </div>
         </section>
       </ParallaxSection>
 
-      <Footer />
+      {/* ── CTA FOOTER ───────────────────────────────────────────────────────── */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <motion.div
+            animate={{ scale: [1, 1.2, 1], rotate: [0, 60, 0] }}
+            transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-indigo-600/15 via-purple-600/15 to-pink-600/15 rounded-full blur-3xl"
+          />
+        </div>
+
+        <div className="container relative z-10">
+        <div className="max-w-3xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="text-indigo-400 font-medium text-sm uppercase tracking-widest mb-6">Bắt đầu ngay hôm nay</p>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
+              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                Sẵn sàng xây dựng
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                nhà hàng đúng cách?
+              </span>
+            </h2>
+            <p className="text-gray-500 text-lg mb-12 max-w-xl mx-auto">
+              Đội ngũ tư vấn của Noko sẵn sàng đồng hành cùng bạn — từ ngày đầu tiên đến khi vận hành ổn định.
+            </p>
+
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-block"
+            >
+              <Link to="/pos#contact">
+                <Button
+                  size="lg"
+                  className="text-lg px-14 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0 shadow-2xl shadow-indigo-500/40 group rounded-2xl"
+                >
+                  Liên hệ tư vấn miễn phí
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </motion.div>
+
+            <p className="text-gray-600 text-sm mt-6">Không mất phí · Phản hồi trong 24h · Tư vấn bằng tiếng Việt</p>
+          </motion.div>
+        </div>
+        </div>
+      </section>
+
+      {/* ── FOOTER ───────────────────────────────────────────────────────────── */}
+      <footer className="border-t border-white/8 bg-gradient-to-b from-background to-black/60">
+        <div className="container py-16">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
+            {/* Brand */}
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-7 h-7 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
+                  <Star className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  Noko
+                </span>
+              </div>
+              <p className="text-sm text-gray-500 mb-6 max-w-xs leading-relaxed">
+                Hệ sinh thái F&B toàn diện — giúp người Việt kinh doanh nhà hàng tại Mỹ đúng cách, từ ngày đầu tiên.
+              </p>
+              {/* Socials */}
+              <div className="flex gap-3">
+                {[
+                  { icon: Facebook, label: "Facebook" },
+                  { icon: MessageCircle, label: "Zalo" },
+                  { icon: Youtube, label: "YouTube" },
+                ].map((s) => (
+                  <motion.a
+                    key={s.label}
+                    href="#"
+                    aria-label={s.label}
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:text-indigo-400 hover:border-indigo-500/40 transition-colors"
+                  >
+                    <s.icon className="w-4 h-4" />
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+
+            {/* Links */}
+            <div>
+              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Dịch vụ</h4>
+              <ul className="space-y-3 text-sm text-gray-500">
+                {[
+                  { label: "Noko POS", href: "/pos" },
+                  { label: "Noko Academy", href: "/academy" },
+                  { label: "Noko Supply", href: "/supply" },
+                ].map((l) => (
+                  <li key={l.label}>
+                    <Link to={l.href} className="hover:text-indigo-400 transition-colors">{l.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Công ty</h4>
+              <ul className="space-y-3 text-sm text-gray-500">
+                {[
+                  { label: "Về chúng tôi", href: "#about" },
+                  { label: "Blog", href: "#blog" },
+                  { label: "Liên hệ", href: "#contact" },
+                ].map((l) => (
+                  <li key={l.label}>
+                    <a href={l.href} className="hover:text-indigo-400 transition-colors">{l.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Liên hệ</h4>
+              <ul className="space-y-3 text-sm text-gray-500">
+                <li>info@noko.com</li>
+                <li>(714) 555-0123</li>
+                <li>California, United States</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="pt-8 border-t border-white/8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600">
+            <p>&copy; 2026 Noko. All rights reserved.</p>
+            <div className="flex gap-6">
+              <a href="#" className="hover:text-gray-400 transition-colors">Chính sách bảo mật</a>
+              <a href="#" className="hover:text-gray-400 transition-colors">Điều khoản sử dụng</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
