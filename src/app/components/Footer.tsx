@@ -9,9 +9,9 @@ const services = [
 ];
 
 const companyLinks = [
-  { label: "About Us", href: "#about" },
+  { label: "About Us", href: "/about" },
   { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const socials = [
@@ -22,7 +22,7 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-gradient-to-b from-background to-black/50">
+    <footer className="border-t border-[#F5F0E8]/8 bg-[#0F1F52]">
       <div className="container py-16">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
           <motion.div
@@ -33,14 +33,14 @@ export function Footer() {
             className="md:col-span-2"
           >
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-7 h-7 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
-                <Star className="w-4 h-4 text-white" />
+              <div className="w-7 h-7 bg-gradient-to-br from-[#F5F0E8] to-[#E8C97A] rounded-lg flex items-center justify-center">
+                <Star className="w-4 h-4 text-[#F5F0E8]" />
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="text-xl font-bold bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#F5F0E8] bg-clip-text text-transparent">
                 Noko
               </span>
             </div>
-            <p className="text-sm text-gray-500 mb-6 max-w-xs leading-relaxed">
+            <p className="text-sm text-[#A89880] mb-6 max-w-xs leading-relaxed">
               A complete F&B ecosystem — helping Vietnamese Americans run restaurants the right way, from day one.
             </p>
             <div className="flex gap-3">
@@ -50,7 +50,7 @@ export function Footer() {
                   href="#"
                   aria-label={s.label}
                   whileHover={{ scale: 1.1, y: -2 }}
-                  className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:text-indigo-400 hover:border-indigo-500/40 transition-colors"
+                  className="w-9 h-9 rounded-lg bg-[#F5F0E8]/10 border border-[#F5F0E8]/10 flex items-center justify-center text-[#A89880] hover:text-[#E8C97A] hover:border-[#E8C97A]/40 transition-colors"
                 >
                   <s.icon className="w-4 h-4" />
                 </motion.a>
@@ -64,11 +64,11 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Services</h4>
-            <ul className="space-y-3 text-sm text-gray-500">
+            <h4 className="font-semibold text-[#F5F0E8] mb-4 text-sm uppercase tracking-wider">Services</h4>
+            <ul className="space-y-3 text-sm text-[#A89880]">
               {services.map((l) => (
                 <li key={l.label}>
-                  <Link to={l.href} className="hover:text-indigo-400 transition-colors">
+                  <Link to={l.href} className="hover:text-[#F5F0E8] transition-colors">
                     {l.label}
                   </Link>
                 </li>
@@ -82,16 +82,16 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Company</h4>
-            <ul className="space-y-3 text-sm text-gray-500">
+            <h4 className="font-semibold text-[#F5F0E8] mb-4 text-sm uppercase tracking-wider">Company</h4>
+            <ul className="space-y-3 text-sm text-[#A89880]">
               {companyLinks.map((l) => (
                 <li key={l.label}>
                   {l.href.startsWith("/") ? (
-                    <Link to={l.href} className="hover:text-indigo-400 transition-colors">
+                    <Link to={l.href} className="hover:text-[#F5F0E8] transition-colors">
                       {l.label}
                     </Link>
                   ) : (
-                    <a href={l.href} className="hover:text-indigo-400 transition-colors">
+                    <a href={l.href} className="hover:text-[#F5F0E8] transition-colors">
                       {l.label}
                     </a>
                   )}
@@ -106,8 +106,8 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Contact</h4>
-            <ul className="space-y-3 text-sm text-gray-500">
+            <h4 className="font-semibold text-[#F5F0E8] mb-4 text-sm uppercase tracking-wider">Contact</h4>
+            <ul className="space-y-3 text-sm text-[#A89880]">
               <li>info@noko.com</li>
               <li>(714) 555-0123</li>
               <li>California, United States</li>
@@ -120,14 +120,14 @@ export function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600"
+          className="pt-8 border-t border-[#F5F0E8]/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#A89880]"
         >
           <p>&copy; 2026 Noko. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-gray-400 transition-colors">
+            <a href="#" className="hover:text-[#C4BAA8] transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-gray-400 transition-colors">
+            <a href="#" className="hover:text-[#C4BAA8] transition-colors">
               Terms of Use
             </a>
           </div>

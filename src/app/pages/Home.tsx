@@ -21,7 +21,7 @@ function ScrollProgress() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 origin-left z-50"
+      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1B2B6B] via-[#E8C97A] to-[#F5F0E8] origin-left z-50"
       style={{ scaleX }}
     />
   );
@@ -61,14 +61,14 @@ export function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#1B2B6B] via-[#1B2B6B] to-[#0F1F52] overflow-x-hidden">
       <ScrollProgress />
 
       {/* Cursor glow */}
       <motion.div
         className="fixed w-[500px] h-[500px] rounded-full pointer-events-none z-0 blur-3xl"
         style={{
-          background: "radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(245,240,232,0.12) 0%, transparent 70%)",
           left: mouse.x - 250,
           top: mouse.y - 250,
         }}
@@ -81,17 +81,17 @@ export function Home() {
           <motion.div
             animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
             transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/4 -left-1/4 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-3xl"
+            className="absolute top-1/4 -left-1/4 w-[500px] h-[500px] bg-[#F5F0E8]/10 rounded-full blur-3xl"
           />
           <motion.div
             animate={{ scale: [1, 1.3, 1], rotate: [0, -90, 0] }}
             transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-3xl"
+            className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-[#E8C97A]/10 rounded-full blur-3xl"
           />
           <motion.div
             animate={{ scale: [1, 1.1, 1] }}
             transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-r from-indigo-600/8 to-purple-600/8 rounded-full blur-3xl"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-r from-[#F5F0E8]/10 to-[#E8C97A]/10 rounded-full blur-3xl"
           />
         </div>
 
@@ -101,12 +101,12 @@ export function Home() {
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-indigo-600/20 to-purple-600/20 border border-indigo-500/30 mb-10"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r bg-[#F5F0E8]/10 border border-[#F5F0E8]/20 mb-10"
           >
             <motion.div animate={{ rotate: 360 }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}>
-              <Star className="w-4 h-4 text-indigo-400" />
+              <Star className="w-4 h-4 text-[#E8C97A]" />
             </motion.div>
-            <span className="text-sm text-indigo-300 font-medium">#1 F&B Ecosystem for Vietnamese in the US</span>
+            <span className="text-sm text-[#F5F0E8] font-medium">#1 F&B Ecosystem for Vietnamese in the US</span>
           </motion.div>
 
           {/* Headline */}
@@ -116,15 +116,15 @@ export function Home() {
             transition={{ duration: 0.8, delay: 0.15 }}
             className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
           >
-            <span className="bg-gradient-to-r from-white via-indigo-100 to-purple-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#F5F0E8] bg-clip-text text-transparent">
               Build & operate
             </span>
             <br />
-            <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#F5F0E8] bg-clip-text text-transparent">
               your restaurant the right way
             </span>
             <br />
-            <span className="bg-gradient-to-r from-white/80 to-gray-400 bg-clip-text text-transparent text-4xl md:text-5xl lg:text-6xl">
+            <span className="bg-gradient-to-r from-[#F5F0E8]/80 to-[#C4BAA8] bg-clip-text text-transparent text-4xl md:text-5xl lg:text-6xl">
               — from day one
             </span>
           </motion.h1>
@@ -134,7 +134,7 @@ export function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="text-xl text-gray-400 mb-12 leading-relaxed max-w-2xl mx-auto"
+            className="text-xl text-[#C4BAA8] mb-12 leading-relaxed max-w-2xl mx-auto"
           >
             Noko provides the full infrastructure for Vietnamese F&B business owners in the US to run professionally and grow sustainably.
           </motion.p>
@@ -150,7 +150,7 @@ export function Home() {
               <a href="#ecosystem">
                 <Button
                   size="lg"
-                  className="text-lg px-10 h-14 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0 shadow-2xl shadow-indigo-500/40 group"
+                  className="text-lg px-10 h-14 bg-[#F5F0E8] text-[#1B2B6B] hover:bg-[#E8C97A] hover:text-[#1B2B6B] border-0 shadow-2xl shadow-[#F5F0E8]/20 group"
                 >
                   Explore the Ecosystem
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -162,7 +162,7 @@ export function Home() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="text-lg px-10 h-14 border-white/20 hover:bg-white/5 hover:border-white/40"
+                  className="text-lg px-10 h-14 border-[#F5F0E8]/20 hover:bg-[#F5F0E8]/10 hover:border-[#F5F0E8]/40"
                 >
                   See the Noko Story
                 </Button>
@@ -181,9 +181,9 @@ export function Home() {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-white/20 rounded-full flex items-start justify-center p-2"
+            className="w-6 h-10 border-2 border-[#F5F0E8]/20 rounded-full flex items-start justify-center p-2"
           >
-            <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full" />
+            <div className="w-1.5 h-1.5 bg-[#E8C97A] rounded-full" />
           </motion.div>
         </motion.div>
       </section>
@@ -191,7 +191,7 @@ export function Home() {
       {/* ── PAIN POINTS ──────────────────────────────────────────────────────── */}
       <ParallaxSection>
         <section id="about" className="py-32 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-950/5 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0F1F52]/20 to-transparent pointer-events-none" />
           <div className="container relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -201,11 +201,11 @@ export function Home() {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#F5F0E8] to-[#C4BAA8] bg-clip-text text-transparent">
                   Vietnamese opening restaurants in the US
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-orange-400 to-rose-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#E8C97A] to-[#F5F0E8] bg-clip-text text-transparent">
                   are running into this...
                 </span>
               </h2>
@@ -223,7 +223,7 @@ export function Home() {
                   icon: AlertTriangle,
                   title: "Operating on gut instinct",
                   desc: "No tracking system — every decision relies on guesswork and personal experience. Easy to get wrong, hard to fix.",
-                  color: "from-orange-500/20 to-orange-500/5",
+                  color: "from-[#E8C97A] to-[#C4BAA8]",
                   border: "border-orange-500/20",
                   iconColor: "text-orange-400",
                 },
@@ -239,9 +239,9 @@ export function Home() {
                   icon: BookOpen,
                   title: "Lacking business know-how",
                   desc: "The US market has different regulations, consumer culture, and operations — with no structured guidance to show the way.",
-                  color: "from-rose-500/20 to-rose-500/5",
-                  border: "border-rose-500/20",
-                  iconColor: "text-rose-400",
+                  color: "from-[#E8C97A] to-[#C4BAA8]",
+                  border: "border-[#E8C97A]/20",
+                  iconColor: "text-[#E8C97A]",
                 },
               ].map((pain) => (
                 <motion.div key={pain.title} variants={item}>
@@ -250,13 +250,13 @@ export function Home() {
                     transition={{ duration: 0.3 }}
                   >
                     <Card className={`bg-gradient-to-br ${pain.color} border ${pain.border} backdrop-blur-xl h-full relative overflow-hidden`}>
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-white/3 rounded-full -translate-y-16 translate-x-16" />
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-[#F5F0E8]/10 rounded-full -translate-y-16 translate-x-16" />
                       <CardContent className="pt-8">
-                        <div className={`w-12 h-12 rounded-xl bg-white/5 border ${pain.border} flex items-center justify-center mb-5`}>
+                        <div className={`w-12 h-12 rounded-xl bg-[#F5F0E8]/10 border ${pain.border} flex items-center justify-center mb-5`}>
                           <pain.icon className={`w-6 h-6 ${pain.iconColor}`} />
                         </div>
-                        <h3 className="text-lg font-semibold text-white mb-3">{pain.title}</h3>
-                        <p className="text-gray-400 text-sm leading-relaxed">{pain.desc}</p>
+                        <h3 className="text-lg font-semibold text-[#F5F0E8] mb-3">{pain.title}</h3>
+                        <p className="text-[#C4BAA8] text-sm leading-relaxed">{pain.desc}</p>
                       </CardContent>
                     </Card>
                   </motion.div>
@@ -270,11 +270,11 @@ export function Home() {
       {/* ── HỆ SINH THÁI ─────────────────────────────────────────────────────── */}
       <section id="ecosystem" className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/15 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#E8C97A] to-transparent" />
           <motion.div
             animate={{ scale: [1, 1.15, 1], rotate: [0, 45, 0] }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-indigo-600/8 via-purple-600/8 to-pink-600/8 rounded-full blur-3xl"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-[#F5F0E8]/10 via-[#E8C97A]/10 to-[#F5F0E8]/10 rounded-full blur-3xl"
           />
         </div>
 
@@ -286,15 +286,15 @@ export function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-20"
           >
-            <p className="text-indigo-400 font-medium text-sm uppercase tracking-widest mb-4">Ecosystem</p>
+            <p className="text-[#E8C97A] font-medium text-sm uppercase tracking-widest mb-4">Ecosystem</p>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Three solutions.</span>
+              <span className="bg-gradient-to-r from-[#F5F0E8] to-[#C4BAA8] bg-clip-text text-transparent">Three solutions.</span>
               <br />
-              <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#F5F0E8] bg-clip-text text-transparent">
                 One ecosystem.
               </span>
             </h2>
-            <p className="text-gray-500 max-w-xl mx-auto text-lg">
+            <p className="text-[#A89880] max-w-xl mx-auto text-lg">
               Each product solves a specific challenge — together they form a complete F&B platform.
             </p>
           </motion.div>
@@ -313,9 +313,9 @@ export function Home() {
                 tagline: "Restaurant chain operations solution",
                 desc: "A next-generation POS system built for Vietnamese restaurants in the US — order management, staff tracking, and real-time reporting.",
                 href: "/pos",
-                gradient: "from-indigo-600 to-blue-600",
-                glow: "shadow-indigo-500/30",
-                border: "hover:border-indigo-500/50",
+                gradient: "from-[#F5F0E8] to-[#E8C97A]",
+                glow: "shadow-[#F5F0E8]/20",
+                border: "hover:border-[#E8C97A]/40",
                 features: ["Order management", "Real-time reporting", "Multi-location"],
               },
               {
@@ -324,9 +324,9 @@ export function Home() {
                 tagline: "Professional F&B training",
                 desc: "Hands-on training for restaurant owners and staff — from operations and marketing to financial management in the US market.",
                 href: "/academy",
-                gradient: "from-purple-600 to-indigo-600",
-                glow: "shadow-purple-500/30",
-                border: "hover:border-purple-500/50",
+                gradient: "from-[#E8C97A] to-[#F5F0E8]",
+                glow: "shadow-[#F5F0E8]/20",
+                border: "hover:border-[#E8C97A]/40",
                 features: ["Hands-on courses", "1-on-1 mentoring", "Support community"],
                 featured: true,
               },
@@ -336,16 +336,16 @@ export function Home() {
                 tagline: "Premium ingredients from farm to table",
                 desc: "High-quality F&B ingredients at competitive prices, delivered across California — specially curated for Vietnamese restaurants.",
                 href: "/supply",
-                gradient: "from-pink-600 to-purple-600",
-                glow: "shadow-pink-500/30",
-                border: "hover:border-pink-500/50",
+                gradient: "from-[#F5F0E8] to-[#C4BAA8]",
+                glow: "shadow-[#F5F0E8]/20",
+                border: "hover:border-[#E8C97A]/40",
                 features: ["Premium ingredients", "Doorstep delivery", "Wholesale pricing"],
               },
             ].map((svc) => (
               <motion.div key={svc.name} variants={item} className="relative">
                 {svc.featured && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
-                    <span className="px-4 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/30">
+                    <span className="px-4 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-[#E8C97A] to-[#F5F0E8] text-[#F5F0E8] shadow-lg shadow-[#F5F0E8]/20">
                       Most popular
                     </span>
                   </div>
@@ -356,24 +356,24 @@ export function Home() {
                     transition={{ duration: 0.3 }}
                     className="h-full"
                   >
-                    <Card className={`bg-card/60 backdrop-blur-xl border-white/10 ${svc.border} transition-all duration-300 h-full relative overflow-hidden group cursor-pointer`}>
+                    <Card className={`bg-[#243580]/80 backdrop-blur-xl border-[#F5F0E8]/10 ${svc.border} transition-all duration-300 h-full relative overflow-hidden group cursor-pointer`}>
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-br from-white/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className="absolute inset-0 bg-gradient-to-br from-[#F5F0E8]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       />
                       <CardContent className="pt-8 flex flex-col h-full">
                         <div className={`w-14 h-14 bg-gradient-to-br ${svc.gradient} rounded-2xl flex items-center justify-center mb-6 shadow-xl ${svc.glow} relative`}>
-                          <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl" />
-                          <svc.icon className="w-7 h-7 text-white relative z-10" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-[#F5F0E8]/20 to-transparent rounded-2xl" />
+                          <svc.icon className="w-7 h-7 text-[#F5F0E8] relative z-10" />
                         </div>
 
-                        <div className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">{svc.tagline}</div>
-                        <h3 className="text-2xl font-bold text-white mb-4">{svc.name}</h3>
-                        <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-1">{svc.desc}</p>
+                        <div className="text-xs font-semibold text-[#A89880] uppercase tracking-widest mb-2">{svc.tagline}</div>
+                        <h3 className="text-2xl font-bold text-[#F5F0E8] mb-4">{svc.name}</h3>
+                        <p className="text-[#C4BAA8] text-sm leading-relaxed mb-6 flex-1">{svc.desc}</p>
 
                         <ul className="space-y-2 mb-8">
                           {svc.features.map((f) => (
-                            <li key={f} className="flex items-center gap-2 text-sm text-gray-400">
-                              <CheckCircle2 className="w-4 h-4 text-indigo-400 flex-shrink-0" />
+                            <li key={f} className="flex items-center gap-2 text-sm text-[#C4BAA8]">
+                              <CheckCircle2 className="w-4 h-4 text-[#E8C97A] flex-shrink-0" />
                               {f}
                             </li>
                           ))}
@@ -381,7 +381,7 @@ export function Home() {
 
                         <Button
                           variant="outline"
-                          className="w-full border-white/15 hover:border-white/30 hover:bg-white/5 group/btn"
+                          className="w-full border-[#F5F0E8]/15 hover:border-[#F5F0E8]/30 hover:bg-[#F5F0E8]/10 group/btn"
                         >
                           Learn More
                           <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -400,16 +400,16 @@ export function Home() {
       <ParallaxSection>
         <section className="py-32 relative overflow-hidden">
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/8 via-purple-600/8 to-pink-600/8" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#F5F0E8]/10 via-[#E8C97A]/10 to-[#F5F0E8]/10" />
             <motion.div
               animate={{ x: [0, 80, 0], y: [0, 40, 0] }}
               transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-              className="absolute top-0 left-1/4 w-80 h-80 bg-indigo-600/15 rounded-full blur-3xl"
+              className="absolute top-0 left-1/4 w-80 h-80 bg-[#F5F0E8]/10 rounded-full blur-3xl"
             />
             <motion.div
               animate={{ x: [0, -80, 0], y: [0, -40, 0] }}
               transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
-              className="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-600/15 rounded-full blur-3xl"
+              className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#E8C97A]/10 rounded-full blur-3xl"
             />
           </div>
 
@@ -422,9 +422,9 @@ export function Home() {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Trusted by</span>
+                <span className="bg-gradient-to-r from-[#F5F0E8] to-[#C4BAA8] bg-clip-text text-transparent">Trusted by</span>
                 <br />
-                <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#F5F0E8] bg-clip-text text-transparent">
                   500+ Vietnamese restaurants in the US
                 </span>
               </h2>
@@ -449,43 +449,43 @@ export function Home() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, type: "spring", stiffness: 200 }}
-                    className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-2"
+                    className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#F5F0E8] bg-clip-text text-transparent mb-2"
                   >
                     {stat.value}
                   </motion.div>
-                  <div className="text-white font-semibold text-lg mb-1">{stat.label}</div>
-                  <div className="text-gray-500 text-sm">{stat.sub}</div>
+                  <div className="text-[#F5F0E8] font-semibold text-lg mb-1">{stat.label}</div>
+                  <div className="text-[#A89880] text-sm">{stat.sub}</div>
                 </motion.div>
               ))}
             </motion.div>
 
             {/* Marquee brand logos */}
             <div className="relative overflow-hidden">
-              <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
-              <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
+              <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#1B2B6B] to-transparent z-10" />
+              <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#1B2B6B] to-transparent z-10" />
               <motion.div
                 animate={{ x: ["0%", "-50%"] }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 className="flex gap-6 w-max"
               >
                 {[
-                  { name: "King Banh Mi", gradient: "from-yellow-500 to-orange-500" },
+                  { name: "King Banh Mi", gradient: "from-yellow-500 to-[#C4BAA8]" },
                   { name: "Pizza Master", gradient: "from-red-500 to-red-700" },
                   { name: "Pho Viet", gradient: "from-green-500 to-teal-600" },
-                  { name: "Cafe 24H", gradient: "from-purple-500 to-pink-600" },
-                  { name: "Bun Bo Hue", gradient: "from-orange-500 to-red-500" },
+                  { name: "Cafe 24H", gradient: "from-[#E8C97A] to-[#C4BAA8]" },
+                  { name: "Bun Bo Hue", gradient: "from-[#E8C97A] to-red-500" },
                   { name: "Saigon Kitchen", gradient: "from-teal-500 to-cyan-500" },
                   // Duplicate for seamless loop
-                  { name: "King Banh Mi", gradient: "from-yellow-500 to-orange-500" },
+                  { name: "King Banh Mi", gradient: "from-yellow-500 to-[#C4BAA8]" },
                   { name: "Pizza Master", gradient: "from-red-500 to-red-700" },
                   { name: "Pho Viet", gradient: "from-green-500 to-teal-600" },
-                  { name: "Cafe 24H", gradient: "from-purple-500 to-pink-600" },
-                  { name: "Bun Bo Hue", gradient: "from-orange-500 to-red-500" },
+                  { name: "Cafe 24H", gradient: "from-[#E8C97A] to-[#C4BAA8]" },
+                  { name: "Bun Bo Hue", gradient: "from-[#E8C97A] to-red-500" },
                   { name: "Saigon Kitchen", gradient: "from-teal-500 to-cyan-500" },
                 ].map((brand, i) => (
                   <div
                     key={`${brand.name}-${i}`}
-                    className={`flex-shrink-0 px-8 py-4 rounded-2xl bg-gradient-to-br ${brand.gradient} text-white font-bold text-base shadow-xl`}
+                    className={`flex-shrink-0 px-8 py-4 rounded-2xl bg-gradient-to-br ${brand.gradient} text-[#F5F0E8] font-bold text-base shadow-xl`}
                   >
                     {brand.name}
                   </div>
@@ -502,7 +502,7 @@ export function Home() {
           <motion.div
             animate={{ scale: [1, 1.2, 1], rotate: [0, 60, 0] }}
             transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-indigo-600/15 via-purple-600/15 to-pink-600/15 rounded-full blur-3xl"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-[#F5F0E8]/10 via-[#E8C97A]/10 to-[#F5F0E8]/10 rounded-full blur-3xl"
           />
         </div>
 
@@ -514,17 +514,17 @@ export function Home() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7 }}
           >
-            <p className="text-indigo-400 font-medium text-sm uppercase tracking-widest mb-6">Get started today</p>
+            <p className="text-[#E8C97A] font-medium text-sm uppercase tracking-widest mb-6">Get started today</p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
-              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#F5F0E8] to-[#C4BAA8] bg-clip-text text-transparent">
                 Ready to build
               </span>
               <br />
-              <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#F5F0E8] bg-clip-text text-transparent">
                 your restaurant the right way?
               </span>
             </h2>
-            <p className="text-gray-500 text-lg mb-12 max-w-xl mx-auto">
+            <p className="text-[#A89880] text-lg mb-12 max-w-xl mx-auto">
               Noko's advisory team is ready to partner with you — from day one through stable operations.
             </p>
 
@@ -536,7 +536,7 @@ export function Home() {
               <Link to="/pos#contact">
                 <Button
                   size="lg"
-                  className="text-lg px-14 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0 shadow-2xl shadow-indigo-500/40 group rounded-2xl"
+                  className="text-lg px-14 h-16 bg-[#F5F0E8] text-[#1B2B6B] hover:bg-[#E8C97A] hover:text-[#1B2B6B] border-0 shadow-2xl shadow-[#F5F0E8]/20 group rounded-2xl"
                 >
                   Get a free consultation
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -544,7 +544,7 @@ export function Home() {
               </Link>
             </motion.div>
 
-            <p className="text-gray-600 text-sm mt-6">No cost · Response within 24 hours · Vietnamese-language support</p>
+            <p className="text-[#A89880] text-sm mt-6">No cost · Response within 24 hours · Vietnamese-language support</p>
           </motion.div>
         </div>
         </div>

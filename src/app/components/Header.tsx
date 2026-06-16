@@ -9,19 +9,19 @@ const services = [
     name: "Noko POS",
     desc: "Restaurant chain operations solution",
     href: "/pos",
-    color: "from-indigo-500 to-purple-500",
+    color: "from-[#F5F0E8] to-[#E8C97A]",
   },
   {
     name: "Noko Academy",
     desc: "Professional F&B training",
     href: "/academy",
-    color: "from-purple-500 to-pink-500",
+    color: "from-[#E8C97A] to-[#F5F0E8]",
   },
   {
     name: "Noko Supply",
     desc: "Farm-to-table quality ingredients",
     href: "/supply",
-    color: "from-pink-500 to-rose-500",
+    color: "from-[#F5F0E8] to-[#C4BAA8]",
   },
 ];
 
@@ -45,7 +45,7 @@ export function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 z-50 w-full border-b border-white/10 bg-background/80 backdrop-blur-xl"
+      className="fixed top-0 z-50 w-full border-b border-[#F5F0E8]/10 bg-[#1B2B6B]/80 backdrop-blur-xl"
     >
       <div className="container flex h-20 items-center justify-between">
         {/* Logo */}
@@ -55,10 +55,10 @@ export function Header() {
           className="flex items-center gap-3 cursor-pointer"
         >
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 blur-lg opacity-50" />
-            <Sparkles className="relative w-8 h-8 text-indigo-400" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#F5F0E8] to-[#E8C97A] blur-lg opacity-50" />
+            <Sparkles className="relative w-8 h-8 text-[#E8C97A]" />
           </div>
-          <span className="text-2xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <span className="text-2xl font-bold bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#F5F0E8] bg-clip-text text-transparent">
             Noko
           </span>
         </motion.div>
@@ -73,9 +73,9 @@ export function Header() {
             { label: "Contact", href: "/contact", isRoute: true },
           ].map((item, index) => {
             const className =
-              "text-sm font-medium text-gray-400 hover:text-white transition-all duration-300 relative group";
+              "text-sm font-medium text-[#C4BAA8] hover:text-[#F5F0E8] transition-all duration-300 relative group";
             const underline = (
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 group-hover:w-full transition-all duration-300" />
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#F5F0E8] to-[#E8C97A] group-hover:w-full transition-all duration-300" />
             );
 
             if (item.isRoute) {
@@ -104,13 +104,13 @@ export function Header() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
               onClick={() => setIsServicesOpen(!isServicesOpen)}
-              className="flex items-center gap-1 text-sm font-medium text-gray-400 hover:text-white transition-all duration-300 relative group"
+              className="flex items-center gap-1 text-sm font-medium text-[#C4BAA8] hover:text-[#F5F0E8] transition-all duration-300 relative group"
             >
               Services
               <ChevronDown
                 className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? "rotate-180" : ""}`}
               />
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 group-hover:w-full transition-all duration-300" />
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#F5F0E8] to-[#E8C97A] group-hover:w-full transition-all duration-300" />
             </motion.button>
 
             {isServicesOpen && (
@@ -118,7 +118,7 @@ export function Header() {
                 initial={{ opacity: 0, y: 8, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.15 }}
-                className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 bg-card/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl shadow-black/50 overflow-hidden"
+                className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 bg-[#243580]/95 backdrop-blur-xl border border-[#F5F0E8]/10 rounded-2xl shadow-2xl shadow-black/50 overflow-hidden"
               >
                 <div className="p-2">
                   {services.map((svc) => (
@@ -126,14 +126,14 @@ export function Header() {
                       key={svc.name}
                       to={svc.href}
                       onClick={() => setIsServicesOpen(false)}
-                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 transition-colors group"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#F5F0E8]/10 transition-colors group"
                     >
                       <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${svc.color} flex items-center justify-center flex-shrink-0 opacity-80 group-hover:opacity-100`}>
-                        <Sparkles className="w-4 h-4 text-white" />
+                        <Sparkles className="w-4 h-4 text-[#F5F0E8]" />
                       </div>
                       <div>
-                        <div className="text-sm font-medium text-white">{svc.name}</div>
-                        <div className="text-xs text-gray-500">{svc.desc}</div>
+                        <div className="text-sm font-medium text-[#F5F0E8]">{svc.name}</div>
+                        <div className="text-xs text-[#A89880]">{svc.desc}</div>
                       </div>
                     </Link>
                   ))}
@@ -152,7 +152,7 @@ export function Header() {
             <Link to="/pos">
               <Button
                 size="sm"
-                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0 shadow-lg shadow-indigo-500/50 px-6"
+                className="bg-[#F5F0E8] text-[#1B2B6B] hover:bg-[#E8C97A] hover:text-[#1B2B6B] border-0 shadow-lg shadow-[#F5F0E8]/20 px-6"
               >
                 Get Started
               </Button>
@@ -162,7 +162,7 @@ export function Header() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2 text-gray-400 hover:text-white"
+          className="md:hidden p-2 text-[#C4BAA8] hover:text-[#F5F0E8]"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -176,7 +176,7 @@ export function Header() {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
-          className="md:hidden border-t border-white/10 bg-background/95 backdrop-blur-xl"
+          className="md:hidden border-t border-[#F5F0E8]/10 bg-[#1B2B6B]/95 backdrop-blur-xl"
         >
           <nav className="container flex flex-col gap-4 py-6">
             {[
@@ -189,24 +189,24 @@ export function Header() {
                 <Link
                   key={item.label}
                   to={item.href}
-                  className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                  className="text-sm font-medium text-[#C4BAA8] hover:text-[#F5F0E8] transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               ) : null
             )}
-            <div className="border-t border-white/10 pt-4">
-              <p className="text-xs text-gray-600 mb-3 uppercase tracking-wider">Services</p>
+            <div className="border-t border-[#F5F0E8]/10 pt-4">
+              <p className="text-xs text-[#A89880] mb-3 uppercase tracking-wider">Services</p>
               {services.map((svc) => (
                 <Link
                   key={svc.name}
                   to={svc.href}
-                  className="flex items-center gap-3 py-2 text-sm text-gray-400 hover:text-white transition-colors"
+                  className="flex items-center gap-3 py-2 text-sm text-[#C4BAA8] hover:text-[#F5F0E8] transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <div className={`w-6 h-6 rounded-md bg-gradient-to-br ${svc.color} flex items-center justify-center`}>
-                    <Sparkles className="w-3 h-3 text-white" />
+                    <Sparkles className="w-3 h-3 text-[#F5F0E8]" />
                   </div>
                   {svc.name}
                 </Link>
@@ -216,7 +216,7 @@ export function Header() {
               <Link to="/pos" onClick={() => setIsMenuOpen(false)}>
                 <Button
                   size="sm"
-                  className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500"
+                  className="w-full bg-[#F5F0E8] text-[#1B2B6B] hover:bg-[#E8C97A] hover:text-[#1B2B6B]"
                 >
                   Get Started
                 </Button>

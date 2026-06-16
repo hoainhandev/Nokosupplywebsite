@@ -14,7 +14,7 @@ function ScrollProgress() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 origin-left z-50"
+      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1B2B6B] via-[#E8C97A] to-[#F5F0E8] origin-left z-50"
       style={{ scaleX }}
     />
   );
@@ -61,7 +61,7 @@ export function BlogPost() {
   }, [post?.title]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#1B2B6B] via-[#1B2B6B] to-[#0F1F52] overflow-x-hidden">
       <ScrollProgress />
 
       <article className="relative pt-28 pb-32 overflow-hidden">
@@ -69,12 +69,12 @@ export function BlogPost() {
           <motion.div
             animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
             transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/4 -left-1/4 w-[500px] h-[500px] bg-indigo-600/15 rounded-full blur-3xl"
+            className="absolute top-1/4 -left-1/4 w-[500px] h-[500px] bg-[#F5F0E8]/10 rounded-full blur-3xl"
           />
           <motion.div
             animate={{ scale: [1, 1.3, 1], rotate: [0, -90, 0] }}
             transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-3xl"
+            className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-[#E8C97A]/10 rounded-full blur-3xl"
           />
         </div>
 
@@ -88,7 +88,7 @@ export function BlogPost() {
             <Link to="/blog">
               <Button
                 variant="ghost"
-                className="text-gray-400 hover:text-white p-0 h-auto group"
+                className="text-[#C4BAA8] hover:text-[#F5F0E8] p-0 h-auto group"
               >
                 <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
                 Back to Blog
@@ -98,16 +98,16 @@ export function BlogPost() {
 
           {loading && (
             <div className="flex flex-col items-center justify-center py-24 gap-4">
-              <Loader2 className="w-8 h-8 text-indigo-400 animate-spin" />
-              <p className="text-gray-500">Loading post...</p>
+              <Loader2 className="w-8 h-8 text-[#E8C97A] animate-spin" />
+              <p className="text-[#A89880]">Loading post...</p>
             </div>
           )}
 
           {error && (
             <div className="text-center py-24">
-              <p className="text-gray-400 mb-6">{error}</p>
+              <p className="text-[#C4BAA8] mb-6">{error}</p>
               <Link to="/blog">
-                <Button variant="outline" className="border-white/20 hover:bg-white/5">
+                <Button variant="outline" className="border-[#F5F0E8]/20 hover:bg-[#F5F0E8]/10">
                   Back to Blog
                 </Button>
               </Link>
@@ -116,10 +116,10 @@ export function BlogPost() {
 
           {notFound && !loading && !error && (
             <div className="text-center py-24">
-              <h1 className="text-3xl font-bold text-white mb-4">Post not found</h1>
-              <p className="text-gray-400 mb-8">This post doesn't exist or has been removed.</p>
+              <h1 className="text-3xl font-bold text-[#F5F0E8] mb-4">Post not found</h1>
+              <p className="text-[#C4BAA8] mb-8">This post doesn't exist or has been removed.</p>
               <Link to="/blog">
-                <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 border-0">
+                <Button className="bg-[#F5F0E8] text-[#1B2B6B] hover:bg-[#E8C97A] hover:text-[#1B2B6B] border-0">
                   Back to Blog
                 </Button>
               </Link>
@@ -134,16 +134,16 @@ export function BlogPost() {
             >
               <header className="mb-10">
                 {post.category && (
-                  <span className="inline-block px-3 py-1 mb-6 text-xs font-medium rounded-full bg-gradient-to-r from-indigo-600/20 to-purple-600/20 border border-indigo-500/30 text-indigo-300">
+                  <span className="inline-block px-3 py-1 mb-6 text-xs font-medium rounded-full bg-gradient-to-r bg-[#F5F0E8]/10 border border-[#F5F0E8]/20 text-[#F5F0E8]">
                     {post.category}
                   </span>
                 )}
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-                  <span className="bg-gradient-to-r from-white via-indigo-100 to-purple-200 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#F5F0E8] bg-clip-text text-transparent">
                     {post.title}
                   </span>
                 </h1>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
+                <div className="flex items-center gap-2 text-sm text-[#A89880]">
                   <Calendar className="w-4 h-4" />
                   <time dateTime={post.published_at ?? post.created_at}>
                     {formatPostDate(post)}
@@ -152,7 +152,7 @@ export function BlogPost() {
               </header>
 
               {post.thumbnail && (
-                <div className="mb-10 rounded-2xl overflow-hidden border border-white/10">
+                <div className="mb-10 rounded-2xl overflow-hidden border border-[#F5F0E8]/10">
                   <ImageWithFallback
                     src={post.thumbnail}
                     alt={post.title}

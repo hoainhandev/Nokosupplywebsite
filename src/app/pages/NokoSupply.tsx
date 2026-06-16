@@ -18,7 +18,7 @@ function ScrollProgress() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-600 via-rose-500 to-orange-500 origin-left z-50"
+      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1B2B6B] via-[#E8C97A] to-[#F5F0E8] origin-left z-50"
       style={{ scaleX }}
     />
   );
@@ -92,12 +92,12 @@ export function NokoSupply() {
   const tabs = ["All", "Produce", "Meat & Seafood", "Sauces & Seasonings", "Dry Goods", "Packaging"];
 
   const products = [
-    { name: "Fresh beef bones", unit: "kg", tab: "Meat & Seafood", badge: "Bestseller", badgeColor: "from-orange-500 to-red-500", icon: "🥩" },
+    { name: "Fresh beef bones", unit: "kg", tab: "Meat & Seafood", badge: "Bestseller", badgeColor: "from-[#E8C97A] to-red-500", icon: "🥩" },
     { name: "Water spinach", unit: "kg", tab: "Produce", badge: "Bestseller", badgeColor: "from-green-500 to-emerald-500", icon: "🥬" },
-    { name: "Phú Quốc fish sauce", unit: "case", tab: "Sauces & Seasonings", badge: "Bestseller", badgeColor: "from-orange-500 to-red-500", icon: "🍶" },
-    { name: "Frozen seafood mix", unit: "kg", tab: "Meat & Seafood", badge: "New", badgeColor: "from-blue-500 to-cyan-500", icon: "🦐" },
-    { name: "Jasmine rice", unit: "case", tab: "Dry Goods", badge: "Bestseller", badgeColor: "from-orange-500 to-red-500", icon: "🌾" },
-    { name: "Kraft take-out containers", unit: "box", tab: "Packaging", badge: "New", badgeColor: "from-blue-500 to-cyan-500", icon: "📦" },
+    { name: "Phú Quốc fish sauce", unit: "case", tab: "Sauces & Seasonings", badge: "Bestseller", badgeColor: "from-[#E8C97A] to-red-500", icon: "🍶" },
+    { name: "Frozen seafood mix", unit: "kg", tab: "Meat & Seafood", badge: "New", badgeColor: "from-[#F5F0E8] to-cyan-500", icon: "🦐" },
+    { name: "Jasmine rice", unit: "case", tab: "Dry Goods", badge: "Bestseller", badgeColor: "from-[#E8C97A] to-red-500", icon: "🌾" },
+    { name: "Kraft take-out containers", unit: "box", tab: "Packaging", badge: "New", badgeColor: "from-[#F5F0E8] to-cyan-500", icon: "📦" },
     { name: "Fresh bean sprouts", unit: "kg", tab: "Produce", badge: null, badgeColor: "", icon: "🌱" },
     { name: "Hoisin sauce", unit: "case", tab: "Sauces & Seasonings", badge: null, badgeColor: "", icon: "🫙" },
     { name: "Pork belly", unit: "kg", tab: "Meat & Seafood", badge: null, badgeColor: "", icon: "🥓" },
@@ -106,43 +106,43 @@ export function NokoSupply() {
   const filtered = activeTab === "All" ? products : products.filter(p => p.tab === activeTab);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#1B2B6B] via-[#1B2B6B] to-[#0F1F52] overflow-x-hidden">
       <ScrollProgress />
 
       <motion.div className="fixed w-[500px] h-[500px] rounded-full pointer-events-none z-0 blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(236,72,153,0.09) 0%, transparent 70%)", left: mouse.x - 250, top: mouse.y - 250 }} />
+        style={{ background: "radial-gradient(circle, rgba(245,240,232,0.09) 0%, transparent 70%)", left: mouse.x - 250, top: mouse.y - 250 }} />
 
       {/* ── HERO ─────────────────────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }} transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/4 -left-1/4 w-[500px] h-[500px] bg-pink-600/20 rounded-full blur-3xl" />
+            className="absolute top-1/4 -left-1/4 w-[500px] h-[500px] bg-[#F5F0E8]/10 rounded-full blur-3xl" />
           <motion.div animate={{ scale: [1, 1.3, 1], rotate: [0, -90, 0] }} transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-rose-600/20 rounded-full blur-3xl" />
+            className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-[#E8C97A]/10 rounded-full blur-3xl" />
           <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-r from-pink-600/7 to-rose-600/7 rounded-full blur-3xl" />
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-r from-[#F5F0E8]/10 to-[#E8C97A]/10 rounded-full blur-3xl" />
         </div>
 
         <div className="container relative z-10 text-center max-w-4xl">
           <motion.div initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-pink-600/20 to-rose-600/20 border border-pink-500/30 mb-10">
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r bg-[#F5F0E8]/10 border border-[#F5F0E8]/20 mb-10">
             <motion.div animate={{ rotate: 360 }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}>
-              <ShoppingBasket className="w-4 h-4 text-pink-400" />
+              <ShoppingBasket className="w-4 h-4 text-[#E8C97A]" />
             </motion.div>
-            <span className="text-sm text-pink-300 font-medium">Quality Ingredients — On-Time Delivery</span>
+            <span className="text-sm text-[#F5F0E8] font-medium">Quality Ingredients — On-Time Delivery</span>
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.15 }}
             className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-            <span className="bg-gradient-to-r from-white via-pink-100 to-rose-200 bg-clip-text text-transparent">Reliable supply</span>
+            <span className="bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#F5F0E8] bg-clip-text text-transparent">Reliable supply</span>
             <br />
-            <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">for Vietnamese restaurants</span>
+            <span className="bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#C4BAA8] bg-clip-text text-transparent">for Vietnamese restaurants</span>
             <br />
-            <span className="bg-gradient-to-r from-white/80 to-gray-400 bg-clip-text text-transparent text-4xl md:text-5xl">in the US</span>
+            <span className="bg-gradient-to-r from-[#F5F0E8]/80 to-[#C4BAA8] bg-clip-text text-transparent text-4xl md:text-5xl">in the US</span>
           </motion.h1>
 
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.4 }}
-            className="text-xl text-gray-400 mb-10 leading-relaxed max-w-2xl mx-auto">
+            className="text-xl text-[#C4BAA8] mb-10 leading-relaxed max-w-2xl mx-auto">
             Noko Supply delivers premium F&B ingredients — easy ordering, fast delivery, and direct integration with Noko POS.
           </motion.p>
 
@@ -150,14 +150,14 @@ export function NokoSupply() {
             className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
               <a href="#products">
-                <Button size="lg" className="text-lg px-10 h-14 bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 border-0 shadow-2xl shadow-pink-500/40 group">
+                <Button size="lg" className="text-lg px-10 h-14 bg-gradient-to-r bg-[#F5F0E8] text-[#1B2B6B] hover:bg-[#E8C97A] hover:text-[#1B2B6B] border-0 shadow-2xl shadow-[#F5F0E8]/20 group">
                   Browse Our Catalog <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </a>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
               <a href="#order">
-                <Button size="lg" variant="outline" className="text-lg px-10 h-14 border-white/20 hover:bg-white/5 hover:border-white/40">
+                <Button size="lg" variant="outline" className="text-lg px-10 h-14 border-[#F5F0E8]/20 hover:bg-[#F5F0E8]/10 hover:border-[#F5F0E8]/40">
                   Contact Us to Order
                 </Button>
               </a>
@@ -165,18 +165,18 @@ export function NokoSupply() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.75 }}
-            className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
+            className="flex flex-wrap items-center justify-center gap-6 text-sm text-[#A89880]">
             <div className="flex items-center gap-2">
               <div className="flex -space-x-2">
-                {["bg-pink-500", "bg-rose-500", "bg-orange-500"].map((c, i) => (
+                {["bg-[#E8C97A]", "bg-[#E8C97A]", "bg-[#C4BAA8]"].map((c, i) => (
                   <div key={i} className={`w-7 h-7 rounded-full ${c} border-2 border-background`} />
                 ))}
               </div>
               <span>500+ restaurants trust us</span>
             </div>
-            <div className="w-px h-4 bg-white/10" />
+            <div className="w-px h-4 bg-[#F5F0E8]/10" />
             <div className="flex items-center gap-1.5">
-              <Truck className="w-4 h-4 text-pink-400" />
+              <Truck className="w-4 h-4 text-[#E8C97A]" />
               <span>Delivery in California & Texas</span>
             </div>
           </motion.div>
@@ -185,8 +185,8 @@ export function NokoSupply() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2">
           <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-white/20 rounded-full flex items-start justify-center p-2">
-            <div className="w-1.5 h-1.5 bg-pink-400 rounded-full" />
+            className="w-6 h-10 border-2 border-[#F5F0E8]/20 rounded-full flex items-start justify-center p-2">
+            <div className="w-1.5 h-1.5 bg-[#E8C97A] rounded-full" />
           </motion.div>
         </motion.div>
       </section>
@@ -194,15 +194,15 @@ export function NokoSupply() {
       {/* ── PAIN POINTS ──────────────────────────────────────────────────────── */}
       <ParallaxSection>
         <section className="py-28 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-950/5 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0F1F52]/20 to-transparent pointer-events-none" />
           <div className="container relative z-10">
             <div className="max-w-4xl mx-auto">
               <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}
                 className="text-center mb-14">
                 <h2 className="text-4xl md:text-5xl font-bold">
-                  <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Restaurant owners are dealing with</span>
+                  <span className="bg-gradient-to-r from-[#F5F0E8] to-[#C4BAA8] bg-clip-text text-transparent">Restaurant owners are dealing with</span>
                   <br />
-                  <span className="bg-gradient-to-r from-orange-400 to-rose-400 bg-clip-text text-transparent">any of these?</span>
+                  <span className="bg-gradient-to-r from-[#E8C97A] to-[#F5F0E8] bg-clip-text text-transparent">any of these?</span>
                 </h2>
               </motion.div>
 
@@ -215,13 +215,13 @@ export function NokoSupply() {
                 ].map((pain, i) => (
                   <motion.div key={i} variants={fadeUp}>
                     <motion.div whileHover={{ x: 4, scale: 1.01 }} transition={{ duration: 0.2 }}
-                      className="flex items-start gap-4 p-5 rounded-2xl bg-card/40 border border-white/8 hover:border-rose-500/20 transition-colors">
-                      <div className="w-8 h-8 rounded-lg bg-rose-500/15 border border-rose-500/25 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <X className="w-4 h-4 text-rose-400" />
+                      className="flex items-start gap-4 p-5 rounded-2xl bg-[#243580]/80 border border-[#F5F0E8]/8 hover:border-[#E8C97A]/40 transition-colors">
+                      <div className="w-8 h-8 rounded-lg bg-[#E8C97A]/15 border border-[#E8C97A]/25 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <X className="w-4 h-4 text-[#E8C97A]" />
                       </div>
                       <div>
-                        <p className="text-white font-medium leading-snug mb-1">{pain.text}</p>
-                        <p className="text-sm text-gray-500">{pain.sub}</p>
+                        <p className="text-[#F5F0E8] font-medium leading-snug mb-1">{pain.text}</p>
+                        <p className="text-sm text-[#A89880]">{pain.sub}</p>
                       </div>
                     </motion.div>
                   </motion.div>
@@ -235,32 +235,32 @@ export function NokoSupply() {
       {/* ── GIỚI THIỆU ───────────────────────────────────────────────────────── */}
       <ParallaxSection>
         <section className="py-28 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-pink-950/10 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0F1F52]/20 to-transparent pointer-events-none" />
           <div className="container relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}>
-                <p className="text-pink-400 font-medium text-sm uppercase tracking-widest mb-5">About Noko Supply</p>
+                <p className="text-[#E8C97A] font-medium text-sm uppercase tracking-widest mb-5">About Noko Supply</p>
                 <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
-                  <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">We understand what restaurants</span>
+                  <span className="bg-gradient-to-r from-[#F5F0E8] to-[#C4BAA8] bg-clip-text text-transparent">We understand what restaurants</span>
                   <br />
-                  <span className="bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">need — and when they need it.</span>
+                  <span className="bg-gradient-to-r from-[#F5F0E8] to-[#E8C97A] bg-clip-text text-transparent">need — and when they need it.</span>
                 </h2>
-                <p className="text-gray-400 text-lg leading-relaxed mb-10">
+                <p className="text-[#C4BAA8] text-lg leading-relaxed mb-10">
                   Noko Supply was built by people in the F&B industry — we know what restaurants need, when they need it, and where they need it delivered.
                 </p>
                 <div className="space-y-5">
                   {[
                     { icon: Leaf, title: "Traceable Sourcing", desc: "Direct from farms & producers — no middlemen, full traceability from source to your kitchen.", color: "from-green-600 to-emerald-600" },
-                    { icon: DollarSign, title: "Fixed Monthly Pricing", desc: "One quote, valid all month — calculate food cost accurately without worrying about price swings.", color: "from-pink-600 to-rose-600" },
-                    { icon: Package, title: "One Supplier — Everything You Need", desc: "Produce, meat & seafood, seasonings, dry goods, packaging — all from a single trusted partner.", color: "from-orange-600 to-rose-600" },
+                    { icon: DollarSign, title: "Fixed Monthly Pricing", desc: "One quote, valid all month — calculate food cost accurately without worrying about price swings.", color: "from-[#F5F0E8] to-[#C4BAA8]" },
+                    { icon: Package, title: "One Supplier — Everything You Need", desc: "Produce, meat & seafood, seasonings, dry goods, packaging — all from a single trusted partner.", color: "from-[#E8C97A] to-[#C4BAA8]" },
                   ].map((pt) => (
                     <motion.div key={pt.title} whileHover={{ x: 8 }} transition={{ duration: 0.2 }} className="flex items-start gap-4">
                       <div className={`w-11 h-11 bg-gradient-to-br ${pt.color} rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg`}>
-                        <pt.icon className="w-5 h-5 text-white" />
+                        <pt.icon className="w-5 h-5 text-[#F5F0E8]" />
                       </div>
                       <div>
-                        <h4 className="text-white font-semibold mb-1">{pt.title}</h4>
-                        <p className="text-gray-500 text-sm leading-relaxed">{pt.desc}</p>
+                        <h4 className="text-[#F5F0E8] font-semibold mb-1">{pt.title}</h4>
+                        <p className="text-[#A89880] text-sm leading-relaxed">{pt.desc}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -269,19 +269,19 @@ export function NokoSupply() {
 
               <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, delay: 0.15 }} className="relative">
                 <motion.div animate={{ scale: [1, 1.04, 1] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute inset-0 bg-gradient-to-br from-pink-600/25 to-rose-600/25 blur-3xl rounded-3xl" />
-                <div className="relative bg-card/50 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
+                  className="absolute inset-0 bg-gradient-to-br from-[#F5F0E8]/10 to-[#E8C97A]/10 blur-3xl rounded-3xl" />
+                <div className="relative bg-[#243580]/80 backdrop-blur-xl border border-[#F5F0E8]/10 rounded-3xl p-8">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                     {[
-                      { value: "500+", label: "Restaurants", color: "from-pink-500 to-rose-500" },
-                      { value: "2×/week", label: "Delivery", color: "from-orange-500 to-rose-500" },
+                      { value: "500+", label: "Restaurants", color: "from-[#F5F0E8] to-[#C4BAA8]" },
+                      { value: "2×/week", label: "Delivery", color: "from-[#E8C97A] to-[#C4BAA8]" },
                       { value: "100%", label: "Traceable", color: "from-green-500 to-emerald-500" },
-                      { value: "24h", label: "Support", color: "from-rose-500 to-pink-500" },
+                      { value: "24h", label: "Support", color: "from-[#E8C97A] to-[#C4BAA8]" },
                     ].map((s, i) => (
                       <motion.div key={s.label} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1, type: "spring" }}
-                        className="bg-background/60 rounded-2xl p-5 border border-white/8">
+                        className="bg-[#1B2B6B]/60 rounded-2xl p-5 border border-[#F5F0E8]/8">
                         <div className={`text-2xl font-bold bg-gradient-to-r ${s.color} bg-clip-text text-transparent mb-1`}>{s.value}</div>
-                        <div className="text-xs text-gray-500">{s.label}</div>
+                        <div className="text-xs text-[#A89880]">{s.label}</div>
                       </motion.div>
                     ))}
                   </div>
@@ -293,12 +293,12 @@ export function NokoSupply() {
                     ].map((b) => (
                       <div key={b.label}>
                         <div className="flex justify-between text-xs mb-1.5">
-                          <span className="text-gray-400">{b.label}</span>
-                          <span className="text-pink-400 font-medium">{b.pct}%</span>
+                          <span className="text-[#C4BAA8]">{b.label}</span>
+                          <span className="text-[#E8C97A] font-medium">{b.pct}%</span>
                         </div>
-                        <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                        <div className="h-1.5 bg-[#F5F0E8]/10 rounded-full overflow-hidden">
                           <motion.div initial={{ width: 0 }} whileInView={{ width: `${b.pct}%` }} viewport={{ once: true }} transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-                            className="h-full bg-gradient-to-r from-pink-500 to-rose-500 rounded-full" />
+                            className="h-full bg-gradient-to-r from-[#F5F0E8] to-[#C4BAA8] rounded-full" />
                         </div>
                       </div>
                     ))}
@@ -313,11 +313,11 @@ export function NokoSupply() {
       {/* ── TÍCH HỢP VỚI NOKO POS ─────────────────────────────────────────────── */}
       <section className="py-28 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-r from-pink-950/15 via-rose-950/15 to-pink-950/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0F1F52]/30 via-[#0F1F52]/20 to-[#0F1F52]/10" />
           <motion.div
             animate={{ scale: [1, 1.15, 1], rotate: [0, 60, 0] }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-pink-600/12 via-rose-600/12 to-pink-500/8 rounded-full blur-3xl"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-[#F5F0E8]/10 via-[#E8C97A]/10 to-[#F5F0E8]/10 rounded-full blur-3xl"
           />
         </div>
 
@@ -330,19 +330,19 @@ export function NokoSupply() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-pink-500/20 to-rose-500/20 border border-pink-500/30 mb-6">
-                <div className="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse" />
-                <span className="text-sm font-medium bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#F5F0E8]/10 to-[#E8C97A]/10 border border-[#F5F0E8]/20 mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#E8C97A] animate-pulse" />
+                <span className="text-sm font-medium bg-gradient-to-r from-[#F5F0E8] to-[#E8C97A] bg-clip-text text-transparent">
                   Exclusive Integration
                 </span>
               </div>
 
               <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
-                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#F5F0E8] to-[#C4BAA8] bg-clip-text text-transparent">
                   Using Noko POS?
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#C4BAA8] bg-clip-text text-transparent">
                   Auto-ordering — no manual work required
                 </span>
               </h2>
@@ -361,19 +361,19 @@ export function NokoSupply() {
                   "Supply prices sync into POS food cost reports",
                 ].map((f) => (
                   <motion.div key={f} variants={fadeUp} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-rose-400 flex-shrink-0 mt-0.5" />
-                    <p className="text-gray-300 text-sm leading-relaxed">{f}</p>
+                    <CheckCircle2 className="w-5 h-5 text-[#E8C97A] flex-shrink-0 mt-0.5" />
+                    <p className="text-[#C4BAA8] text-sm leading-relaxed">{f}</p>
                   </motion.div>
                 ))}
               </motion.div>
 
-              <p className="text-sm text-gray-600 mb-6 italic">
+              <p className="text-sm text-[#A89880] mb-6 italic">
                 Not using Noko POS yet? You can still order from Supply as usual.
               </p>
 
               <Link
                 to="/pos"
-                className="inline-flex items-center text-sm font-medium text-pink-300 hover:text-pink-200 transition-colors group"
+                className="inline-flex items-center text-sm font-medium text-[#F5F0E8] hover:text-[#F5F0E8] transition-colors group"
               >
                 Learn More About Noko POS
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -391,13 +391,13 @@ export function NokoSupply() {
               <motion.div
                 animate={{ scale: [1, 1.04, 1] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 bg-gradient-to-br from-pink-600/25 to-rose-600/25 blur-3xl rounded-3xl"
+                className="absolute inset-0 bg-gradient-to-br from-[#F5F0E8]/10 to-[#E8C97A]/10 blur-3xl rounded-3xl"
               />
-              <div className="relative bg-card/50 backdrop-blur-xl border border-white/10 rounded-3xl p-7 space-y-4">
+              <div className="relative bg-[#243580]/80 backdrop-blur-xl border border-[#F5F0E8]/10 rounded-3xl p-7 space-y-4">
                 {[
-                  { label: "Noko POS", sub: "Beef pho broth: 2 kg left ↓", status: "Low", statusColor: "text-orange-400 bg-orange-400/10", iconBg: "from-indigo-600 to-purple-600", icon: "💻", cardClass: "bg-indigo-600/10 border-indigo-500/20" },
-                  { label: "Auto-generated order", sub: "Beef pho broth · 10 kg · Noko Supply", status: "Pending", statusColor: "text-pink-300 bg-pink-500/10", iconBg: "from-pink-600 to-rose-600", icon: "📋", cardClass: "bg-pink-600/10 border-pink-500/20" },
-                  { label: "Owner approves", sub: "One tap in the app — done", status: "✓ Approved", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-rose-600 to-orange-600", icon: "✅", cardClass: "bg-rose-600/10 border-rose-500/20" },
+                  { label: "Noko POS", sub: "Beef pho broth: 2 kg left ↓", status: "Low", statusColor: "text-orange-400 bg-orange-400/10", iconBg: "from-[#F5F0E8] to-[#E8C97A]", icon: "💻", cardClass: "bg-[#F5F0E8]/10 border-[#F5F0E8]/20" },
+                  { label: "Auto-generated order", sub: "Beef pho broth · 10 kg · Noko Supply", status: "Pending", statusColor: "text-[#F5F0E8] bg-[#E8C97A]/10", iconBg: "from-[#F5F0E8] to-[#C4BAA8]", icon: "📋", cardClass: "bg-[#F5F0E8]/10 border-[#F5F0E8]/20" },
+                  { label: "Owner approves", sub: "One tap in the app — done", status: "✓ Approved", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-[#E8C97A] to-[#C4BAA8]", icon: "✅", cardClass: "bg-[#E8C97A]/10 border-[#E8C97A]/20" },
                   { label: "Delivery & update", sub: "POS food cost updates automatically", status: "Done", statusColor: "text-green-400 bg-green-500/10", iconBg: "from-green-600 to-emerald-600", icon: "🚚", cardClass: "bg-green-600/10 border-green-500/20" },
                 ].map((step, i) => (
                   <div key={step.label}>
@@ -413,8 +413,8 @@ export function NokoSupply() {
                         {step.icon}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-sm font-semibold text-white">{step.label}</div>
-                        <div className="text-xs text-gray-500 truncate">{step.sub}</div>
+                        <div className="text-sm font-semibold text-[#F5F0E8]">{step.label}</div>
+                        <div className="text-xs text-[#A89880] truncate">{step.sub}</div>
                       </div>
                       <div className={`text-xs font-medium px-2 py-1 rounded-lg flex-shrink-0 ${step.statusColor}`}>
                         {step.status}
@@ -427,8 +427,8 @@ export function NokoSupply() {
                           transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }}
                           className="flex flex-col items-center gap-0.5"
                         >
-                          <div className="w-px h-4 bg-gradient-to-b from-pink-500/50 to-rose-500/50" />
-                          <div className="w-0 h-0 border-l-[3px] border-r-[3px] border-t-[3px] border-l-transparent border-r-transparent border-t-rose-500/60" />
+                          <div className="w-px h-4 bg-gradient-to-b from-[#F5F0E8]/50 to-[#E8C97A]/50" />
+                          <div className="w-0 h-0 border-l-[3px] border-r-[3px] border-t-[3px] border-l-transparent border-r-transparent border-t-[#E8C97A]/60" />
                         </motion.div>
                       </div>
                     )}
@@ -442,15 +442,15 @@ export function NokoSupply() {
 
       {/* ── DANH MỤC SẢN PHẨM ───────────────────────────────────────────────── */}
       <section id="products" className="py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-rose-950/10 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0F1F52]/20 to-transparent pointer-events-none" />
         <div className="container relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}
             className="text-center mb-12">
-            <p className="text-pink-400 font-medium text-sm uppercase tracking-widest mb-4">Catalog</p>
+            <p className="text-[#E8C97A] font-medium text-sm uppercase tracking-widest mb-4">Catalog</p>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">What we</span>
+              <span className="bg-gradient-to-r from-[#F5F0E8] to-[#C4BAA8] bg-clip-text text-transparent">What we</span>
               <br />
-              <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">supply</span>
+              <span className="bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#C4BAA8] bg-clip-text text-transparent">supply</span>
             </h2>
           </motion.div>
 
@@ -459,8 +459,8 @@ export function NokoSupply() {
             {tabs.map((tab) => (
               <motion.button key={tab} onClick={() => setActiveTab(tab)} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${activeTab === tab
-                  ? "bg-gradient-to-r from-pink-600 to-rose-600 text-white shadow-lg shadow-pink-500/25"
-                  : "bg-card/50 border border-white/10 text-gray-400 hover:text-white hover:border-white/20"}`}>
+                  ? "bg-gradient-to-r from-[#F5F0E8] to-[#C4BAA8] text-[#F5F0E8] shadow-lg shadow-[#F5F0E8]/20"
+                  : "bg-[#243580]/80 border border-[#F5F0E8]/10 text-[#C4BAA8] hover:text-[#F5F0E8] hover:border-[#F5F0E8]/20"}`}>
                 {tab}
               </motion.button>
             ))}
@@ -472,22 +472,22 @@ export function NokoSupply() {
             {filtered.map((p) => (
               <motion.div key={p.name} variants={fadeUp}>
                 <motion.div whileHover={{ y: -6, scale: 1.02 }} transition={{ duration: 0.25 }}>
-                  <Card className="bg-card/60 backdrop-blur-xl border-white/10 hover:border-pink-500/30 transition-all duration-300 group overflow-hidden">
+                  <Card className="bg-[#243580]/80 backdrop-blur-xl border-[#F5F0E8]/10 hover:border-[#F5F0E8]/20 transition-all duration-300 group overflow-hidden">
                     <CardContent className="pt-6">
                       {/* Placeholder image area */}
-                      <div className="relative w-full h-32 rounded-xl bg-gradient-to-br from-white/5 to-white/2 border border-white/8 flex items-center justify-center mb-4 overflow-hidden">
+                      <div className="relative w-full h-32 rounded-xl bg-gradient-to-br from-[#F5F0E8]/10 to-[#F5F0E8]/10 border border-[#F5F0E8]/8 flex items-center justify-center mb-4 overflow-hidden">
                         <motion.div animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                           className="text-5xl">{p.icon}</motion.div>
                         {p.badge && (
-                          <div className={`absolute top-2 right-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-gradient-to-r ${p.badgeColor} text-white`}>
+                          <div className={`absolute top-2 right-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-gradient-to-r ${p.badgeColor} text-[#F5F0E8]`}>
                             {p.badge}
                           </div>
                         )}
                       </div>
-                      <h3 className="text-white font-semibold mb-1 group-hover:text-pink-200 transition-colors">{p.name}</h3>
-                      <p className="text-xs text-gray-500 mb-4">Unit: {p.unit}</p>
+                      <h3 className="text-[#F5F0E8] font-semibold mb-1 group-hover:text-[#F5F0E8] transition-colors">{p.name}</h3>
+                      <p className="text-xs text-[#A89880] mb-4">Unit: {p.unit}</p>
                       <a href="#order">
-                        <Button size="sm" variant="outline" className="w-full border-white/10 hover:border-pink-500/40 hover:bg-pink-500/5 text-sm group/btn">
+                        <Button size="sm" variant="outline" className="w-full border-[#F5F0E8]/10 hover:border-[#E8C97A]/40 hover:bg-[#E8C97A]/5 text-sm group/btn">
                           Request a Quote
                           <ArrowRight className="ml-1.5 w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                         </Button>
@@ -504,32 +504,32 @@ export function NokoSupply() {
       {/* ── VÌ SAO CHỌN ──────────────────────────────────────────────────────── */}
       <ParallaxSection>
         <section className="py-28 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-pink-950/10 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0F1F52]/20 to-transparent pointer-events-none" />
           <div className="container relative z-10">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}
               className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Why choose</span>
+                <span className="bg-gradient-to-r from-[#F5F0E8] to-[#C4BAA8] bg-clip-text text-transparent">Why choose</span>
                 <br />
-                <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">Noko Supply?</span>
+                <span className="bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#C4BAA8] bg-clip-text text-transparent">Noko Supply?</span>
               </h2>
             </motion.div>
 
             <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { icon: Truck, title: "Delivery Twice a Week", desc: "On time, to the right location — no chasing, no reminders needed.", color: "from-pink-600 to-rose-600", glow: "shadow-pink-500/20" },
-                { icon: DollarSign, title: "Transparent Pricing", desc: "Fixed monthly quotes — calculate food cost accurately without price surprises.", color: "from-orange-600 to-rose-600", glow: "shadow-orange-500/20" },
-                { icon: RefreshCw, title: "Easy Returns", desc: "Product doesn't meet standards — replaced on your next delivery, hassle-free.", color: "from-rose-600 to-pink-600", glow: "shadow-rose-500/20" },
-                { icon: Headphones, title: "7-Day Support", desc: "Issues any day of the week — call and someone will answer.", color: "from-red-600 to-orange-600", glow: "shadow-red-500/20" },
+                { icon: Truck, title: "Delivery Twice a Week", desc: "On time, to the right location — no chasing, no reminders needed.", color: "from-[#F5F0E8] to-[#C4BAA8]", glow: "shadow-[#F5F0E8]/20" },
+                { icon: DollarSign, title: "Transparent Pricing", desc: "Fixed monthly quotes — calculate food cost accurately without price surprises.", color: "from-[#E8C97A] to-[#C4BAA8]", glow: "shadow-[#F5F0E8]/20" },
+                { icon: RefreshCw, title: "Easy Returns", desc: "Product doesn't meet standards — replaced on your next delivery, hassle-free.", color: "from-[#E8C97A] to-[#C4BAA8]", glow: "shadow-[#F5F0E8]/20" },
+                { icon: Headphones, title: "7-Day Support", desc: "Issues any day of the week — call and someone will answer.", color: "from-red-600 to-[#C4BAA8]", glow: "shadow-red-500/20" },
               ].map((f) => (
                 <motion.div key={f.title} variants={fadeUp} whileHover={{ y: -8, scale: 1.03 }} className="text-center group">
                   <div className={`w-16 h-16 bg-gradient-to-br ${f.color} rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-xl ${f.glow} relative`}>
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl" />
-                    <f.icon className="w-7 h-7 text-white relative z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#F5F0E8]/20 to-transparent rounded-2xl" />
+                    <f.icon className="w-7 h-7 text-[#F5F0E8] relative z-10" />
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-pink-200 transition-colors">{f.title}</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">{f.desc}</p>
+                  <h3 className="text-lg font-semibold text-[#F5F0E8] mb-2 group-hover:text-[#F5F0E8] transition-colors">{f.title}</h3>
+                  <p className="text-sm text-[#A89880] leading-relaxed">{f.desc}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -540,14 +540,14 @@ export function NokoSupply() {
       {/* ── TESTIMONIALS ─────────────────────────────────────────────────────── */}
       <ParallaxSection>
         <section className="py-28 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-pink-600/5 via-rose-600/5 to-orange-600/5 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#C4BAA8] pointer-events-none" />
           <div className="container relative z-10">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}
               className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">What restaurants say about</span>
+                <span className="bg-gradient-to-r from-[#F5F0E8] to-[#C4BAA8] bg-clip-text text-transparent">What restaurants say about</span>
                 <br />
-                <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">Noko Supply</span>
+                <span className="bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#C4BAA8] bg-clip-text text-transparent">Noko Supply</span>
               </h2>
             </motion.div>
 
@@ -555,40 +555,40 @@ export function NokoSupply() {
               {[
                 {
                   name: "Thu Hương", restaurant: "Quán Bún Bò · Garden Grove, CA", avatar: "TH",
-                  avatarColor: "from-pink-500 to-rose-500", posUser: false,
+                  avatarColor: "from-[#F5F0E8] to-[#C4BAA8]", posUser: false,
                   quote: "Since switching to Noko Supply, my ingredient prices are fixed monthly — I calculated food cost accurately for the first time in 3 years of running my restaurant.",
                   result: "15% lower food cost", resultColor: "text-green-400",
                 },
                 {
                   name: "Quốc Bảo", restaurant: "Phở Saigon · Houston, TX", avatar: "QB",
-                  avatarColor: "from-indigo-500 to-purple-500", posUser: true,
+                  avatarColor: "from-[#F5F0E8] to-[#E8C97A]", posUser: true,
                   quote: "Using both POS and Supply — I never run out mid-shift anymore. POS handles all the ordering; I just approve in the morning.",
-                  result: "Never out of stock mid-shift", resultColor: "text-purple-400",
+                  result: "Never out of stock mid-shift", resultColor: "text-[#E8C97A]",
                 },
                 {
                   name: "Minh Khoa", restaurant: "Cơm Tấm Ba Miền · San Jose, CA", avatar: "MK",
-                  avatarColor: "from-orange-500 to-rose-500", posUser: true,
+                  avatarColor: "from-[#E8C97A] to-[#C4BAA8]", posUser: true,
                   quote: "I used to spend 2 hours a week just calling to place orders. Now the system handles it — I use that time for everything else.",
                   result: "Save 2 hrs/week", resultColor: "text-orange-400",
                 },
               ].map((t, i) => (
                 <motion.div key={t.name} variants={fadeUp}>
                   <motion.div whileHover={{ y: -8, scale: 1.02 }} transition={{ duration: 0.3 }}>
-                    <Card className="bg-card/50 backdrop-blur-xl border-white/10 hover:border-pink-500/30 transition-all duration-300 h-full">
+                    <Card className="bg-[#243580]/80 backdrop-blur-xl border-[#F5F0E8]/10 hover:border-[#F5F0E8]/20 transition-all duration-300 h-full">
                       <CardContent className="pt-7">
                         <div className="flex items-center gap-4 mb-5">
                           <div className="relative">
                             <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.3 }}
                               className={`absolute inset-0 bg-gradient-to-r ${t.avatarColor} blur-md opacity-40 rounded-full`} />
-                            <div className={`relative w-14 h-14 rounded-full bg-gradient-to-br ${t.avatarColor} flex items-center justify-center text-white font-bold text-lg border-2 border-white/15`}>{t.avatar}</div>
+                            <div className={`relative w-14 h-14 rounded-full bg-gradient-to-br ${t.avatarColor} flex items-center justify-center text-[#F5F0E8] font-bold text-lg border-2 border-[#F5F0E8]/15`}>{t.avatar}</div>
                           </div>
                           <div>
-                            <div className="font-semibold text-white">{t.name}</div>
-                            <div className="text-sm text-gray-500">{t.restaurant}</div>
-                            {t.posUser && <div className="text-xs text-indigo-400 mt-0.5">Supply + POS</div>}
+                            <div className="font-semibold text-[#F5F0E8]">{t.name}</div>
+                            <div className="text-sm text-[#A89880]">{t.restaurant}</div>
+                            {t.posUser && <div className="text-xs text-[#E8C97A] mt-0.5">Supply + POS</div>}
                           </div>
                         </div>
-                        <p className="text-gray-400 text-sm leading-relaxed mb-5">&ldquo;{t.quote}&rdquo;</p>
+                        <p className="text-[#C4BAA8] text-sm leading-relaxed mb-5">&ldquo;{t.quote}&rdquo;</p>
                         <div className="flex items-center justify-between">
                           <div className={`text-sm font-semibold ${t.resultColor}`}>✓ {t.result}</div>
                           <div className="flex gap-1">
@@ -613,65 +613,65 @@ export function NokoSupply() {
       <section id="order" className="py-28 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div animate={{ scale: [1, 1.2, 1], rotate: [0, 60, 0] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-pink-600/10 via-rose-600/10 to-orange-600/10 rounded-full blur-3xl" />
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#C4BAA8] rounded-full blur-3xl" />
         </div>
 
         <div className="container relative z-10">
           <div className="max-w-2xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}
               className="text-center mb-12">
-              <p className="text-pink-400 font-medium text-sm uppercase tracking-widest mb-4">Get Started</p>
+              <p className="text-[#E8C97A] font-medium text-sm uppercase tracking-widest mb-4">Get Started</p>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Ready to stabilize</span>
+                <span className="bg-gradient-to-r from-[#F5F0E8] to-[#C4BAA8] bg-clip-text text-transparent">Ready to stabilize</span>
                 <br />
-                <span className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 bg-clip-text text-transparent">your ingredient supply?</span>
+                <span className="bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#C4BAA8] bg-clip-text text-transparent">your ingredient supply?</span>
               </h2>
-              <p className="text-gray-500 text-lg">Leave your details — we'll send pricing and a free consultation within 24 hours.</p>
+              <p className="text-[#A89880] text-lg">Leave your details — we'll send pricing and a free consultation within 24 hours.</p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6, delay: 0.1 }}>
-              <Card className="bg-card/60 backdrop-blur-xl border-white/10 shadow-2xl shadow-pink-900/20">
+              <Card className="bg-[#243580]/80 backdrop-blur-xl border-[#F5F0E8]/10 shadow-2xl shadow-[#F5F0E8]/20">
                 <CardContent className="pt-8 pb-8">
                   <form className="space-y-5" onSubmit={handleLeadSubmit}>
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-medium mb-2.5 text-gray-400">Restaurant Name *</label>
+                        <label className="block text-sm font-medium mb-2.5 text-[#C4BAA8]">Restaurant Name *</label>
                         <Input
                           value={restaurantName}
                           onChange={(e) => setRestaurantName(e.target.value)}
                           placeholder="Phở Saigon"
                           required
                           disabled={isSubmitting}
-                          className="bg-input-background border-white/10 focus:border-pink-500 h-12"
+                          className="bg-input-background border-[#F5F0E8]/10 focus:border-[#F5F0E8]/20 h-12"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2.5 text-gray-400">Full Name *</label>
+                        <label className="block text-sm font-medium mb-2.5 text-[#C4BAA8]">Full Name *</label>
                         <Input
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                           placeholder="John Smith"
                           required
                           disabled={isSubmitting}
-                          className="bg-input-background border-white/10 focus:border-pink-500 h-12"
+                          className="bg-input-background border-[#F5F0E8]/10 focus:border-[#F5F0E8]/20 h-12"
                         />
                       </div>
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-medium mb-2.5 text-gray-400">Phone Number *</label>
+                        <label className="block text-sm font-medium mb-2.5 text-[#C4BAA8]">Phone Number *</label>
                         <Input
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
                           placeholder="(714) 000-0000"
                           required
                           disabled={isSubmitting}
-                          className="bg-input-background border-white/10 focus:border-pink-500 h-12"
+                          className="bg-input-background border-[#F5F0E8]/10 focus:border-[#F5F0E8]/20 h-12"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2.5 text-gray-400">Email *</label>
+                        <label className="block text-sm font-medium mb-2.5 text-[#C4BAA8]">Email *</label>
                         <Input
                           type="email"
                           value={email}
@@ -679,18 +679,18 @@ export function NokoSupply() {
                           placeholder="email@example.com"
                           required
                           disabled={isSubmitting}
-                          className="bg-input-background border-white/10 focus:border-pink-500 h-12"
+                          className="bg-input-background border-[#F5F0E8]/10 focus:border-[#F5F0E8]/20 h-12"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium mb-2.5 text-gray-400">State</label>
+                      <label className="block text-sm font-medium mb-2.5 text-[#C4BAA8]">State</label>
                       <select
                         value={state}
                         onChange={(e) => setState(e.target.value)}
                         disabled={isSubmitting}
-                        className="w-full h-12 rounded-md bg-input-background border border-white/10 text-foreground text-sm px-3 focus:outline-none focus:border-pink-500 transition-colors"
+                        className="w-full h-12 rounded-md bg-input-background border border-[#F5F0E8]/10 text-foreground text-sm px-3 focus:outline-none focus:border-[#F5F0E8]/20 transition-colors"
                       >
                         <option value="">-- Select a state --</option>
                         <option value="CA — California">CA — California</option>
@@ -702,7 +702,7 @@ export function NokoSupply() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium mb-3 text-gray-400">What are you using today?</label>
+                      <label className="block text-sm font-medium mb-3 text-[#C4BAA8]">What are you using today?</label>
                       <div className="space-y-2.5">
                         {[
                           { value: "supply-only", label: "Supply only" },
@@ -710,24 +710,24 @@ export function NokoSupply() {
                           { value: "both-new", label: "New to both — want to learn about everything" },
                         ].map((opt) => (
                           <label key={opt.value} className={`flex items-center gap-3 group ${isSubmitting ? "cursor-not-allowed opacity-60" : "cursor-pointer"}`}>
-                            <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${posUser === opt.value ? "border-pink-500 bg-pink-500" : "border-white/20 group-hover:border-white/40"}`}
+                            <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${posUser === opt.value ? "border-[#F5F0E8]/20 bg-[#E8C97A]" : "border-[#F5F0E8]/20 group-hover:border-[#F5F0E8]/40"}`}
                               onClick={() => !isSubmitting && setPosUser(opt.value)}>
-                              {posUser === opt.value && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
+                              {posUser === opt.value && <div className="w-1.5 h-1.5 rounded-full bg-[#F5F0E8]" />}
                             </div>
-                            <span className={`text-sm transition-colors ${posUser === opt.value ? "text-white" : "text-gray-400 group-hover:text-gray-300"}`}>{opt.label}</span>
+                            <span className={`text-sm transition-colors ${posUser === opt.value ? "text-[#F5F0E8]" : "text-[#C4BAA8] group-hover:text-[#C4BAA8]"}`}>{opt.label}</span>
                           </label>
                         ))}
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium mb-3 text-gray-400">Primary needs (select multiple)</label>
+                      <label className="block text-sm font-medium mb-3 text-[#C4BAA8]">Primary needs (select multiple)</label>
                       <div className="flex flex-wrap gap-2">
                         {["Produce", "Meat & Seafood", "Seasonings", "Dry Goods", "All"].map((n) => (
                           <button key={n} type="button" disabled={isSubmitting} onClick={() => toggleNeed(n)}
                             className={`px-4 py-1.5 rounded-full text-sm transition-all duration-200 disabled:opacity-60 ${needs.includes(n)
-                              ? "bg-gradient-to-r from-pink-600 to-rose-600 text-white shadow-md shadow-pink-500/20"
-                              : "bg-card/50 border border-white/10 text-gray-400 hover:border-white/25 hover:text-gray-300"}`}>
+                              ? "bg-gradient-to-r from-[#F5F0E8] to-[#C4BAA8] text-[#F5F0E8] shadow-md shadow-[#F5F0E8]/20"
+                              : "bg-[#243580]/80 border border-[#F5F0E8]/10 text-[#C4BAA8] hover:border-[#F5F0E8]/20 hover:text-[#C4BAA8]"}`}>
                             {n}
                           </button>
                         ))}
@@ -739,7 +739,7 @@ export function NokoSupply() {
                         type="submit"
                         size="lg"
                         disabled={isSubmitting}
-                        className="w-full h-14 text-lg bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 border-0 shadow-2xl shadow-pink-500/40 group disabled:opacity-60"
+                        className="w-full h-14 text-lg bg-gradient-to-r bg-[#F5F0E8] text-[#1B2B6B] hover:bg-[#E8C97A] hover:text-[#1B2B6B] border-0 shadow-2xl shadow-[#F5F0E8]/20 group disabled:opacity-60"
                       >
                         {isSubmitting ? "Submitting..." : "Get a Quote Now"}
                         {!isSubmitting && (
@@ -748,7 +748,7 @@ export function NokoSupply() {
                       </Button>
                     </motion.div>
 
-                    <p className="text-center text-sm text-gray-600">Response within 24 hours — no spam — consultation available in Vietnamese</p>
+                    <p className="text-center text-sm text-[#A89880]">Response within 24 hours — no spam — consultation available in Vietnamese</p>
                   </form>
                 </CardContent>
               </Card>
