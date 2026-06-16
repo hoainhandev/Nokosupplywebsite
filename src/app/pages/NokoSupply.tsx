@@ -106,7 +106,7 @@ export function NokoSupply() {
   const filtered = activeTab === "Tất cả" ? products : products.filter(p => p.tab === activeTab);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-hidden">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-x-hidden">
       <ScrollProgress />
 
       <motion.div className="fixed w-[500px] h-[500px] rounded-full pointer-events-none z-0 blur-3xl"
@@ -193,7 +193,7 @@ export function NokoSupply() {
 
       {/* ── PAIN POINTS ──────────────────────────────────────────────────────── */}
       <ParallaxSection>
-        <section className="py-28 relative">
+        <section className="py-28 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-950/5 to-transparent pointer-events-none" />
           <div className="container relative z-10">
             <div className="max-w-4xl mx-auto">
@@ -206,7 +206,7 @@ export function NokoSupply() {
                 </h2>
               </motion.div>
 
-              <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} className="grid md:grid-cols-2 gap-5">
+              <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 {[
                   { text: "Nguyên liệu không ổn định, chất lượng lúc tốt lúc không", sub: "Khó giữ chuẩn món khi hàng về mỗi lúc mỗi khác" },
                   { text: "Giá nhập hay thay đổi, khó tính food cost", sub: "Không thể lập kế hoạch chi phí chính xác theo tháng" },
@@ -234,10 +234,10 @@ export function NokoSupply() {
 
       {/* ── GIỚI THIỆU ───────────────────────────────────────────────────────── */}
       <ParallaxSection>
-        <section className="py-28 relative">
+        <section className="py-28 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-pink-950/10 to-transparent pointer-events-none" />
           <div className="container relative z-10">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}>
                 <p className="text-pink-400 font-medium text-sm uppercase tracking-widest mb-5">Về Noko Supply</p>
                 <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
@@ -271,7 +271,7 @@ export function NokoSupply() {
                 <motion.div animate={{ scale: [1, 1.04, 1] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute inset-0 bg-gradient-to-br from-pink-600/25 to-rose-600/25 blur-3xl rounded-3xl" />
                 <div className="relative bg-card/50 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
-                  <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                     {[
                       { value: "500+", label: "Nhà hàng", color: "from-pink-500 to-rose-500" },
                       { value: "2×/tuần", label: "Giao hàng", color: "from-orange-500 to-rose-500" },
@@ -312,15 +312,17 @@ export function NokoSupply() {
 
       {/* ── TÍCH HỢP VỚI NOKO POS ─────────────────────────────────────────────── */}
       <section className="py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-pink-950/15 via-rose-950/15 to-pink-950/10 pointer-events-none" />
-        <motion.div
-          animate={{ scale: [1, 1.15, 1], rotate: [0, 60, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-pink-600/12 via-rose-600/12 to-pink-500/8 rounded-full blur-3xl pointer-events-none"
-        />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-r from-pink-950/15 via-rose-950/15 to-pink-950/10" />
+          <motion.div
+            animate={{ scale: [1, 1.15, 1], rotate: [0, 60, 0] }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-pink-600/12 via-rose-600/12 to-pink-500/8 rounded-full blur-3xl"
+          />
+        </div>
 
         <div className="container relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Features — trái */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -466,7 +468,7 @@ export function NokoSupply() {
 
           {/* Grid */}
           <motion.div variants={stagger} initial="hidden" animate="visible" key={activeTab}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
+            className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {filtered.map((p) => (
               <motion.div key={p.name} variants={fadeUp}>
                 <motion.div whileHover={{ y: -6, scale: 1.02 }} transition={{ duration: 0.25 }}>
@@ -501,7 +503,7 @@ export function NokoSupply() {
 
       {/* ── VÌ SAO CHỌN ──────────────────────────────────────────────────────── */}
       <ParallaxSection>
-        <section className="py-28 relative">
+        <section className="py-28 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-pink-950/10 to-transparent pointer-events-none" />
           <div className="container relative z-10">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}
@@ -514,7 +516,7 @@ export function NokoSupply() {
             </motion.div>
 
             <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}
-              className="grid md:grid-cols-2 lg:grid-cols-4 gap-7">
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 { icon: Truck, title: "Giao hàng 2 lần/tuần", desc: "Đúng giờ, đúng địa điểm — không cần theo dõi, không cần nhắc.", color: "from-pink-600 to-rose-600", glow: "shadow-pink-500/20" },
                 { icon: DollarSign, title: "Giá minh bạch", desc: "Báo giá cố định theo tháng — tính food cost chính xác, không lo biến động.", color: "from-orange-600 to-rose-600", glow: "shadow-orange-500/20" },
@@ -549,7 +551,7 @@ export function NokoSupply() {
               </h2>
             </motion.div>
 
-            <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} className="grid md:grid-cols-3 gap-7">
+            <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
                   name: "Chị Thu Hương", restaurant: "Quán Bún Bò · Garden Grove, CA", avatar: "TH",
@@ -609,7 +611,7 @@ export function NokoSupply() {
 
       {/* ── FORM ĐẶT HÀNG ────────────────────────────────────────────────────── */}
       <section id="order" className="py-28 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div animate={{ scale: [1, 1.2, 1], rotate: [0, 60, 0] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-pink-600/10 via-rose-600/10 to-orange-600/10 rounded-full blur-3xl" />
         </div>

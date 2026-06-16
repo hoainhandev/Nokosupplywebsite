@@ -99,7 +99,7 @@ export function NokoAcademy() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-hidden">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-x-hidden">
       <ScrollProgress />
 
       {/* Cursor glow */}
@@ -242,7 +242,7 @@ export function NokoAcademy() {
 
       {/* ── PAIN POINTS ──────────────────────────────────────────────────────── */}
       <ParallaxSection>
-        <section className="py-28 relative">
+        <section className="py-28 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-950/5 to-transparent pointer-events-none" />
           <div className="container relative z-10">
           <div className="max-w-4xl mx-auto">
@@ -269,7 +269,7 @@ export function NokoAcademy() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
-              className="grid md:grid-cols-2 gap-5"
+              className="grid grid-cols-1 md:grid-cols-2 gap-12"
             >
               {[
                 { text: "Mở quán xong mới biết mình thiếu gì", sub: "Không có lộ trình chuẩn bị từ trước" },
@@ -313,10 +313,10 @@ export function NokoAcademy() {
 
       {/* ── GIỚI THIỆU ───────────────────────────────────────────────────────── */}
       <ParallaxSection>
-        <section className="py-28 relative">
+        <section className="py-28 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/10 to-transparent pointer-events-none" />
           <div className="container relative z-10">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               {/* Text */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -392,7 +392,7 @@ export function NokoAcademy() {
                 />
                 <div className="relative bg-card/50 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
                   {/* Simulated stat cards */}
-                  <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                     {[
                       { value: "500+", label: "Học viên", color: "from-purple-500 to-indigo-500" },
                       { value: "4", label: "Tiểu bang", color: "from-pink-500 to-rose-500" },
@@ -447,12 +447,14 @@ export function NokoAcademy() {
 
       {/* ── KHÓA HỌC ─────────────────────────────────────────────────────────── */}
       <section id="courses" className="py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/15 to-transparent pointer-events-none" />
-        <motion.div
-          animate={{ scale: [1, 1.15, 1], rotate: [0, 45, 0] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-purple-600/6 via-pink-600/6 to-indigo-600/6 rounded-full blur-3xl pointer-events-none"
-        />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/15 to-transparent" />
+          <motion.div
+            animate={{ scale: [1, 1.15, 1], rotate: [0, 45, 0] }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-purple-600/6 via-pink-600/6 to-indigo-600/6 rounded-full blur-3xl"
+          />
+        </div>
 
         <div className="container relative z-10">
           <motion.div
@@ -480,7 +482,7 @@ export function NokoAcademy() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
-            className="grid md:grid-cols-2 gap-7"
+            className="grid grid-cols-1 md:grid-cols-2 gap-12"
           >
             {[
               {
@@ -632,7 +634,7 @@ export function NokoAcademy() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
-              className="grid md:grid-cols-3 gap-7"
+              className="grid grid-cols-1 md:grid-cols-3 gap-8"
             >
               {[
                 {
@@ -714,7 +716,7 @@ export function NokoAcademy() {
 
       {/* ── FORM ĐĂNG KÝ ─────────────────────────────────────────────────────── */}
       <section id="register" className="py-28 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
             animate={{ scale: [1, 1.2, 1], rotate: [0, 60, 0] }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}

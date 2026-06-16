@@ -4,10 +4,10 @@ import { Footer } from "../components/Footer";
 
 export function RootLayout() {
   return (
-    <>
+    <div className="overflow-x-hidden">
       <Header />
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 }

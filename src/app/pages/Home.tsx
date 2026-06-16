@@ -61,7 +61,7 @@ export function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-hidden">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-x-hidden">
       <ScrollProgress />
 
       {/* Cursor glow */}
@@ -190,7 +190,7 @@ export function Home() {
 
       {/* ── PAIN POINTS ──────────────────────────────────────────────────────── */}
       <ParallaxSection>
-        <section id="about" className="py-32 relative">
+        <section id="about" className="py-32 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-950/5 to-transparent pointer-events-none" />
           <div className="container relative z-10">
             <motion.div
@@ -216,7 +216,7 @@ export function Home() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
-              className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+              className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
             >
               {[
                 {
@@ -269,13 +269,14 @@ export function Home() {
 
       {/* ── HỆ SINH THÁI ─────────────────────────────────────────────────────── */}
       <section id="ecosystem" className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/15 to-transparent pointer-events-none" />
-        {/* Large decorative blob */}
-        <motion.div
-          animate={{ scale: [1, 1.15, 1], rotate: [0, 45, 0] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-indigo-600/8 via-purple-600/8 to-pink-600/8 rounded-full blur-3xl pointer-events-none"
-        />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/15 to-transparent" />
+          <motion.div
+            animate={{ scale: [1, 1.15, 1], rotate: [0, 45, 0] }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-indigo-600/8 via-purple-600/8 to-pink-600/8 rounded-full blur-3xl"
+          />
+        </div>
 
         <div className="container relative z-10">
           <motion.div
@@ -303,7 +304,7 @@ export function Home() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
-            className="grid md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
             {[
               {
@@ -398,17 +399,19 @@ export function Home() {
       {/* ── SOCIAL PROOF ─────────────────────────────────────────────────────── */}
       <ParallaxSection>
         <section className="py-32 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/8 via-purple-600/8 to-pink-600/8 pointer-events-none" />
-          <motion.div
-            animate={{ x: [0, 80, 0], y: [0, 40, 0] }}
-            transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-            className="absolute top-0 left-1/4 w-80 h-80 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none"
-          />
-          <motion.div
-            animate={{ x: [0, -80, 0], y: [0, -40, 0] }}
-            transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-600/15 rounded-full blur-3xl pointer-events-none"
-          />
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/8 via-purple-600/8 to-pink-600/8" />
+            <motion.div
+              animate={{ x: [0, 80, 0], y: [0, 40, 0] }}
+              transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+              className="absolute top-0 left-1/4 w-80 h-80 bg-indigo-600/15 rounded-full blur-3xl"
+            />
+            <motion.div
+              animate={{ x: [0, -80, 0], y: [0, -40, 0] }}
+              transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+              className="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-600/15 rounded-full blur-3xl"
+            />
+          </div>
 
           <div className="container relative z-10">
             <motion.div
@@ -495,7 +498,7 @@ export function Home() {
 
       {/* ── CTA FOOTER ───────────────────────────────────────────────────────── */}
       <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
             animate={{ scale: [1, 1.2, 1], rotate: [0, 60, 0] }}
             transition={{ duration: 18, repeat: Infinity, ease: "linear" }}

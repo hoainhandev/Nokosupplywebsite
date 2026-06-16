@@ -75,7 +75,7 @@ export function NokoPOS() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-hidden">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-black overflow-x-hidden">
       <ScrollProgress />
 
       {/* Cursor Glow */}
@@ -90,7 +90,7 @@ export function NokoPOS() {
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
             animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -109,7 +109,7 @@ export function NokoPOS() {
         </div>
 
         <div className="container relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -194,7 +194,7 @@ export function NokoPOS() {
                   <ImageWithFallback
                     src="https://images.unsplash.com/photo-1742238621804-62e3b4947d62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjByZXN0YXVyYW50JTIwUE9TJTIwc3lzdGVtfGVufDF8fHx8MTc3MjUzMDc1OHww&ixlib=rb-4.1.0&q=80&w=1080"
                     alt="Modern POS System"
-                    className="rounded-3xl shadow-2xl w-full border border-white/10"
+                    className="rounded-3xl shadow-2xl w-full max-w-full border border-white/10"
                   />
                 </motion.div>
               </motion.div>
@@ -220,7 +220,7 @@ export function NokoPOS() {
 
       {/* Clients */}
       <ParallaxSection>
-        <section id="clients" className="py-32 relative">
+        <section id="clients" className="py-32 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/10 to-transparent" />
           <div className="container relative z-10">
             <motion.div
@@ -243,7 +243,7 @@ export function NokoPOS() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20"
             >
               {[
                 { name: "King Bánh Mì", gradient: "from-yellow-400 to-orange-500" },
@@ -269,7 +269,7 @@ export function NokoPOS() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              className="grid md:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-3 gap-8"
             >
               {[
                 {
@@ -299,7 +299,7 @@ export function NokoPOS() {
                               transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
                               className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 blur-md opacity-50 rounded-full"
                             />
-                            <ImageWithFallback src={client.img} alt={client.name} className="relative w-16 h-16 rounded-full object-cover border-2 border-white/20" />
+                            <ImageWithFallback src={client.img} alt={client.name} className="relative w-16 h-16 max-w-full rounded-full object-cover border-2 border-white/20" />
                           </div>
                           <div>
                             <div className="font-semibold text-white text-lg">{client.name}</div>
@@ -326,7 +326,7 @@ export function NokoPOS() {
 
       {/* Features */}
       <ParallaxSection>
-        <section id="features" className="py-32 relative">
+        <section id="features" className="py-32 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/10 to-transparent" />
           <div className="container relative z-10">
             <motion.div
@@ -349,7 +349,7 @@ export function NokoPOS() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-3 gap-8"
             >
               {[
                 { icon: ShoppingCart, title: "Quản lý đơn hàng", desc: "Xử lý đơn hàng nhanh chóng, tách/gộp bàn dễ dàng, hỗ trợ nhiều hình thức thanh toán.", color: "from-blue-500 to-cyan-500" },
@@ -382,15 +382,17 @@ export function NokoPOS() {
 
       {/* ── KẾT NỐI NOKO SUPPLY ──────────────────────────────────────────────── */}
       <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-950/20 via-purple-950/20 to-indigo-950/15 pointer-events-none" />
-        <motion.div
-          animate={{ scale: [1, 1.15, 1], rotate: [0, 60, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-indigo-600/12 via-purple-600/12 to-indigo-500/8 rounded-full blur-3xl pointer-events-none"
-        />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-950/20 via-purple-950/20 to-indigo-950/15" />
+          <motion.div
+            animate={{ scale: [1, 1.15, 1], rotate: [0, 60, 0] }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-indigo-600/12 via-purple-600/12 to-indigo-500/8 rounded-full blur-3xl"
+          />
+        </div>
 
         <div className="container relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Features — trái */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -510,7 +512,7 @@ export function NokoPOS() {
 
       {/* Benefits */}
       <ParallaxSection>
-        <section id="benefits" className="py-32 relative">
+        <section id="benefits" className="py-32 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/10 to-transparent" />
           <div className="container relative z-10">
             <motion.div
@@ -532,7 +534,7 @@ export function NokoPOS() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
             >
               {[
                 { icon: TrendingUp, title: "Tăng doanh thu", desc: "Tăng trung bình 35% doanh thu sau 6 tháng sử dụng", colorClass: "text-blue-400", bgClass: "bg-blue-600/20", borderClass: "border-blue-500/30" },
@@ -557,9 +559,11 @@ export function NokoPOS() {
 
       {/* Stats */}
       <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/10 via-purple-600/10 to-pink-600/10" />
-        <motion.div animate={{ x: [0, 100, 0], y: [0, 50, 0] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl" />
-        <motion.div animate={{ x: [0, -100, 0], y: [0, -50, 0] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl" />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/10 via-purple-600/10 to-pink-600/10" />
+          <motion.div animate={{ x: [0, 100, 0], y: [0, 50, 0] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl" />
+          <motion.div animate={{ x: [0, -100, 0], y: [0, -50, 0] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl" />
+        </div>
 
         <div className="container relative z-10">
           <motion.div
@@ -567,7 +571,7 @@ export function NokoPOS() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid md:grid-cols-4 gap-12 text-center"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center"
           >
             {[
               { value: "500+", label: "Nhà hàng tin dùng" },
@@ -596,7 +600,7 @@ export function NokoPOS() {
 
       {/* Contact */}
       <ParallaxSection>
-        <section id="contact" className="py-32 relative">
+        <section id="contact" className="py-32 relative overflow-hidden">
           <div className="container relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -613,7 +617,7 @@ export function NokoPOS() {
               <p className="text-xl text-gray-500">Điền thông tin bên dưới, chúng tôi sẽ liên hệ với bạn trong vòng 24h</p>
             </motion.div>
 
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -676,7 +680,7 @@ export function NokoPOS() {
                 <Card className="bg-card/50 backdrop-blur-xl border-white/10 shadow-2xl">
                   <CardContent className="pt-10">
                     <form className="space-y-6">
-                      <div className="grid md:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                           <label htmlFor="name" className="block text-sm font-medium mb-3 text-gray-400">Họ và tên *</label>
                           <Input id="name" placeholder="Nguyễn Văn A" required className="bg-input-background border-white/10 focus:border-indigo-500 h-12" />
