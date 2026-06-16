@@ -57,7 +57,7 @@ export function Header() {
           <img
             src="https://sdribtqccxzjpikspnnm.supabase.co/storage/v1/object/public/assets/logo-header.png"
             alt="Noko"
-            className="h-8 w-auto max-w-full object-contain"
+            className="h-8 w-auto max-w-full object-contain mix-blend-screen"
           />
         </motion.div>
         </Link>
