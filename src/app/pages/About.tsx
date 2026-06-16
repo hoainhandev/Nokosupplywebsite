@@ -3,7 +3,7 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { useRef } from "react";
-import { ArrowRight, Sparkles, Target, Users, Leaf } from "lucide-react";
+import { ArrowRight, Target, Users, Leaf } from "lucide-react";
 
 function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -79,8 +79,12 @@ export function About() {
         </div>
 
         <div className="container relative z-10 text-center max-w-4xl">
+          <img
+            src="https://sdribtqccxzjpikspnnm.supabase.co/storage/v1/object/public/assets/logo-dark.png"
+            alt="Noko"
+            className="h-10 w-auto max-w-full object-contain mx-auto mb-8"
+          />
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r bg-[#F5F0E8]/10 border border-[#F5F0E8]/20 mb-10">
-            <Sparkles className="w-4 h-4 text-[#E8C97A]" />
             <span className="text-sm text-[#F5F0E8] font-medium">About Us</span>
           </div>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">

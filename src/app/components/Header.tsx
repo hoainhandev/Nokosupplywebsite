@@ -52,15 +52,13 @@ export function Header() {
         <Link to="/">
         <motion.div
           whileHover={{ scale: 1.05 }}
-          className="flex items-center gap-3 cursor-pointer"
+          className="flex items-center cursor-pointer"
         >
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#F5F0E8] to-[#E8C97A] blur-lg opacity-50" />
-            <Sparkles className="relative w-8 h-8 text-[#E8C97A]" />
-          </div>
-          <span className="text-2xl font-bold bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#F5F0E8] bg-clip-text text-transparent">
-            Noko
-          </span>
+          <img
+            src="https://sdribtqccxzjpikspnnm.supabase.co/storage/v1/object/public/assets/logo-header.png"
+            alt="Noko"
+            className="h-8 w-auto max-w-full object-contain"
+          />
         </motion.div>
         </Link>
 

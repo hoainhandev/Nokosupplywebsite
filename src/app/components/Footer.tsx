@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { motion } from "motion/react";
-import { Star, Facebook, MessageCircle, Youtube } from "lucide-react";
+import { Facebook, MessageCircle, Youtube } from "lucide-react";
 
 const services = [
   { label: "Noko POS", href: "/pos" },
@@ -32,14 +32,13 @@ export function Footer() {
             transition={{ duration: 0.5 }}
             className="md:col-span-2"
           >
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-7 h-7 bg-gradient-to-br from-[#F5F0E8] to-[#E8C97A] rounded-lg flex items-center justify-center">
-                <Star className="w-4 h-4 text-[#F5F0E8]" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-[#F5F0E8] via-[#E8C97A] to-[#F5F0E8] bg-clip-text text-transparent">
-                Noko
-              </span>
-            </div>
+            <Link to="/" className="inline-block mb-4">
+              <img
+                src="https://sdribtqccxzjpikspnnm.supabase.co/storage/v1/object/public/assets/logo-footer.png"
+                alt="Noko"
+                className="h-7 w-auto max-w-full object-contain"
+              />
+            </Link>
             <p className="text-sm text-[#A89880] mb-6 max-w-xs leading-relaxed">
               A complete F&B ecosystem — helping Vietnamese Americans run restaurants the right way, from day one.
             </p>
