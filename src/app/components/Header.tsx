@@ -68,9 +68,9 @@ export function Header() {
         <nav className="hidden md:flex items-center gap-8">
           {[
             { label: "Trang chủ", href: "/", isRoute: true },
-            { label: "Về chúng tôi", href: "#about" },
+            { label: "Về chúng tôi", href: "/about", isRoute: true },
             { label: "Blog", href: "/blog", isRoute: true },
-            { label: "Liên hệ", href: "#contact" },
+            { label: "Liên hệ", href: "/contact", isRoute: true },
           ].map((item, index) => {
             const className =
               "text-sm font-medium text-gray-400 hover:text-white transition-all duration-300 relative group";
@@ -94,19 +94,7 @@ export function Header() {
               );
             }
 
-            return (
-              <motion.a
-                key={item.label}
-                href={item.href}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className={className}
-              >
-                {item.label}
-                {underline}
-              </motion.a>
-            );
+            return null;
           })}
 
           {/* Services Dropdown */}
@@ -193,9 +181,9 @@ export function Header() {
           <nav className="container flex flex-col gap-4 py-6">
             {[
               { label: "Trang chủ", href: "/", isRoute: true },
-              { label: "Về chúng tôi", href: "#about" },
+              { label: "Về chúng tôi", href: "/about", isRoute: true },
               { label: "Blog", href: "/blog", isRoute: true },
-              { label: "Liên hệ", href: "#contact" },
+              { label: "Liên hệ", href: "/contact", isRoute: true },
             ].map((item) =>
               item.isRoute ? (
                 <Link
@@ -206,16 +194,7 @@ export function Header() {
                 >
                   {item.label}
                 </Link>
-              ) : (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              )
+              ) : null
             )}
             <div className="border-t border-white/10 pt-4">
               <p className="text-xs text-gray-600 mb-3 uppercase tracking-wider">Dịch vụ</p>
