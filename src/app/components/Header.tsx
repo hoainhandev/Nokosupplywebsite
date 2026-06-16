@@ -55,9 +55,9 @@ export function Header() {
           className="flex items-center cursor-pointer"
         >
           <img
-            src="https://sdribtqccxzjpikspnnm.supabase.co/storage/v1/object/public/assets/logo-header.png"
+            src="https://sdribtqccxzjpikspnnm.supabase.co/storage/v1/object/public/assets/logo-white.png"
             alt="Noko"
-            className="h-8 w-auto max-w-full object-contain mix-blend-screen"
+            className="h-8 w-auto max-w-full object-contain"
           />
         </motion.div>
         </Link>

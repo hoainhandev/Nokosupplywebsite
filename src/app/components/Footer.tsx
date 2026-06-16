@@ -34,9 +34,9 @@ export function Footer() {
           >
             <Link to="/" className="inline-block mb-4">
               <img
-                src="https://sdribtqccxzjpikspnnm.supabase.co/storage/v1/object/public/assets/logo-footer.png"
+                src="https://sdribtqccxzjpikspnnm.supabase.co/storage/v1/object/public/assets/logo-white.png"
                 alt="Noko"
-                className="h-7 w-auto max-w-full object-contain mix-blend-screen"
+                className="h-7 w-auto max-w-full object-contain"
               />
             </Link>
             <p className="text-sm text-[#A89880] mb-6 max-w-xs leading-relaxed">
